@@ -15,7 +15,7 @@ struct ChannelRow: View {
                 .frame(width: 100, height: 100)
                 .clipShape(Circle())
             
-            VStack {
+            VStack(alignment: .leading) {
                 Text(title)
                     .font(.title)
                     .bold()
@@ -34,6 +34,7 @@ struct ChannelRow: View {
                 }
                 .pickerStyle(RadioGroupPickerStyle())
             }
+            Spacer()
         }
         .padding()
     }

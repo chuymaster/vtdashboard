@@ -18,6 +18,8 @@
 		BEF6222925DE9E4800908658 /* ChannelRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6222825DE9E4800908658 /* ChannelRow.swift */; };
 		BEF6222D25DEA09B00908658 /* ChannelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6222C25DEA09B00908658 /* ChannelType.swift */; };
 		BEF6223025DEA18700908658 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6222F25DEA18700908658 /* Channel.swift */; };
+		BEF6223425DEA75700908658 /* ChannelsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6223325DEA75700908658 /* ChannelsViewModel.swift */; };
+		BEF6223825DEACBB00908658 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6223725DEACBB00908658 /* NetworkRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		BEF6222825DE9E4800908658 /* ChannelRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRow.swift; sourceTree = "<group>"; };
 		BEF6222C25DEA09B00908658 /* ChannelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelType.swift; sourceTree = "<group>"; };
 		BEF6222F25DEA18700908658 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		BEF6223325DEA75700908658 /* ChannelsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewModel.swift; sourceTree = "<group>"; };
+		BEF6223725DEACBB00908658 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,7 @@
 		BEF6220125DE76FC00908658 /* vtdashboard */ = {
 			isa = PBXGroup;
 			children = (
+				BEF6223625DEAC8C00908658 /* Infrastructures */,
 				BEF6222B25DEA09000908658 /* Entities */,
 				BEF6221F25DE9CE200908658 /* Application */,
 				BEF6220425DE76FC00908658 /* ContentView.swift */,
@@ -101,6 +106,7 @@
 			children = (
 				BEF6222525DE9D3400908658 /* ChannelsView.swift */,
 				BEF6222825DE9E4800908658 /* ChannelRow.swift */,
+				BEF6223325DEA75700908658 /* ChannelsViewModel.swift */,
 			);
 			path = Channels;
 			sourceTree = "<group>";
@@ -112,6 +118,14 @@
 				BEF6222F25DEA18700908658 /* Channel.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		BEF6223625DEAC8C00908658 /* Infrastructures */ = {
+			isa = PBXGroup;
+			children = (
+				BEF6223725DEACBB00908658 /* NetworkRequest.swift */,
+			);
+			path = Infrastructures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,10 +229,12 @@
 			files = (
 				BEF6223025DEA18700908658 /* Channel.swift in Sources */,
 				BEF6222625DE9D3400908658 /* ChannelsView.swift in Sources */,
+				BEF6223425DEA75700908658 /* ChannelsViewModel.swift in Sources */,
 				BEF6220525DE76FC00908658 /* ContentView.swift in Sources */,
 				BEF6222925DE9E4800908658 /* ChannelRow.swift in Sources */,
 				BEF6222D25DEA09B00908658 /* ChannelType.swift in Sources */,
 				BEF6222225DE9D1200908658 /* MainView.swift in Sources */,
+				BEF6223825DEACBB00908658 /* NetworkRequest.swift in Sources */,
 				BEF6220325DE76FC00908658 /* VtdashboardApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
