@@ -2,10 +2,13 @@ import Foundation
 import Alamofire
 import Combine
 
-struct NetworkRequest {
+class NetworkClient: ObservableObject {
+    
+    static let shared = NetworkClient()
+    
     private let jsonDecoder: JSONDecoder
     
-    init() {
+    private init() {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
         self.jsonDecoder = jsonDecoder
@@ -23,7 +26,7 @@ struct NetworkRequest {
                             fatalError("data must not be nil in success case.")
                         }
                         do {
-                            let object = try jsonDecoder.decode(T.self, from: data)
+                            let object = try self.jsonDecoder.decode(T.self, from: data)
                             promise(.success(object))
                         } catch let error {
                             promise(.failure(error))

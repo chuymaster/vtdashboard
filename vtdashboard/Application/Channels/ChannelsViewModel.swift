@@ -17,7 +17,7 @@ final class ChannelsViewModel: ObservableObject {
     func getChannels() {
         cancellable?.cancel()
         isLoading = true
-        cancellable = NetworkRequest().get(url: url)
+        cancellable = NetworkClient.shared.get(url: url)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 self?.isLoading = false
