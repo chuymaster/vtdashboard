@@ -3,19 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BEF6220325DE76FC00908658 /* vtdashboardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6220225DE76FC00908658 /* vtdashboardApp.swift */; };
+		BEF6220325DE76FC00908658 /* VtdashboardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6220225DE76FC00908658 /* VtdashboardApp.swift */; };
 		BEF6220525DE76FC00908658 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6220425DE76FC00908658 /* ContentView.swift */; };
 		BEF6220725DE76FD00908658 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF6220625DE76FD00908658 /* Assets.xcassets */; };
 		BEF6220A25DE76FD00908658 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF6220925DE76FD00908658 /* Preview Assets.xcassets */; };
+		BEF6221925DE9C3B00908658 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BEF6221825DE9C3B00908658 /* Alamofire */; };
+		BEF6221D25DE9C5600908658 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BEF6221C25DE9C5600908658 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BEF621FF25DE76FC00908658 /* vtdashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vtdashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BEF6220225DE76FC00908658 /* vtdashboardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vtdashboardApp.swift; sourceTree = "<group>"; };
+		BEF6220225DE76FC00908658 /* VtdashboardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VtdashboardApp.swift; sourceTree = "<group>"; };
 		BEF6220425DE76FC00908658 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BEF6220625DE76FD00908658 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEF6220925DE76FD00908658 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -28,6 +30,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEF6221D25DE9C5600908658 /* Kingfisher in Frameworks */,
+				BEF6221925DE9C3B00908658 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,7 +57,7 @@
 		BEF6220125DE76FC00908658 /* vtdashboard */ = {
 			isa = PBXGroup;
 			children = (
-				BEF6220225DE76FC00908658 /* vtdashboardApp.swift */,
+				BEF6220225DE76FC00908658 /* VtdashboardApp.swift */,
 				BEF6220425DE76FC00908658 /* ContentView.swift */,
 				BEF6220625DE76FD00908658 /* Assets.xcassets */,
 				BEF6220B25DE76FD00908658 /* Info.plist */,
@@ -78,6 +82,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BEF6220F25DE76FD00908658 /* Build configuration list for PBXNativeTarget "vtdashboard" */;
 			buildPhases = (
+				BEF6221325DE9B3000908658 /* SwiftLint */,
 				BEF621FB25DE76FC00908658 /* Sources */,
 				BEF621FC25DE76FC00908658 /* Frameworks */,
 				BEF621FD25DE76FC00908658 /* Resources */,
@@ -87,6 +92,10 @@
 			dependencies = (
 			);
 			name = vtdashboard;
+			packageProductDependencies = (
+				BEF6221825DE9C3B00908658 /* Alamofire */,
+				BEF6221C25DE9C5600908658 /* Kingfisher */,
+			);
 			productName = vtdashboard;
 			productReference = BEF621FF25DE76FC00908658 /* vtdashboard.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +123,10 @@
 				Base,
 			);
 			mainGroup = BEF621F625DE76FC00908658;
+			packageReferences = (
+				BEF6221725DE9C3B00908658 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				BEF6221B25DE9C5600908658 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = BEF6220025DE76FC00908658 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -135,13 +148,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		BEF6221325DE9B3000908658 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BEF621FB25DE76FC00908658 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				BEF6220525DE76FC00908658 /* ContentView.swift in Sources */,
-				BEF6220325DE76FC00908658 /* vtdashboardApp.swift in Sources */,
+				BEF6220325DE76FC00908658 /* VtdashboardApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +367,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BEF6221725DE9C3B00908658 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.1;
+			};
+		};
+		BEF6221B25DE9C5600908658 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BEF6221825DE9C3B00908658 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BEF6221725DE9C3B00908658 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		BEF6221C25DE9C5600908658 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BEF6221B25DE9C5600908658 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BEF621F725DE76FC00908658 /* Project object */;
 }
