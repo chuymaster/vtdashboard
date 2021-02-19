@@ -6,18 +6,19 @@ final class ChannelsViewModel: ObservableObject {
     @Published var error: Error?
     @Published private(set) var isLoading = false
     
-    private let url = "https://us-central1-thaivtuberranking.cloudfunctions.net/getChannelList"
+    private let networkClient: NetworkClientProtocol
     
     private var cancellable: AnyCancellable?
     
-    init() {
+    init(networkClient: NetworkClientProtocol = NetworkClient()) {
+        self.networkClient = networkClient
         getChannels()
     }
     
     func getChannels() {
         cancellable?.cancel()
         isLoading = true
-        cancellable = NetworkClient.shared.get(url: url)
+        cancellable = networkClient.get(endpoint: .getChannelList)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 self?.isLoading = false

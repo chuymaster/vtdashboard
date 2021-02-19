@@ -20,6 +20,8 @@
 		BEF6223025DEA18700908658 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6222F25DEA18700908658 /* Channel.swift */; };
 		BEF6223425DEA75700908658 /* ChannelsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6223325DEA75700908658 /* ChannelsViewModel.swift */; };
 		BEF6223825DEACBB00908658 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6223725DEACBB00908658 /* NetworkClient.swift */; };
+		BEF6223D25DF6F8C00908658 /* MockNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6223C25DF6F8C00908658 /* MockNetworkClient.swift */; };
+		BEF6224025DF702C00908658 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6223F25DF702C00908658 /* Endpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		BEF6222F25DEA18700908658 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		BEF6223325DEA75700908658 /* ChannelsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewModel.swift; sourceTree = "<group>"; };
 		BEF6223725DEACBB00908658 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		BEF6223C25DF6F8C00908658 /* MockNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkClient.swift; sourceTree = "<group>"; };
+		BEF6223F25DF702C00908658 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,8 @@
 			isa = PBXGroup;
 			children = (
 				BEF6223725DEACBB00908658 /* NetworkClient.swift */,
+				BEF6223C25DF6F8C00908658 /* MockNetworkClient.swift */,
+				BEF6223F25DF702C00908658 /* Endpoint.swift */,
 			);
 			path = Infrastructures;
 			sourceTree = "<group>";
@@ -228,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEF6223025DEA18700908658 /* Channel.swift in Sources */,
+				BEF6223D25DF6F8C00908658 /* MockNetworkClient.swift in Sources */,
 				BEF6222625DE9D3400908658 /* ChannelsView.swift in Sources */,
 				BEF6223425DEA75700908658 /* ChannelsViewModel.swift in Sources */,
 				BEF6220525DE76FC00908658 /* ContentView.swift in Sources */,
@@ -235,6 +242,7 @@
 				BEF6222D25DEA09B00908658 /* ChannelType.swift in Sources */,
 				BEF6222225DE9D1200908658 /* MainView.swift in Sources */,
 				BEF6223825DEACBB00908658 /* NetworkClient.swift in Sources */,
+				BEF6224025DF702C00908658 /* Endpoint.swift in Sources */,
 				BEF6220325DE76FC00908658 /* VtdashboardApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

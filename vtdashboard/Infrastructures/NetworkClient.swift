@@ -2,13 +2,15 @@ import Foundation
 import Alamofire
 import Combine
 
-class NetworkClient: ObservableObject {
-    
-    static let shared = NetworkClient()
+protocol NetworkClientProtocol {
+    func get<T: Codable>(endpoint: Endpoint) -> Future<T, Error>
+}
+
+class NetworkClient: NetworkClientProtocol {
     
     private let jsonDecoder: JSONDecoder
     
-    private init() {
+    init() {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
         self.jsonDecoder = jsonDecoder
@@ -16,9 +18,9 @@ class NetworkClient: ObservableObject {
     
     /// Get data from the url and automatically create the desired object type
     /// The object type must conform to Codable protocol
-    func get<T: Codable>(url: String) -> Future<T, Error> {
+    func get<T: Codable>(endpoint: Endpoint) -> Future<T, Error> {
         return Future { promise in
-            let request = AF.request(url)
+            let request = AF.request(endpoint.rawValue)
                 .response { response in
                     switch response.result {
                     case .success(let data):
