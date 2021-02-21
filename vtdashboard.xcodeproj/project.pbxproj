@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BEC297FC25E2A95A001A6A8C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC297FB25E2A95A001A6A8C /* LoadingView.swift */; };
+		BEC2980025E2A9D0001A6A8C /* ViewStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC297FF25E2A9D0001A6A8C /* ViewStatus.swift */; };
 		BEF6220325DE76FC00908658 /* VtdashboardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6220225DE76FC00908658 /* VtdashboardApp.swift */; };
 		BEF6220525DE76FC00908658 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6220425DE76FC00908658 /* ContentView.swift */; };
 		BEF6220725DE76FD00908658 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF6220625DE76FD00908658 /* Assets.xcassets */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BEC297FB25E2A95A001A6A8C /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		BEC297FF25E2A9D0001A6A8C /* ViewStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStatus.swift; sourceTree = "<group>"; };
 		BEF621FF25DE76FC00908658 /* vtdashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vtdashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF6220225DE76FC00908658 /* VtdashboardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VtdashboardApp.swift; sourceTree = "<group>"; };
 		BEF6220425DE76FC00908658 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,6 +60,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BEC297FA25E2A951001A6A8C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				BEC297FB25E2A95A001A6A8C /* LoadingView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		BEF621F625DE76FC00908658 = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +87,7 @@
 		BEF6220125DE76FC00908658 /* vtdashboard */ = {
 			isa = PBXGroup;
 			children = (
+				BEC297FA25E2A951001A6A8C /* Components */,
 				BEF6223625DEAC8C00908658 /* Infrastructures */,
 				BEF6222B25DEA09000908658 /* Entities */,
 				BEF6221F25DE9CE200908658 /* Application */,
@@ -120,6 +133,7 @@
 			children = (
 				BEF6222C25DEA09B00908658 /* ChannelType.swift */,
 				BEF6222F25DEA18700908658 /* Channel.swift */,
+				BEC297FF25E2A9D0001A6A8C /* ViewStatus.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -238,8 +252,10 @@
 				BEF6222625DE9D3400908658 /* ChannelsView.swift in Sources */,
 				BEF6223425DEA75700908658 /* ChannelsViewModel.swift in Sources */,
 				BEF6220525DE76FC00908658 /* ContentView.swift in Sources */,
+				BEC297FC25E2A95A001A6A8C /* LoadingView.swift in Sources */,
 				BEF6222925DE9E4800908658 /* ChannelRow.swift in Sources */,
 				BEF6222D25DEA09B00908658 /* ChannelType.swift in Sources */,
+				BEC2980025E2A9D0001A6A8C /* ViewStatus.swift in Sources */,
 				BEF6222225DE9D1200908658 /* MainView.swift in Sources */,
 				BEF6223825DEACBB00908658 /* NetworkClient.swift in Sources */,
 				BEF6224025DF702C00908658 /* Endpoint.swift in Sources */,

@@ -6,7 +6,7 @@ protocol NetworkClientProtocol {
     func get<T: Codable>(endpoint: Endpoint) -> Future<T, Error>
 }
 
-class NetworkClient: NetworkClientProtocol {
+struct NetworkClient: NetworkClientProtocol {
     
     private let jsonDecoder: JSONDecoder
     

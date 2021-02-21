@@ -2,9 +2,8 @@ import Combine
 import SwiftUI
 
 final class ChannelsViewModel: ObservableObject {
+    @Published var viewStatus: ViewStatus = .loading
     @Published var channels: [Channel] = []
-    @Published var error: Error?
-    @Published private(set) var isLoading = false
     
     private let networkClient: NetworkClientProtocol
     
@@ -17,16 +16,15 @@ final class ChannelsViewModel: ObservableObject {
     
     func getChannels() {
         cancellable?.cancel()
-        isLoading = true
+        viewStatus = .loading
         cancellable = networkClient.get(endpoint: .getChannelList)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
-                self?.isLoading = false
                 switch completion {
                 case .finished:
-                    self?.error = nil
+                    self?.viewStatus = .loaded
                 case .failure(let error):
-                    self?.error = error
+                    self?.viewStatus = .error(error: error)
                 }
             } receiveValue: { [weak self] channels in
                 self?.channels = channels

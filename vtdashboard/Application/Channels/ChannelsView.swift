@@ -5,25 +5,36 @@ struct ChannelsView: View {
     @StateObject var viewModel = ChannelsViewModel()
     
     var body: some View {
-        VStack(alignment: .leading) {
-            // header + search box
-            Text("Channels")
-                .bold()
-                .font(.title)
-            
-            List {
-                ForEach(viewModel.channels) { channel in
-                    ChannelRow(
-                        type: channel.type,
-                        imageURL: channel.thumbnailImageUrl,
-                        title: channel.title
-                    )
+        switch viewModel.viewStatus {
+        case .loading:
+            AnyView(LoadingView())
+        case .loaded:
+            AnyView(
+                VStack(alignment: .leading) {
+                    // header + search box
+                    Text("Channels")
+                        .bold()
+                        .font(.title)
+                    
+                    List {
+                        ForEach(viewModel.channels) { channel in
+                            ChannelRow(
+                                type: channel.type,
+                                imageURL: channel.thumbnailImageUrl,
+                                title: channel.title
+                            )
+                        }
+                    }
+                    .listStyle(PlainListStyle())
                 }
-            }
-            .listStyle(PlainListStyle())
+                .frame(minWidth: 300)
+                .padding()
+            )
+        case .error(let error):
+            AnyView(
+                Text(error.localizedDescription)
+            )
         }
-        .frame(minWidth: 300)
-        .padding()
         
         // footer pagination
     }

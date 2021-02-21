@@ -1,7 +1,7 @@
 import Combine
 
 // swiftlint:disable force_cast
-class MockNetworkClient: NetworkClientProtocol {
+struct MockNetworkClient: NetworkClientProtocol {
     func get<T: Codable>(endpoint: Endpoint) -> Future<T, Error> {
         switch endpoint {
         case .getChannelList:
