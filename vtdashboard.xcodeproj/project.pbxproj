@@ -13,6 +13,7 @@
 		BEC2980625E3F6A8001A6A8C /* ChannelRequestStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2980525E3F6A8001A6A8C /* ChannelRequestStatus.swift */; };
 		BEC2980B25E3F74E001A6A8C /* TimeInterval+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2980A25E3F74E001A6A8C /* TimeInterval+Extension.swift */; };
 		BEC2980E25E3F888001A6A8C /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2980D25E3F888001A6A8C /* SidebarView.swift */; };
+		BEC2981125E3F956001A6A8C /* ViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2981025E3F956001A6A8C /* ViewType.swift */; };
 		BEF6220325DE76FC00908658 /* VtdashboardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6220225DE76FC00908658 /* VtdashboardApp.swift */; };
 		BEF6220525DE76FC00908658 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6220425DE76FC00908658 /* ContentView.swift */; };
 		BEF6220725DE76FD00908658 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF6220625DE76FD00908658 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 		BEC2980525E3F6A8001A6A8C /* ChannelRequestStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequestStatus.swift; sourceTree = "<group>"; };
 		BEC2980A25E3F74E001A6A8C /* TimeInterval+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extension.swift"; sourceTree = "<group>"; };
 		BEC2980D25E3F888001A6A8C /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
+		BEC2981025E3F956001A6A8C /* ViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewType.swift; sourceTree = "<group>"; };
 		BEF621FF25DE76FC00908658 /* vtdashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vtdashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF6220225DE76FC00908658 /* VtdashboardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VtdashboardApp.swift; sourceTree = "<group>"; };
 		BEF6220425DE76FC00908658 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				BEF6222F25DEA18700908658 /* Channel.swift */,
 				BEC297FF25E2A9D0001A6A8C /* ViewStatus.swift */,
 				BEC2980525E3F6A8001A6A8C /* ChannelRequestStatus.swift */,
+				BEC2981025E3F956001A6A8C /* ViewType.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				BEF6222925DE9E4800908658 /* ChannelRow.swift in Sources */,
 				BEC2980325E3F5E0001A6A8C /* ChannelRequest.swift in Sources */,
 				BEF6222D25DEA09B00908658 /* ChannelType.swift in Sources */,
+				BEC2981125E3F956001A6A8C /* ViewType.swift in Sources */,
 				BEC2980025E2A9D0001A6A8C /* ViewStatus.swift in Sources */,
 				BEF6222225DE9D1200908658 /* MainView.swift in Sources */,
 				BEF6223825DEACBB00908658 /* NetworkClient.swift in Sources */,
