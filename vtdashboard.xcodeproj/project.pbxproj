@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		BEC297FC25E2A95A001A6A8C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC297FB25E2A95A001A6A8C /* LoadingView.swift */; };
 		BEC2980025E2A9D0001A6A8C /* ViewStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC297FF25E2A9D0001A6A8C /* ViewStatus.swift */; };
+		BEC2980325E3F5E0001A6A8C /* ChannelRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2980225E3F5E0001A6A8C /* ChannelRequest.swift */; };
+		BEC2980625E3F6A8001A6A8C /* ChannelRequestStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2980525E3F6A8001A6A8C /* ChannelRequestStatus.swift */; };
+		BEC2980B25E3F74E001A6A8C /* TimeInterval+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2980A25E3F74E001A6A8C /* TimeInterval+Extension.swift */; };
+		BEC2980E25E3F888001A6A8C /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2980D25E3F888001A6A8C /* SidebarView.swift */; };
 		BEF6220325DE76FC00908658 /* VtdashboardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6220225DE76FC00908658 /* VtdashboardApp.swift */; };
 		BEF6220525DE76FC00908658 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6220425DE76FC00908658 /* ContentView.swift */; };
 		BEF6220725DE76FD00908658 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF6220625DE76FD00908658 /* Assets.xcassets */; };
@@ -29,6 +33,10 @@
 /* Begin PBXFileReference section */
 		BEC297FB25E2A95A001A6A8C /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		BEC297FF25E2A9D0001A6A8C /* ViewStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStatus.swift; sourceTree = "<group>"; };
+		BEC2980225E3F5E0001A6A8C /* ChannelRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequest.swift; sourceTree = "<group>"; };
+		BEC2980525E3F6A8001A6A8C /* ChannelRequestStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequestStatus.swift; sourceTree = "<group>"; };
+		BEC2980A25E3F74E001A6A8C /* TimeInterval+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extension.swift"; sourceTree = "<group>"; };
+		BEC2980D25E3F888001A6A8C /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		BEF621FF25DE76FC00908658 /* vtdashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vtdashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF6220225DE76FC00908658 /* VtdashboardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VtdashboardApp.swift; sourceTree = "<group>"; };
 		BEF6220425DE76FC00908658 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -68,6 +76,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		BEC2980925E3F740001A6A8C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BEC2980A25E3F74E001A6A8C /* TimeInterval+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		BEF621F625DE76FC00908658 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +103,7 @@
 		BEF6220125DE76FC00908658 /* vtdashboard */ = {
 			isa = PBXGroup;
 			children = (
+				BEC2980925E3F740001A6A8C /* Extensions */,
 				BEC297FA25E2A951001A6A8C /* Components */,
 				BEF6223625DEAC8C00908658 /* Infrastructures */,
 				BEF6222B25DEA09000908658 /* Entities */,
@@ -114,6 +131,7 @@
 				BEF6222025DE9CF100908658 /* Channels */,
 				BEF6220225DE76FC00908658 /* VtdashboardApp.swift */,
 				BEF6222125DE9D1200908658 /* MainView.swift */,
+				BEC2980D25E3F888001A6A8C /* SidebarView.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -132,8 +150,10 @@
 			isa = PBXGroup;
 			children = (
 				BEF6222C25DEA09B00908658 /* ChannelType.swift */,
+				BEC2980225E3F5E0001A6A8C /* ChannelRequest.swift */,
 				BEF6222F25DEA18700908658 /* Channel.swift */,
 				BEC297FF25E2A9D0001A6A8C /* ViewStatus.swift */,
+				BEC2980525E3F6A8001A6A8C /* ChannelRequestStatus.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -250,16 +270,20 @@
 				BEF6223025DEA18700908658 /* Channel.swift in Sources */,
 				BEF6223D25DF6F8C00908658 /* MockNetworkClient.swift in Sources */,
 				BEF6222625DE9D3400908658 /* ChannelsView.swift in Sources */,
+				BEC2980B25E3F74E001A6A8C /* TimeInterval+Extension.swift in Sources */,
 				BEF6223425DEA75700908658 /* ChannelsViewModel.swift in Sources */,
 				BEF6220525DE76FC00908658 /* ContentView.swift in Sources */,
 				BEC297FC25E2A95A001A6A8C /* LoadingView.swift in Sources */,
 				BEF6222925DE9E4800908658 /* ChannelRow.swift in Sources */,
+				BEC2980325E3F5E0001A6A8C /* ChannelRequest.swift in Sources */,
 				BEF6222D25DEA09B00908658 /* ChannelType.swift in Sources */,
 				BEC2980025E2A9D0001A6A8C /* ViewStatus.swift in Sources */,
 				BEF6222225DE9D1200908658 /* MainView.swift in Sources */,
 				BEF6223825DEACBB00908658 /* NetworkClient.swift in Sources */,
 				BEF6224025DF702C00908658 /* Endpoint.swift in Sources */,
+				BEC2980E25E3F888001A6A8C /* SidebarView.swift in Sources */,
 				BEF6220325DE76FC00908658 /* VtdashboardApp.swift in Sources */,
+				BEC2980625E3F6A8001A6A8C /* ChannelRequestStatus.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
