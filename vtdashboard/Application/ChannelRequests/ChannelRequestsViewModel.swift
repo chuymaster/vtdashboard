@@ -1,9 +1,9 @@
 import Combine
 import SwiftUI
 
-final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
+final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
     @Published var viewStatus: ViewStatus = .loading
-    @Published var channels: [Channel] = []
+    @Published var channelRequests: [ChannelRequest] = []
     
     private let networkClient: NetworkClientProtocol
     
@@ -11,13 +11,13 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
     
     init(networkClient: NetworkClientProtocol = NetworkClient()) {
         self.networkClient = networkClient
-        getChannels()
+        getChannelRequests()
     }
     
-    func getChannels() {
+    func getChannelRequests() {
         cancellable?.cancel()
         viewStatus = .loading
-        cancellable = networkClient.get(endpoint: .getChannelList)
+        cancellable = networkClient.get(endpoint: .getChannelRequestList)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 switch completion {
@@ -26,8 +26,8 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
                 case .failure(let error):
                     self?.viewStatus = .error(error: error)
                 }
-            } receiveValue: { [weak self] channels in
-                self?.channels = channels
+            } receiveValue: { [weak self] channelRequests in
+                self?.channelRequests = channelRequests
             }
     }
 }

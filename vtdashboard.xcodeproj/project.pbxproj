@@ -14,6 +14,10 @@
 		BEC2980B25E3F74E001A6A8C /* TimeInterval+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2980A25E3F74E001A6A8C /* TimeInterval+Extension.swift */; };
 		BEC2980E25E3F888001A6A8C /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2980D25E3F888001A6A8C /* SidebarView.swift */; };
 		BEC2981125E3F956001A6A8C /* ViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2981025E3F956001A6A8C /* ViewType.swift */; };
+		BEC2981625E4EC50001A6A8C /* ChannelRequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2981525E4EC50001A6A8C /* ChannelRequestsView.swift */; };
+		BEC2981A25E4ECA7001A6A8C /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2981925E4ECA7001A6A8C /* View+Extension.swift */; };
+		BEC2981D25E4ED90001A6A8C /* ChannelRequestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2981C25E4ED90001A6A8C /* ChannelRequestsViewModel.swift */; };
+		BEC2982125E4EDDB001A6A8C /* ViewStatusManageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2982025E4EDDB001A6A8C /* ViewStatusManageable.swift */; };
 		BEF6220325DE76FC00908658 /* VtdashboardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6220225DE76FC00908658 /* VtdashboardApp.swift */; };
 		BEF6220525DE76FC00908658 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6220425DE76FC00908658 /* ContentView.swift */; };
 		BEF6220725DE76FD00908658 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF6220625DE76FD00908658 /* Assets.xcassets */; };
@@ -39,6 +43,10 @@
 		BEC2980A25E3F74E001A6A8C /* TimeInterval+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extension.swift"; sourceTree = "<group>"; };
 		BEC2980D25E3F888001A6A8C /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		BEC2981025E3F956001A6A8C /* ViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewType.swift; sourceTree = "<group>"; };
+		BEC2981525E4EC50001A6A8C /* ChannelRequestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequestsView.swift; sourceTree = "<group>"; };
+		BEC2981925E4ECA7001A6A8C /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		BEC2981C25E4ED90001A6A8C /* ChannelRequestsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequestsViewModel.swift; sourceTree = "<group>"; };
+		BEC2982025E4EDDB001A6A8C /* ViewStatusManageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStatusManageable.swift; sourceTree = "<group>"; };
 		BEF621FF25DE76FC00908658 /* vtdashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vtdashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF6220225DE76FC00908658 /* VtdashboardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VtdashboardApp.swift; sourceTree = "<group>"; };
 		BEF6220425DE76FC00908658 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -82,8 +90,26 @@
 			isa = PBXGroup;
 			children = (
 				BEC2980A25E3F74E001A6A8C /* TimeInterval+Extension.swift */,
+				BEC2981925E4ECA7001A6A8C /* View+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BEC2981425E4EC40001A6A8C /* ChannelRequests */ = {
+			isa = PBXGroup;
+			children = (
+				BEC2981525E4EC50001A6A8C /* ChannelRequestsView.swift */,
+				BEC2981C25E4ED90001A6A8C /* ChannelRequestsViewModel.swift */,
+			);
+			path = ChannelRequests;
+			sourceTree = "<group>";
+		};
+		BEC2981F25E4EDD0001A6A8C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				BEC2982025E4EDDB001A6A8C /* ViewStatusManageable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		BEF621F625DE76FC00908658 = {
@@ -105,6 +131,7 @@
 		BEF6220125DE76FC00908658 /* vtdashboard */ = {
 			isa = PBXGroup;
 			children = (
+				BEC2981F25E4EDD0001A6A8C /* Protocols */,
 				BEC2980925E3F740001A6A8C /* Extensions */,
 				BEC297FA25E2A951001A6A8C /* Components */,
 				BEF6223625DEAC8C00908658 /* Infrastructures */,
@@ -130,6 +157,7 @@
 		BEF6221F25DE9CE200908658 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				BEC2981425E4EC40001A6A8C /* ChannelRequests */,
 				BEF6222025DE9CF100908658 /* Channels */,
 				BEF6220225DE76FC00908658 /* VtdashboardApp.swift */,
 				BEF6222125DE9D1200908658 /* MainView.swift */,
@@ -272,9 +300,11 @@
 			files = (
 				BEF6223025DEA18700908658 /* Channel.swift in Sources */,
 				BEF6223D25DF6F8C00908658 /* MockNetworkClient.swift in Sources */,
+				BEC2981A25E4ECA7001A6A8C /* View+Extension.swift in Sources */,
 				BEF6222625DE9D3400908658 /* ChannelsView.swift in Sources */,
 				BEC2980B25E3F74E001A6A8C /* TimeInterval+Extension.swift in Sources */,
 				BEF6223425DEA75700908658 /* ChannelsViewModel.swift in Sources */,
+				BEC2981625E4EC50001A6A8C /* ChannelRequestsView.swift in Sources */,
 				BEF6220525DE76FC00908658 /* ContentView.swift in Sources */,
 				BEC297FC25E2A95A001A6A8C /* LoadingView.swift in Sources */,
 				BEF6222925DE9E4800908658 /* ChannelRow.swift in Sources */,
@@ -284,10 +314,12 @@
 				BEC2980025E2A9D0001A6A8C /* ViewStatus.swift in Sources */,
 				BEF6222225DE9D1200908658 /* MainView.swift in Sources */,
 				BEF6223825DEACBB00908658 /* NetworkClient.swift in Sources */,
+				BEC2981D25E4ED90001A6A8C /* ChannelRequestsViewModel.swift in Sources */,
 				BEF6224025DF702C00908658 /* Endpoint.swift in Sources */,
 				BEC2980E25E3F888001A6A8C /* SidebarView.swift in Sources */,
 				BEF6220325DE76FC00908658 /* VtdashboardApp.swift in Sources */,
 				BEC2980625E3F6A8001A6A8C /* ChannelRequestStatus.swift in Sources */,
+				BEC2982125E4EDDB001A6A8C /* ViewStatusManageable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
