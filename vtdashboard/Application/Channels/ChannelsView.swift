@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ChannelsView: View {
-    @StateObject private var viewModel = ChannelsViewModel()
+    @StateObject var viewModel = ChannelsViewModel()
     
     var body: some View {
         switch viewModel.viewStatus {
