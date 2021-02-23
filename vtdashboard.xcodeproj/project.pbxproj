@@ -18,6 +18,7 @@
 		BEC2981A25E4ECA7001A6A8C /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2981925E4ECA7001A6A8C /* View+Extension.swift */; };
 		BEC2981D25E4ED90001A6A8C /* ChannelRequestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2981C25E4ED90001A6A8C /* ChannelRequestsViewModel.swift */; };
 		BEC2982125E4EDDB001A6A8C /* ViewStatusManageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2982025E4EDDB001A6A8C /* ViewStatusManageable.swift */; };
+		BEC2982425E4EFDB001A6A8C /* ChannelRequestRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2982325E4EFDB001A6A8C /* ChannelRequestRow.swift */; };
 		BEF6220325DE76FC00908658 /* VtdashboardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6220225DE76FC00908658 /* VtdashboardApp.swift */; };
 		BEF6220525DE76FC00908658 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6220425DE76FC00908658 /* ContentView.swift */; };
 		BEF6220725DE76FD00908658 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF6220625DE76FD00908658 /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		BEC2981925E4ECA7001A6A8C /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		BEC2981C25E4ED90001A6A8C /* ChannelRequestsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequestsViewModel.swift; sourceTree = "<group>"; };
 		BEC2982025E4EDDB001A6A8C /* ViewStatusManageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStatusManageable.swift; sourceTree = "<group>"; };
+		BEC2982325E4EFDB001A6A8C /* ChannelRequestRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequestRow.swift; sourceTree = "<group>"; };
 		BEF621FF25DE76FC00908658 /* vtdashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vtdashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF6220225DE76FC00908658 /* VtdashboardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VtdashboardApp.swift; sourceTree = "<group>"; };
 		BEF6220425DE76FC00908658 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			children = (
 				BEC2981525E4EC50001A6A8C /* ChannelRequestsView.swift */,
 				BEC2981C25E4ED90001A6A8C /* ChannelRequestsViewModel.swift */,
+				BEC2982325E4EFDB001A6A8C /* ChannelRequestRow.swift */,
 			);
 			path = ChannelRequests;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				BEF6222225DE9D1200908658 /* MainView.swift in Sources */,
 				BEF6223825DEACBB00908658 /* NetworkClient.swift in Sources */,
 				BEC2981D25E4ED90001A6A8C /* ChannelRequestsViewModel.swift in Sources */,
+				BEC2982425E4EFDB001A6A8C /* ChannelRequestRow.swift in Sources */,
 				BEF6224025DF702C00908658 /* Endpoint.swift in Sources */,
 				BEC2980E25E3F888001A6A8C /* SidebarView.swift in Sources */,
 				BEF6220325DE76FC00908658 /* VtdashboardApp.swift in Sources */,

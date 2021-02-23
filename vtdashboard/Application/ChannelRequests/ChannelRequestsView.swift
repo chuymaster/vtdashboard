@@ -1,20 +1,28 @@
 import SwiftUI
 
 struct ChannelRequestsView: View {
-    @StateObject private var viewModel = ChannelRequestsViewModel()
+    @StateObject var viewModel = ChannelRequestsViewModel()
     
     var body: some View {
-        HStack {
-            Spacer()
-            Text("Hello, World!")
-                .padding()
-            Spacer()
+        VStack {
+            ForEach(viewModel.channelRequests) { request in
+                HStack {
+                    ChannelRequestRow(
+                        type: request.type,
+                        status: request.status,
+                        imageURL: request.thumbnailImageUrl, title: request.title
+                    )
+                    Spacer()
+                }
+            }
         }
     }
 }
 
 struct ChannelRequestsView_Previews: PreviewProvider {
     static var previews: some View {
-        ChannelRequestsView()
+        ChannelRequestsView(
+            viewModel: ChannelRequestsViewModel(networkClient: MockNetworkClient())
+        )
     }
 }

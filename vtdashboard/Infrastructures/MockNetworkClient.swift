@@ -24,8 +24,28 @@ struct MockNetworkClient: NetworkClientProtocol {
                 ]
                 promise(.success(channels as! T))
             }
-        @unknown default:
-            fatalError("URL Not found")
+        case .getChannelRequestList:
+            return Future { promise in
+                let channelRequests: [ChannelRequest] = [
+                    .init(
+                        channelId: "UCicCFumqJgPj23vkAh_1TbA",
+                        title: "BubbleGum - TH - Vtuber _Maid Cafe_",
+                        thumbnailImageUrl: "https://yt3.ggpht.com/ytc/AAUvwnhmhwnVvT9NHI2aOaaHo8NElvdf_WdO819fTFuW=s800-c-k-c0x00ffffff-no-rj",
+                        type: .original,
+                        status: .accepted,
+                        updatedAt: 1613949914670
+                    ),
+                    .init(
+                        channelId: "UC6Q4UI5mEjeZOIRoTtRoFJA",
+                        title: "Midnight Ch. / มิดไนท์",
+                        thumbnailImageUrl: "https://yt3.ggpht.com/ytc/AAUvwnh-9J0m6X4RJslG02wUBKkVCSlds_9FulEbf4iI=s800-c-k-c0x00ffffff-no-rj",
+                        type: .half,
+                        status: .unconfirmed,
+                        updatedAt: 1613274214285
+                    )
+                ]
+                promise(.success(channelRequests as! T))
+            }
         }
     }
 }
