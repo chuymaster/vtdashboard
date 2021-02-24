@@ -5,13 +5,28 @@ struct ChannelRequestsView: View {
     
     var body: some View {
         VStack {
-            ForEach(viewModel.channelRequests) { request in
+            ForEach(viewModel.channelRequests.indices) { index in
+                let request = viewModel.channelRequests[index]
                 HStack {
-                    ChannelRequestRow(
-                        type: request.type,
-                        status: request.status,
-                        imageURL: request.thumbnailImageUrl, title: request.title
-                    )
+//                    ChannelRequestRow(
+//                        type: viewModel.channelRequests[index].type,
+//                        status: request.status,
+//                        imageURL: request.thumbnailImageUrl,
+//                        title: request.title,
+//                        updatedAt: request.updatedAt.displayText,
+//                        confirmAction: {
+//
+//                        },
+//                        pendingAction: {
+//
+//                        },
+//                        rejectAction: {
+//
+//                        },
+//                        restoreAction: {
+//
+//                        }
+//                    )
                     Spacer()
                 }
             }

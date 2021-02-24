@@ -2,7 +2,13 @@ import Combine
 
 // swiftlint:disable force_cast
 struct MockNetworkClient: NetworkClientProtocol {
-    func get<T: Codable>(endpoint: Endpoint) -> Future<T, Error> {
+    func post<T>(endpoint: PostEndpoint, parameters: [String : String]) -> Future<T, Error> where T : Decodable, T : Encodable {
+        return Future { promise in
+            promise(.success("OK" as! T))
+        }
+    }
+    
+    func get<T: Codable>(endpoint: GetEndpoint) -> Future<T, Error> {
         switch endpoint {
         case .getChannelList:
             return Future { promise in

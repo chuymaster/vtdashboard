@@ -19,8 +19,8 @@
 		BEC2981D25E4ED90001A6A8C /* ChannelRequestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2981C25E4ED90001A6A8C /* ChannelRequestsViewModel.swift */; };
 		BEC2982125E4EDDB001A6A8C /* ViewStatusManageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2982025E4EDDB001A6A8C /* ViewStatusManageable.swift */; };
 		BEC2982425E4EFDB001A6A8C /* ChannelRequestRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2982325E4EFDB001A6A8C /* ChannelRequestRow.swift */; };
+		BEDE5FBE25E6880A004DC9CC /* TagText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDE5FBD25E6880A004DC9CC /* TagText.swift */; };
 		BEF6220325DE76FC00908658 /* VtdashboardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6220225DE76FC00908658 /* VtdashboardApp.swift */; };
-		BEF6220525DE76FC00908658 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6220425DE76FC00908658 /* ContentView.swift */; };
 		BEF6220725DE76FD00908658 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF6220625DE76FD00908658 /* Assets.xcassets */; };
 		BEF6220A25DE76FD00908658 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF6220925DE76FD00908658 /* Preview Assets.xcassets */; };
 		BEF6221925DE9C3B00908658 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BEF6221825DE9C3B00908658 /* Alamofire */; };
@@ -33,7 +33,7 @@
 		BEF6223425DEA75700908658 /* ChannelsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6223325DEA75700908658 /* ChannelsViewModel.swift */; };
 		BEF6223825DEACBB00908658 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6223725DEACBB00908658 /* NetworkClient.swift */; };
 		BEF6223D25DF6F8C00908658 /* MockNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6223C25DF6F8C00908658 /* MockNetworkClient.swift */; };
-		BEF6224025DF702C00908658 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6223F25DF702C00908658 /* Endpoint.swift */; };
+		BEF6224025DF702C00908658 /* GetEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6223F25DF702C00908658 /* GetEndpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,9 +49,9 @@
 		BEC2981C25E4ED90001A6A8C /* ChannelRequestsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequestsViewModel.swift; sourceTree = "<group>"; };
 		BEC2982025E4EDDB001A6A8C /* ViewStatusManageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStatusManageable.swift; sourceTree = "<group>"; };
 		BEC2982325E4EFDB001A6A8C /* ChannelRequestRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequestRow.swift; sourceTree = "<group>"; };
+		BEDE5FBD25E6880A004DC9CC /* TagText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagText.swift; sourceTree = "<group>"; };
 		BEF621FF25DE76FC00908658 /* vtdashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vtdashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF6220225DE76FC00908658 /* VtdashboardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VtdashboardApp.swift; sourceTree = "<group>"; };
-		BEF6220425DE76FC00908658 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BEF6220625DE76FD00908658 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEF6220925DE76FD00908658 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BEF6220B25DE76FD00908658 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 		BEF6223325DEA75700908658 /* ChannelsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewModel.swift; sourceTree = "<group>"; };
 		BEF6223725DEACBB00908658 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		BEF6223C25DF6F8C00908658 /* MockNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkClient.swift; sourceTree = "<group>"; };
-		BEF6223F25DF702C00908658 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		BEF6223F25DF702C00908658 /* GetEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEndpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +83,7 @@
 		BEC297FA25E2A951001A6A8C /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				BEDE5FBC25E687F9004DC9CC /* Atoms */,
 				BEC297FB25E2A95A001A6A8C /* LoadingView.swift */,
 			);
 			path = Components;
@@ -115,6 +116,14 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		BEDE5FBC25E687F9004DC9CC /* Atoms */ = {
+			isa = PBXGroup;
+			children = (
+				BEDE5FBD25E6880A004DC9CC /* TagText.swift */,
+			);
+			path = Atoms;
+			sourceTree = "<group>";
+		};
 		BEF621F625DE76FC00908658 = {
 			isa = PBXGroup;
 			children = (
@@ -140,7 +149,6 @@
 				BEF6223625DEAC8C00908658 /* Infrastructures */,
 				BEF6222B25DEA09000908658 /* Entities */,
 				BEF6221F25DE9CE200908658 /* Application */,
-				BEF6220425DE76FC00908658 /* ContentView.swift */,
 				BEF6220625DE76FD00908658 /* Assets.xcassets */,
 				BEF6220B25DE76FD00908658 /* Info.plist */,
 				BEF6220C25DE76FD00908658 /* vtdashboard.entitlements */,
@@ -197,7 +205,7 @@
 			children = (
 				BEF6223725DEACBB00908658 /* NetworkClient.swift */,
 				BEF6223C25DF6F8C00908658 /* MockNetworkClient.swift */,
-				BEF6223F25DF702C00908658 /* Endpoint.swift */,
+				BEF6223F25DF702C00908658 /* GetEndpoint.swift */,
 			);
 			path = Infrastructures;
 			sourceTree = "<group>";
@@ -308,7 +316,6 @@
 				BEC2980B25E3F74E001A6A8C /* TimeInterval+Extension.swift in Sources */,
 				BEF6223425DEA75700908658 /* ChannelsViewModel.swift in Sources */,
 				BEC2981625E4EC50001A6A8C /* ChannelRequestsView.swift in Sources */,
-				BEF6220525DE76FC00908658 /* ContentView.swift in Sources */,
 				BEC297FC25E2A95A001A6A8C /* LoadingView.swift in Sources */,
 				BEF6222925DE9E4800908658 /* ChannelRow.swift in Sources */,
 				BEC2980325E3F5E0001A6A8C /* ChannelRequest.swift in Sources */,
@@ -319,9 +326,10 @@
 				BEF6223825DEACBB00908658 /* NetworkClient.swift in Sources */,
 				BEC2981D25E4ED90001A6A8C /* ChannelRequestsViewModel.swift in Sources */,
 				BEC2982425E4EFDB001A6A8C /* ChannelRequestRow.swift in Sources */,
-				BEF6224025DF702C00908658 /* Endpoint.swift in Sources */,
+				BEF6224025DF702C00908658 /* GetEndpoint.swift in Sources */,
 				BEC2980E25E3F888001A6A8C /* SidebarView.swift in Sources */,
 				BEF6220325DE76FC00908658 /* VtdashboardApp.swift in Sources */,
+				BEDE5FBE25E6880A004DC9CC /* TagText.swift in Sources */,
 				BEC2980625E3F6A8001A6A8C /* ChannelRequestStatus.swift in Sources */,
 				BEC2982125E4EDDB001A6A8C /* ViewStatusManageable.swift in Sources */,
 			);

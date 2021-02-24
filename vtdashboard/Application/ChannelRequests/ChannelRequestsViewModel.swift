@@ -4,10 +4,11 @@ import SwiftUI
 final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
     @Published var viewStatus: ViewStatus = .loading
     @Published var channelRequests: [ChannelRequest] = []
+    @Published var isPostCompleted: String?
     
     private let networkClient: NetworkClientProtocol
     
-    private var cancellable: AnyCancellable?
+    private var cancellables = Set<AnyCancellable>()
     
     init(networkClient: NetworkClientProtocol = NetworkClient()) {
         self.networkClient = networkClient
@@ -15,9 +16,9 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
     }
     
     func getChannelRequests() {
-        cancellable?.cancel()
+        cancellables.forEach { $0.cancel() }
         viewStatus = .loading
-        cancellable = networkClient.get(endpoint: .getChannelRequestList)
+        networkClient.get(endpoint: .getChannelRequestList)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 switch completion {
@@ -29,5 +30,29 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
             } receiveValue: { [weak self] channelRequests in
                 self?.channelRequests = channelRequests
             }
+            .store(in: &cancellables)
+            
+    }
+    
+    func postChannelRequest(id: String, type: ChannelType, status: ChannelRequestStatus) {
+        cancellables.forEach { $0.cancel() }
+        networkClient.post(endpoint: .postChannelRequest, parameters: [
+            "id": id,
+            "type": "\(type.rawValue)",
+            "status": "\(status.rawValue)"
+        ])
+        .receive(on: DispatchQueue.main)
+        .sink { [weak self] completion in
+//            switch completion {
+//            case .finished:
+//                self?.isPostCompleted = true
+//            case .failure(let error):
+//                self?.isPostCompleted = nil
+//            }
+        } receiveValue: { [weak self] response in
+            self?.isPostCompleted = response
+        }
+        .store(in: &cancellables)
+        
     }
 }
