@@ -4,33 +4,22 @@ struct ChannelRequestsView: View {
     @StateObject var viewModel = ChannelRequestsViewModel()
     
     var body: some View {
-        VStack {
-            ForEach(viewModel.channelRequests.indices) { index in
-                let request = viewModel.channelRequests[index]
+        List {
+            ForEach(viewModel.channelRequests) { channelRequest in
+                let index = viewModel.channelRequests.firstIndex { $0.id == channelRequest.id
+                }!
                 HStack {
-//                    ChannelRequestRow(
-//                        type: viewModel.channelRequests[index].type,
-//                        status: request.status,
-//                        imageURL: request.thumbnailImageUrl,
-//                        title: request.title,
-//                        updatedAt: request.updatedAt.displayText,
-//                        confirmAction: {
-//
-//                        },
-//                        pendingAction: {
-//
-//                        },
-//                        rejectAction: {
-//
-//                        },
-//                        restoreAction: {
-//
-//                        }
-//                    )
+                    ChannelRequestRow(
+                        channelRequest: $viewModel.channelRequests[index],
+                        changeAction: {
+                            print(viewModel.channelRequests[index].status)
+                        }
+                    )
                     Spacer()
                 }
             }
         }
+        .listStyle(PlainListStyle())
     }
 }
 

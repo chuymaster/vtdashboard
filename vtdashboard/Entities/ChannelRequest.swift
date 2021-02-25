@@ -5,7 +5,7 @@ struct ChannelRequest: Identifiable, Codable {
     let channelId: String
     let title: String
     let thumbnailImageUrl: String
-    let type: ChannelType
-    let status: ChannelRequestStatus
+    var type: ChannelType
+    var status: ChannelRequestStatus
     let updatedAt: TimeInterval
 }

@@ -11,6 +11,7 @@ struct TagText: View {
             .padding(.vertical, 4)
             .background(Color.blue)
             .cornerRadius(16)
+            .fixedSize(horizontal: true, vertical: true)
     }
 }
 
