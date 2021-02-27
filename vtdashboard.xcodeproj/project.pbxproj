@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,6 +28,7 @@
 		A1A12A97716B4562C2342130 /* ViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FB0A9FFFE5F4CAEDD67307 /* ViewType.swift */; };
 		ADC98AC2D54D47AED9D766EC /* TimeInterval+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E216E31D2AA5898CE38BBFFF /* TimeInterval+Extension.swift */; };
 		BE47948F69666ADC70DC171B /* ChannelRequestRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CDCF8FEF643D75FB3562BB /* ChannelRequestRow.swift */; };
+		BE4EC49225EA7B7F00237968 /* AddChannelRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4EC49125EA7B7F00237968 /* AddChannelRequestView.swift */; };
 		C51F75621AFA1D3D9EA3A76C /* ChannelRequestStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397F5D91A77BB009F442D71 /* ChannelRequestStatus.swift */; };
 		C5E16D068E4C4BE3158EC84D /* ChannelRequestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FC4EF4142AEAC4F0F5C6EF /* ChannelRequestsViewModel.swift */; };
 		D5EAF63A233C197093AB08B0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E73A7B086C87712599F97715 /* Kingfisher */; };
@@ -67,6 +68,7 @@
 		AAEB7E10822D0EEA7B7C81D9 /* VtDashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VtDashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6CDCF8FEF643D75FB3562BB /* ChannelRequestRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequestRow.swift; sourceTree = "<group>"; };
 		BB4678D039D9C9CC597D8C4B /* vtdashboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = vtdashboard.entitlements; sourceTree = "<group>"; };
+		BE4EC49125EA7B7F00237968 /* AddChannelRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChannelRequestView.swift; sourceTree = "<group>"; };
 		C8044F4B17FFC7297B702F7E /* GetEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEndpoint.swift; sourceTree = "<group>"; };
 		C9F1445BA97934E47330A38C /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		CBC84BD25ABB0419BC51C556 /* VtDashboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VtDashboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +193,14 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		BE4EC49025EA7B6F00237968 /* AddChannelRequest */ = {
+			isa = PBXGroup;
+			children = (
+				BE4EC49125EA7B7F00237968 /* AddChannelRequestView.swift */,
+			);
+			path = AddChannelRequest;
+			sourceTree = "<group>";
+		};
 		CB6787A62CCD0F14EDA29E1B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +213,7 @@
 		E4B3E4EE16AFDA68778A0BA6 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				BE4EC49025EA7B6F00237968 /* AddChannelRequest */,
 				67C313E0B39A9D17735F86F6 /* MainView.swift */,
 				C9F1445BA97934E47330A38C /* SidebarView.swift */,
 				4F080C8A467FC2FE09BB4D39 /* VtDashboardApp.swift */,
@@ -277,8 +288,6 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1200;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = 8C119A102B5EC9CE95E4E8D1 /* Build configuration list for PBXProject "VtDashboard" */;
 			compatibilityVersion = "Xcode 10.0";
@@ -330,6 +339,7 @@
 				9575694CD5C185B7FC0566C9 /* ChannelRequest.swift in Sources */,
 				BE47948F69666ADC70DC171B /* ChannelRequestRow.swift in Sources */,
 				C51F75621AFA1D3D9EA3A76C /* ChannelRequestStatus.swift in Sources */,
+				BE4EC49225EA7B7F00237968 /* AddChannelRequestView.swift in Sources */,
 				4F309CA89DE7466A1A9263CD /* ChannelRequestsView.swift in Sources */,
 				C5E16D068E4C4BE3158EC84D /* ChannelRequestsViewModel.swift in Sources */,
 				80713FA74673B96F28219874 /* ChannelRow.swift in Sources */,
