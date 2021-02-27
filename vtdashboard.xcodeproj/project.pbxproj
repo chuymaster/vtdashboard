@@ -3,342 +3,367 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BEC297FC25E2A95A001A6A8C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC297FB25E2A95A001A6A8C /* LoadingView.swift */; };
-		BEC2980025E2A9D0001A6A8C /* ViewStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC297FF25E2A9D0001A6A8C /* ViewStatus.swift */; };
-		BEC2980325E3F5E0001A6A8C /* ChannelRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2980225E3F5E0001A6A8C /* ChannelRequest.swift */; };
-		BEC2980625E3F6A8001A6A8C /* ChannelRequestStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2980525E3F6A8001A6A8C /* ChannelRequestStatus.swift */; };
-		BEC2980B25E3F74E001A6A8C /* TimeInterval+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2980A25E3F74E001A6A8C /* TimeInterval+Extension.swift */; };
-		BEC2980E25E3F888001A6A8C /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2980D25E3F888001A6A8C /* SidebarView.swift */; };
-		BEC2981125E3F956001A6A8C /* ViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2981025E3F956001A6A8C /* ViewType.swift */; };
-		BEC2981625E4EC50001A6A8C /* ChannelRequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2981525E4EC50001A6A8C /* ChannelRequestsView.swift */; };
-		BEC2981A25E4ECA7001A6A8C /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2981925E4ECA7001A6A8C /* View+Extension.swift */; };
-		BEC2981D25E4ED90001A6A8C /* ChannelRequestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2981C25E4ED90001A6A8C /* ChannelRequestsViewModel.swift */; };
-		BEC2982125E4EDDB001A6A8C /* ViewStatusManageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2982025E4EDDB001A6A8C /* ViewStatusManageable.swift */; };
-		BEC2982425E4EFDB001A6A8C /* ChannelRequestRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2982325E4EFDB001A6A8C /* ChannelRequestRow.swift */; };
-		BEDE5FBE25E6880A004DC9CC /* TagText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDE5FBD25E6880A004DC9CC /* TagText.swift */; };
-		BEF6220325DE76FC00908658 /* VtdashboardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6220225DE76FC00908658 /* VtdashboardApp.swift */; };
-		BEF6220725DE76FD00908658 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF6220625DE76FD00908658 /* Assets.xcassets */; };
-		BEF6220A25DE76FD00908658 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF6220925DE76FD00908658 /* Preview Assets.xcassets */; };
-		BEF6221925DE9C3B00908658 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BEF6221825DE9C3B00908658 /* Alamofire */; };
-		BEF6221D25DE9C5600908658 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BEF6221C25DE9C5600908658 /* Kingfisher */; };
-		BEF6222225DE9D1200908658 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6222125DE9D1200908658 /* MainView.swift */; };
-		BEF6222625DE9D3400908658 /* ChannelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6222525DE9D3400908658 /* ChannelsView.swift */; };
-		BEF6222925DE9E4800908658 /* ChannelRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6222825DE9E4800908658 /* ChannelRow.swift */; };
-		BEF6222D25DEA09B00908658 /* ChannelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6222C25DEA09B00908658 /* ChannelType.swift */; };
-		BEF6223025DEA18700908658 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6222F25DEA18700908658 /* Channel.swift */; };
-		BEF6223425DEA75700908658 /* ChannelsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6223325DEA75700908658 /* ChannelsViewModel.swift */; };
-		BEF6223825DEACBB00908658 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6223725DEACBB00908658 /* NetworkClient.swift */; };
-		BEF6223D25DF6F8C00908658 /* MockNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6223C25DF6F8C00908658 /* MockNetworkClient.swift */; };
-		BEF6224025DF702C00908658 /* GetEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF6223F25DF702C00908658 /* GetEndpoint.swift */; };
+		11722583BD77FCF24303A566 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D49C9C5353A159E3C559DFD /* Preview Assets.xcassets */; };
+		1677A81938142167B6B78B6C /* ChannelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6FC9657E3CD36FBB7EB75 /* ChannelType.swift */; };
+		3899C0656A774A44D857A178 /* ViewStatusManageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3288323CA31466DA45A7E8D6 /* ViewStatusManageable.swift */; };
+		39189764CD5F86684E0035F8 /* GetEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8044F4B17FFC7297B702F7E /* GetEndpoint.swift */; };
+		450DB27538E228D5C74AF224 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2352F18BCB91E480E6FC8225 /* NetworkClient.swift */; };
+		4D51EDF6EB42AFC9D7D05B56 /* ViewStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977C696191B7FBB1CB819729 /* ViewStatus.swift */; };
+		4F309CA89DE7466A1A9263CD /* ChannelRequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9605DE3E4D3A108E964EAC5A /* ChannelRequestsView.swift */; };
+		516D629A76FF2EEDF1A8C24D /* MockNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD45DA6016162F5F8735E0F /* MockNetworkClient.swift */; };
+		544B25685E4A7BE914E0E9F5 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203AF57C771548CFC9B17BE2 /* LoadingView.swift */; };
+		56FC043263285C5B7FA5F1EB /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F738270B017C897317A309F /* View+Extension.swift */; };
+		5F636FEEE2B4A6D2848D581C /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703DBA8427A5845D46C8B78 /* Channel.swift */; };
+		7B94A0A40400B8B9999F3083 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E5CABECFE1F147285AF7C64 /* Assets.xcassets */; };
+		80713FA74673B96F28219874 /* ChannelRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3E8CF478581B36F62E9363 /* ChannelRow.swift */; };
+		82D923352607603131FBDA5F /* ChannelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7174B4020C9F54BB0C16C85 /* ChannelsView.swift */; };
+		855CB76FE8F1889B84CC56CA /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6CF039E8A8F170C0142DDCBF /* Alamofire */; };
+		9575694CD5C185B7FC0566C9 /* ChannelRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12547C39AF8FA16A266BB0F /* ChannelRequest.swift */; };
+		9B68E5B1FF99F926A51D375D /* ChannelsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017E2ED5905C70861534EF0E /* ChannelsViewModel.swift */; };
+		9EC4B4D45799B17AD86F3898 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F1445BA97934E47330A38C /* SidebarView.swift */; };
+		A1A12A97716B4562C2342130 /* ViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FB0A9FFFE5F4CAEDD67307 /* ViewType.swift */; };
+		ADC98AC2D54D47AED9D766EC /* TimeInterval+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E216E31D2AA5898CE38BBFFF /* TimeInterval+Extension.swift */; };
+		BE47948F69666ADC70DC171B /* ChannelRequestRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CDCF8FEF643D75FB3562BB /* ChannelRequestRow.swift */; };
+		C51F75621AFA1D3D9EA3A76C /* ChannelRequestStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397F5D91A77BB009F442D71 /* ChannelRequestStatus.swift */; };
+		C5E16D068E4C4BE3158EC84D /* ChannelRequestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FC4EF4142AEAC4F0F5C6EF /* ChannelRequestsViewModel.swift */; };
+		D5EAF63A233C197093AB08B0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E73A7B086C87712599F97715 /* Kingfisher */; };
+		D7E730223E5483FB20748753 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C313E0B39A9D17735F86F6 /* MainView.swift */; };
+		F262E7FE53B938E3ACF707E4 /* TagText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97C2508C6E20E4F53DE957D /* TagText.swift */; };
+		FBFDDFB99D8584FE78AA28F9 /* VtDashboardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F080C8A467FC2FE09BB4D39 /* VtDashboardApp.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0081220B77CC2D9C7A9030A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87E9A1746999276B753AE709 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6A336A5E7092B199828B6DA2;
+			remoteInfo = VtDashboard;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		BEC297FB25E2A95A001A6A8C /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		BEC297FF25E2A9D0001A6A8C /* ViewStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStatus.swift; sourceTree = "<group>"; };
-		BEC2980225E3F5E0001A6A8C /* ChannelRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequest.swift; sourceTree = "<group>"; };
-		BEC2980525E3F6A8001A6A8C /* ChannelRequestStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequestStatus.swift; sourceTree = "<group>"; };
-		BEC2980A25E3F74E001A6A8C /* TimeInterval+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extension.swift"; sourceTree = "<group>"; };
-		BEC2980D25E3F888001A6A8C /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
-		BEC2981025E3F956001A6A8C /* ViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewType.swift; sourceTree = "<group>"; };
-		BEC2981525E4EC50001A6A8C /* ChannelRequestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequestsView.swift; sourceTree = "<group>"; };
-		BEC2981925E4ECA7001A6A8C /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
-		BEC2981C25E4ED90001A6A8C /* ChannelRequestsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequestsViewModel.swift; sourceTree = "<group>"; };
-		BEC2982025E4EDDB001A6A8C /* ViewStatusManageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStatusManageable.swift; sourceTree = "<group>"; };
-		BEC2982325E4EFDB001A6A8C /* ChannelRequestRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequestRow.swift; sourceTree = "<group>"; };
-		BEDE5FBD25E6880A004DC9CC /* TagText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagText.swift; sourceTree = "<group>"; };
-		BEF621FF25DE76FC00908658 /* vtdashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vtdashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BEF6220225DE76FC00908658 /* VtdashboardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VtdashboardApp.swift; sourceTree = "<group>"; };
-		BEF6220625DE76FD00908658 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BEF6220925DE76FD00908658 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		BEF6220B25DE76FD00908658 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BEF6220C25DE76FD00908658 /* vtdashboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = vtdashboard.entitlements; sourceTree = "<group>"; };
-		BEF6222125DE9D1200908658 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainView.swift; path = ../../../MainView.swift; sourceTree = "<group>"; };
-		BEF6222525DE9D3400908658 /* ChannelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsView.swift; sourceTree = "<group>"; };
-		BEF6222825DE9E4800908658 /* ChannelRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRow.swift; sourceTree = "<group>"; };
-		BEF6222C25DEA09B00908658 /* ChannelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelType.swift; sourceTree = "<group>"; };
-		BEF6222F25DEA18700908658 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
-		BEF6223325DEA75700908658 /* ChannelsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewModel.swift; sourceTree = "<group>"; };
-		BEF6223725DEACBB00908658 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
-		BEF6223C25DF6F8C00908658 /* MockNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkClient.swift; sourceTree = "<group>"; };
-		BEF6223F25DF702C00908658 /* GetEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEndpoint.swift; sourceTree = "<group>"; };
+		017E2ED5905C70861534EF0E /* ChannelsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewModel.swift; sourceTree = "<group>"; };
+		06FB0A9FFFE5F4CAEDD67307 /* ViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewType.swift; sourceTree = "<group>"; };
+		203AF57C771548CFC9B17BE2 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		2352F18BCB91E480E6FC8225 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		2840926D78F0CA354A5F6B81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3288323CA31466DA45A7E8D6 /* ViewStatusManageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStatusManageable.swift; sourceTree = "<group>"; };
+		3703DBA8427A5845D46C8B78 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		4E5CABECFE1F147285AF7C64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4F080C8A467FC2FE09BB4D39 /* VtDashboardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VtDashboardApp.swift; sourceTree = "<group>"; };
+		5F738270B017C897317A309F /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		67C313E0B39A9D17735F86F6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		6EC6FC9657E3CD36FBB7EB75 /* ChannelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelType.swift; sourceTree = "<group>"; };
+		7AD45DA6016162F5F8735E0F /* MockNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkClient.swift; sourceTree = "<group>"; };
+		7D49C9C5353A159E3C559DFD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9605DE3E4D3A108E964EAC5A /* ChannelRequestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequestsView.swift; sourceTree = "<group>"; };
+		977C696191B7FBB1CB819729 /* ViewStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStatus.swift; sourceTree = "<group>"; };
+		A12547C39AF8FA16A266BB0F /* ChannelRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequest.swift; sourceTree = "<group>"; };
+		AAEB7E10822D0EEA7B7C81D9 /* VtDashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VtDashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6CDCF8FEF643D75FB3562BB /* ChannelRequestRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequestRow.swift; sourceTree = "<group>"; };
+		BB4678D039D9C9CC597D8C4B /* vtdashboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = vtdashboard.entitlements; sourceTree = "<group>"; };
+		C8044F4B17FFC7297B702F7E /* GetEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEndpoint.swift; sourceTree = "<group>"; };
+		C9F1445BA97934E47330A38C /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
+		CBC84BD25ABB0419BC51C556 /* VtDashboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VtDashboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D97C2508C6E20E4F53DE957D /* TagText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagText.swift; sourceTree = "<group>"; };
+		DD3E8CF478581B36F62E9363 /* ChannelRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRow.swift; sourceTree = "<group>"; };
+		E0FC4EF4142AEAC4F0F5C6EF /* ChannelRequestsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequestsViewModel.swift; sourceTree = "<group>"; };
+		E216E31D2AA5898CE38BBFFF /* TimeInterval+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extension.swift"; sourceTree = "<group>"; };
+		E397F5D91A77BB009F442D71 /* ChannelRequestStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequestStatus.swift; sourceTree = "<group>"; };
+		F7174B4020C9F54BB0C16C85 /* ChannelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		BEF621FC25DE76FC00908658 /* Frameworks */ = {
+		5E4CB618EF30B2970EE2E596 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEF6221D25DE9C5600908658 /* Kingfisher in Frameworks */,
-				BEF6221925DE9C3B00908658 /* Alamofire in Frameworks */,
+				D5EAF63A233C197093AB08B0 /* Kingfisher in Frameworks */,
+				855CB76FE8F1889B84CC56CA /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BEC297FA25E2A951001A6A8C /* Components */ = {
+		0CBB3F1DD6050575B05C4BBF /* VtDashboardTests */ = {
 			isa = PBXGroup;
 			children = (
-				BEDE5FBC25E687F9004DC9CC /* Atoms */,
-				BEC297FB25E2A95A001A6A8C /* LoadingView.swift */,
 			);
-			path = Components;
+			path = VtDashboardTests;
 			sourceTree = "<group>";
 		};
-		BEC2980925E3F740001A6A8C /* Extensions */ = {
+		166673B6FE1577DB68936F84 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BEC2980A25E3F74E001A6A8C /* TimeInterval+Extension.swift */,
-				BEC2981925E4ECA7001A6A8C /* View+Extension.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		BEC2981425E4EC40001A6A8C /* ChannelRequests */ = {
-			isa = PBXGroup;
-			children = (
-				BEC2981525E4EC50001A6A8C /* ChannelRequestsView.swift */,
-				BEC2981C25E4ED90001A6A8C /* ChannelRequestsViewModel.swift */,
-				BEC2982325E4EFDB001A6A8C /* ChannelRequestRow.swift */,
-			);
-			path = ChannelRequests;
-			sourceTree = "<group>";
-		};
-		BEC2981F25E4EDD0001A6A8C /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				BEC2982025E4EDDB001A6A8C /* ViewStatusManageable.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		BEDE5FBC25E687F9004DC9CC /* Atoms */ = {
-			isa = PBXGroup;
-			children = (
-				BEDE5FBD25E6880A004DC9CC /* TagText.swift */,
-			);
-			path = Atoms;
-			sourceTree = "<group>";
-		};
-		BEF621F625DE76FC00908658 = {
-			isa = PBXGroup;
-			children = (
-				BEF6220125DE76FC00908658 /* vtdashboard */,
-				BEF6220025DE76FC00908658 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		BEF6220025DE76FC00908658 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				BEF621FF25DE76FC00908658 /* vtdashboard.app */,
+				AAEB7E10822D0EEA7B7C81D9 /* VtDashboard.app */,
+				CBC84BD25ABB0419BC51C556 /* VtDashboardTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BEF6220125DE76FC00908658 /* vtdashboard */ = {
+		34D01D5939276A2F11884EEE /* ChannelRequests */ = {
 			isa = PBXGroup;
 			children = (
-				BEC2981F25E4EDD0001A6A8C /* Protocols */,
-				BEC2980925E3F740001A6A8C /* Extensions */,
-				BEC297FA25E2A951001A6A8C /* Components */,
-				BEF6223625DEAC8C00908658 /* Infrastructures */,
-				BEF6222B25DEA09000908658 /* Entities */,
-				BEF6221F25DE9CE200908658 /* Application */,
-				BEF6220625DE76FD00908658 /* Assets.xcassets */,
-				BEF6220B25DE76FD00908658 /* Info.plist */,
-				BEF6220C25DE76FD00908658 /* vtdashboard.entitlements */,
-				BEF6220825DE76FD00908658 /* Preview Content */,
+				B6CDCF8FEF643D75FB3562BB /* ChannelRequestRow.swift */,
+				9605DE3E4D3A108E964EAC5A /* ChannelRequestsView.swift */,
+				E0FC4EF4142AEAC4F0F5C6EF /* ChannelRequestsViewModel.swift */,
 			);
-			path = vtdashboard;
+			path = ChannelRequests;
 			sourceTree = "<group>";
 		};
-		BEF6220825DE76FD00908658 /* Preview Content */ = {
+		3BF2E42D0EB9FEB72E637543 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				BEF6220925DE76FD00908658 /* Preview Assets.xcassets */,
+				3288323CA31466DA45A7E8D6 /* ViewStatusManageable.swift */,
 			);
-			path = "Preview Content";
+			path = Protocols;
 			sourceTree = "<group>";
 		};
-		BEF6221F25DE9CE200908658 /* Application */ = {
+		3CFDC17E0689EF43973825BA /* Infrastructures */ = {
 			isa = PBXGroup;
 			children = (
-				BEC2981425E4EC40001A6A8C /* ChannelRequests */,
-				BEF6222025DE9CF100908658 /* Channels */,
-				BEF6220225DE76FC00908658 /* VtdashboardApp.swift */,
-				BEF6222125DE9D1200908658 /* MainView.swift */,
-				BEC2980D25E3F888001A6A8C /* SidebarView.swift */,
+				C8044F4B17FFC7297B702F7E /* GetEndpoint.swift */,
+				7AD45DA6016162F5F8735E0F /* MockNetworkClient.swift */,
+				2352F18BCB91E480E6FC8225 /* NetworkClient.swift */,
 			);
-			path = Application;
+			path = Infrastructures;
 			sourceTree = "<group>";
 		};
-		BEF6222025DE9CF100908658 /* Channels */ = {
+		42231D23091D4BC4738CD87A /* Channels */ = {
 			isa = PBXGroup;
 			children = (
-				BEF6222525DE9D3400908658 /* ChannelsView.swift */,
-				BEF6222825DE9E4800908658 /* ChannelRow.swift */,
-				BEF6223325DEA75700908658 /* ChannelsViewModel.swift */,
+				DD3E8CF478581B36F62E9363 /* ChannelRow.swift */,
+				F7174B4020C9F54BB0C16C85 /* ChannelsView.swift */,
+				017E2ED5905C70861534EF0E /* ChannelsViewModel.swift */,
 			);
 			path = Channels;
 			sourceTree = "<group>";
 		};
-		BEF6222B25DEA09000908658 /* Entities */ = {
+		5F8FF9DFBF8AB9BDD328C36A /* Atoms */ = {
 			isa = PBXGroup;
 			children = (
-				BEF6222C25DEA09B00908658 /* ChannelType.swift */,
-				BEC2980225E3F5E0001A6A8C /* ChannelRequest.swift */,
-				BEF6222F25DEA18700908658 /* Channel.swift */,
-				BEC297FF25E2A9D0001A6A8C /* ViewStatus.swift */,
-				BEC2980525E3F6A8001A6A8C /* ChannelRequestStatus.swift */,
-				BEC2981025E3F956001A6A8C /* ViewType.swift */,
+				D97C2508C6E20E4F53DE957D /* TagText.swift */,
+			);
+			path = Atoms;
+			sourceTree = "<group>";
+		};
+		79FE4D2F29D08E56B439EB9E /* VtDashboard */ = {
+			isa = PBXGroup;
+			children = (
+				4E5CABECFE1F147285AF7C64 /* Assets.xcassets */,
+				2840926D78F0CA354A5F6B81 /* Info.plist */,
+				BB4678D039D9C9CC597D8C4B /* vtdashboard.entitlements */,
+				E4B3E4EE16AFDA68778A0BA6 /* Application */,
+				FF188642C3FC9085F3E78F41 /* Components */,
+				B3ED4EC0ED5B4B403AA9DA7D /* Entities */,
+				CB6787A62CCD0F14EDA29E1B /* Extensions */,
+				3CFDC17E0689EF43973825BA /* Infrastructures */,
+				89E9287034BBB410A86BA95C /* Preview Content */,
+				3BF2E42D0EB9FEB72E637543 /* Protocols */,
+			);
+			path = VtDashboard;
+			sourceTree = "<group>";
+		};
+		89E9287034BBB410A86BA95C /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				7D49C9C5353A159E3C559DFD /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B3ED4EC0ED5B4B403AA9DA7D /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				3703DBA8427A5845D46C8B78 /* Channel.swift */,
+				A12547C39AF8FA16A266BB0F /* ChannelRequest.swift */,
+				E397F5D91A77BB009F442D71 /* ChannelRequestStatus.swift */,
+				6EC6FC9657E3CD36FBB7EB75 /* ChannelType.swift */,
+				977C696191B7FBB1CB819729 /* ViewStatus.swift */,
+				06FB0A9FFFE5F4CAEDD67307 /* ViewType.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
 		};
-		BEF6223625DEAC8C00908658 /* Infrastructures */ = {
+		CB6787A62CCD0F14EDA29E1B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				BEF6223725DEACBB00908658 /* NetworkClient.swift */,
-				BEF6223C25DF6F8C00908658 /* MockNetworkClient.swift */,
-				BEF6223F25DF702C00908658 /* GetEndpoint.swift */,
+				E216E31D2AA5898CE38BBFFF /* TimeInterval+Extension.swift */,
+				5F738270B017C897317A309F /* View+Extension.swift */,
 			);
-			path = Infrastructures;
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E4B3E4EE16AFDA68778A0BA6 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				67C313E0B39A9D17735F86F6 /* MainView.swift */,
+				C9F1445BA97934E47330A38C /* SidebarView.swift */,
+				4F080C8A467FC2FE09BB4D39 /* VtDashboardApp.swift */,
+				34D01D5939276A2F11884EEE /* ChannelRequests */,
+				42231D23091D4BC4738CD87A /* Channels */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		FF188642C3FC9085F3E78F41 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				203AF57C771548CFC9B17BE2 /* LoadingView.swift */,
+				5F8FF9DFBF8AB9BDD328C36A /* Atoms */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		FF6B4D5D53A4E20B5B8D490F = {
+			isa = PBXGroup;
+			children = (
+				79FE4D2F29D08E56B439EB9E /* VtDashboard */,
+				0CBB3F1DD6050575B05C4BBF /* VtDashboardTests */,
+				166673B6FE1577DB68936F84 /* Products */,
+			);
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BEF621FE25DE76FC00908658 /* vtdashboard */ = {
+		1762832AB4FD559C8E22C48E /* VtDashboardTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BEF6220F25DE76FD00908658 /* Build configuration list for PBXNativeTarget "vtdashboard" */;
+			buildConfigurationList = D824E2D2D7CAB40EA4A6B29A /* Build configuration list for PBXNativeTarget "VtDashboardTests" */;
 			buildPhases = (
-				BEF6221325DE9B3000908658 /* SwiftLint */,
-				BEF621FB25DE76FC00908658 /* Sources */,
-				BEF621FC25DE76FC00908658 /* Frameworks */,
-				BEF621FD25DE76FC00908658 /* Resources */,
+				A5ADAEABCB7529D648670297 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				606C707B86B97F53003DF550 /* PBXTargetDependency */,
+			);
+			name = VtDashboardTests;
+			productName = VtDashboardTests;
+			productReference = CBC84BD25ABB0419BC51C556 /* VtDashboardTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6A336A5E7092B199828B6DA2 /* VtDashboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65CE51ADFC04BB4412A9F847 /* Build configuration list for PBXNativeTarget "VtDashboard" */;
+			buildPhases = (
+				A5BD0FBFEA4AF60F9AE13971 /* Sources */,
+				DE7D2D4286BA0DF39A872ACC /* Resources */,
+				5E4CB618EF30B2970EE2E596 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = vtdashboard;
+			name = VtDashboard;
 			packageProductDependencies = (
-				BEF6221825DE9C3B00908658 /* Alamofire */,
-				BEF6221C25DE9C5600908658 /* Kingfisher */,
+				E73A7B086C87712599F97715 /* Kingfisher */,
+				6CF039E8A8F170C0142DDCBF /* Alamofire */,
 			);
-			productName = vtdashboard;
-			productReference = BEF621FF25DE76FC00908658 /* vtdashboard.app */;
+			productName = VtDashboard;
+			productReference = AAEB7E10822D0EEA7B7C81D9 /* VtDashboard.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		BEF621F725DE76FC00908658 /* Project object */ = {
+		87E9A1746999276B753AE709 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1200;
 				TargetAttributes = {
-					BEF621FE25DE76FC00908658 = {
-						CreatedOnToolsVersion = 12.4;
-					};
 				};
 			};
-			buildConfigurationList = BEF621FA25DE76FC00908658 /* Build configuration list for PBXProject "vtdashboard" */;
-			compatibilityVersion = "Xcode 9.3";
+			buildConfigurationList = 8C119A102B5EC9CE95E4E8D1 /* Build configuration list for PBXProject "VtDashboard" */;
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				en,
 			);
-			mainGroup = BEF621F625DE76FC00908658;
+			mainGroup = FF6B4D5D53A4E20B5B8D490F;
 			packageReferences = (
-				BEF6221725DE9C3B00908658 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				BEF6221B25DE9C5600908658 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				1F734F0318000C7FF17F466B /* XCRemoteSwiftPackageReference "Alamofire" */,
+				400E3EF063CF7EDCE6D29E93 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
-			productRefGroup = BEF6220025DE76FC00908658 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BEF621FE25DE76FC00908658 /* vtdashboard */,
+				6A336A5E7092B199828B6DA2 /* VtDashboard */,
+				1762832AB4FD559C8E22C48E /* VtDashboardTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		BEF621FD25DE76FC00908658 /* Resources */ = {
+		DE7D2D4286BA0DF39A872ACC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEF6220A25DE76FD00908658 /* Preview Assets.xcassets in Resources */,
-				BEF6220725DE76FD00908658 /* Assets.xcassets in Resources */,
+				7B94A0A40400B8B9999F3083 /* Assets.xcassets in Resources */,
+				11722583BD77FCF24303A566 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		BEF6221325DE9B3000908658 /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		BEF621FB25DE76FC00908658 /* Sources */ = {
+		A5ADAEABCB7529D648670297 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEF6223025DEA18700908658 /* Channel.swift in Sources */,
-				BEF6223D25DF6F8C00908658 /* MockNetworkClient.swift in Sources */,
-				BEC2981A25E4ECA7001A6A8C /* View+Extension.swift in Sources */,
-				BEF6222625DE9D3400908658 /* ChannelsView.swift in Sources */,
-				BEC2980B25E3F74E001A6A8C /* TimeInterval+Extension.swift in Sources */,
-				BEF6223425DEA75700908658 /* ChannelsViewModel.swift in Sources */,
-				BEC2981625E4EC50001A6A8C /* ChannelRequestsView.swift in Sources */,
-				BEC297FC25E2A95A001A6A8C /* LoadingView.swift in Sources */,
-				BEF6222925DE9E4800908658 /* ChannelRow.swift in Sources */,
-				BEC2980325E3F5E0001A6A8C /* ChannelRequest.swift in Sources */,
-				BEF6222D25DEA09B00908658 /* ChannelType.swift in Sources */,
-				BEC2981125E3F956001A6A8C /* ViewType.swift in Sources */,
-				BEC2980025E2A9D0001A6A8C /* ViewStatus.swift in Sources */,
-				BEF6222225DE9D1200908658 /* MainView.swift in Sources */,
-				BEF6223825DEACBB00908658 /* NetworkClient.swift in Sources */,
-				BEC2981D25E4ED90001A6A8C /* ChannelRequestsViewModel.swift in Sources */,
-				BEC2982425E4EFDB001A6A8C /* ChannelRequestRow.swift in Sources */,
-				BEF6224025DF702C00908658 /* GetEndpoint.swift in Sources */,
-				BEC2980E25E3F888001A6A8C /* SidebarView.swift in Sources */,
-				BEF6220325DE76FC00908658 /* VtdashboardApp.swift in Sources */,
-				BEDE5FBE25E6880A004DC9CC /* TagText.swift in Sources */,
-				BEC2980625E3F6A8001A6A8C /* ChannelRequestStatus.swift in Sources */,
-				BEC2982125E4EDDB001A6A8C /* ViewStatusManageable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5BD0FBFEA4AF60F9AE13971 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F636FEEE2B4A6D2848D581C /* Channel.swift in Sources */,
+				9575694CD5C185B7FC0566C9 /* ChannelRequest.swift in Sources */,
+				BE47948F69666ADC70DC171B /* ChannelRequestRow.swift in Sources */,
+				C51F75621AFA1D3D9EA3A76C /* ChannelRequestStatus.swift in Sources */,
+				4F309CA89DE7466A1A9263CD /* ChannelRequestsView.swift in Sources */,
+				C5E16D068E4C4BE3158EC84D /* ChannelRequestsViewModel.swift in Sources */,
+				80713FA74673B96F28219874 /* ChannelRow.swift in Sources */,
+				1677A81938142167B6B78B6C /* ChannelType.swift in Sources */,
+				82D923352607603131FBDA5F /* ChannelsView.swift in Sources */,
+				9B68E5B1FF99F926A51D375D /* ChannelsViewModel.swift in Sources */,
+				39189764CD5F86684E0035F8 /* GetEndpoint.swift in Sources */,
+				544B25685E4A7BE914E0E9F5 /* LoadingView.swift in Sources */,
+				D7E730223E5483FB20748753 /* MainView.swift in Sources */,
+				516D629A76FF2EEDF1A8C24D /* MockNetworkClient.swift in Sources */,
+				450DB27538E228D5C74AF224 /* NetworkClient.swift in Sources */,
+				9EC4B4D45799B17AD86F3898 /* SidebarView.swift in Sources */,
+				F262E7FE53B938E3ACF707E4 /* TagText.swift in Sources */,
+				ADC98AC2D54D47AED9D766EC /* TimeInterval+Extension.swift in Sources */,
+				56FC043263285C5B7FA5F1EB /* View+Extension.swift in Sources */,
+				4D51EDF6EB42AFC9D7D05B56 /* ViewStatus.swift in Sources */,
+				3899C0656A774A44D857A178 /* ViewStatusManageable.swift in Sources */,
+				A1A12A97716B4562C2342130 /* ViewType.swift in Sources */,
+				FBFDDFB99D8584FE78AA28F9 /* VtDashboardApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		606C707B86B97F53003DF550 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6A336A5E7092B199828B6DA2 /* VtDashboard */;
+			targetProxy = 0081220B77CC2D9C7A9030A8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
-		BEF6220D25DE76FD00908658 /* Debug */ = {
+		06099AE32882D47C16DBB017 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -380,8 +405,8 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
 					"$(inherited)",
+					"DEBUG=1",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -389,17 +414,34 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		BEF6220E25DE76FD00908658 /* Release */ = {
+		28943C4C855A15E601CC9FD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = VtDashboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.chuysan.vtuber.VtDashboard;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		5C483DF7D87215CCDF27827A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -444,88 +486,98 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
-		BEF6221025DE76FD00908658 /* Debug */ = {
+		917AC315DBB8F7F9ED32222B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.chuysan.vtuber.VtDashboardTests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VtDashboard.app/Contents/MacOS/VtDashboard";
+			};
+			name = Release;
+		};
+		AB46EB52E40B46E5BB8F17E9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = vtdashboard/vtdashboard.entitlements;
-				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"vtdashboard/Preview Content\"";
-				DEVELOPMENT_TEAM = 9WMV2V9J5Z;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = vtdashboard/Info.plist;
+				INFOPLIST_FILE = VtDashboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.chuysan.vtuber.vtdashboard;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chuysan.vtuber.VtDashboard;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		DAF1A83B5A625B31F1EB267E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.chuysan.vtuber.VtDashboardTests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VtDashboard.app/Contents/MacOS/VtDashboard";
 			};
 			name = Debug;
-		};
-		BEF6221125DE76FD00908658 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = vtdashboard/vtdashboard.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"vtdashboard/Preview Content\"";
-				DEVELOPMENT_TEAM = 9WMV2V9J5Z;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = vtdashboard/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.chuysan.vtuber.vtdashboard;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BEF621FA25DE76FC00908658 /* Build configuration list for PBXProject "vtdashboard" */ = {
+		65CE51ADFC04BB4412A9F847 /* Build configuration list for PBXNativeTarget "VtDashboard" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BEF6220D25DE76FD00908658 /* Debug */,
-				BEF6220E25DE76FD00908658 /* Release */,
+				28943C4C855A15E601CC9FD1 /* Debug */,
+				AB46EB52E40B46E5BB8F17E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		BEF6220F25DE76FD00908658 /* Build configuration list for PBXNativeTarget "vtdashboard" */ = {
+		8C119A102B5EC9CE95E4E8D1 /* Build configuration list for PBXProject "VtDashboard" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BEF6221025DE76FD00908658 /* Debug */,
-				BEF6221125DE76FD00908658 /* Release */,
+				06099AE32882D47C16DBB017 /* Debug */,
+				5C483DF7D87215CCDF27827A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
+		};
+		D824E2D2D7CAB40EA4A6B29A /* Build configuration list for PBXNativeTarget "VtDashboardTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAF1A83B5A625B31F1EB267E /* Debug */,
+				917AC315DBB8F7F9ED32222B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		BEF6221725DE9C3B00908658 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		1F734F0318000C7FF17F466B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
 			requirement = {
@@ -533,7 +585,7 @@
 				minimumVersion = 5.4.1;
 			};
 		};
-		BEF6221B25DE9C5600908658 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		400E3EF063CF7EDCE6D29E93 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
@@ -544,17 +596,17 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BEF6221825DE9C3B00908658 /* Alamofire */ = {
+		6CF039E8A8F170C0142DDCBF /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BEF6221725DE9C3B00908658 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 1F734F0318000C7FF17F466B /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		BEF6221C25DE9C5600908658 /* Kingfisher */ = {
+		E73A7B086C87712599F97715 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BEF6221B25DE9C5600908658 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 400E3EF063CF7EDCE6D29E93 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = BEF621F725DE76FC00908658 /* Project object */;
+	rootObject = 87E9A1746999276B753AE709 /* Project object */;
 }

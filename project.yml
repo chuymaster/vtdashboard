@@ -1,21 +1,45 @@
-name: vtdashboard
+name: VtDashboard
 options:
-  bundleIdPrefix: com.chuysan.vtuber.vtdashboard
+  bundleIdPrefix: com.chuysan.vtuber
   deploymentTarget:
     macOS: 11.0
 packages:
-  KingFisher:
+  Kingfisher:
     url: https://github.com/onevcat/Kingfisher
     from: 6.1.1
   Alamofire:
     url: https://github.com/Alamofire/Alamofire
     from: 5.4.1
 targets:
-  vtdashboard:
+  VtDashboard:
     type: application
     platform: macOS
     sources: 
-      - path: vtdashboard
+      - path: VtDashboard
     dependencies:
-      - package: KingFisher
+      - package: Kingfisher
       - package: Alamofire
+  VtDashboardTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources: 
+      - path: VtDashboardTests
+    dependencies:
+      - target: VtDashboard
+schemes:
+  VtDashboard:
+    build:
+      config: Debug
+      targets:
+        VtDashboard: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      gatherCoverageData: true
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
