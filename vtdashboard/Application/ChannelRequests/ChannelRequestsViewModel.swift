@@ -12,7 +12,6 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
     
     init(networkClient: NetworkClientProtocol = NetworkClient()) {
         self.networkClient = networkClient
-        getChannelRequests()
     }
     
     func getChannelRequests() {
@@ -34,9 +33,9 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
             
     }
     
-    func postChannelRequest(id: String, type: ChannelType, status: ChannelRequestStatus) {
+    func postChannel(id: String, type: ChannelType, status: ChannelRequestStatus) {
         cancellables.forEach { $0.cancel() }
-        networkClient.post(endpoint: .postChannelRequest, parameters: [
+        networkClient.post(endpoint: .postChannel, parameters: [
             "id": id,
             "type": "\(type.rawValue)",
             "status": "\(status.rawValue)"

@@ -3,8 +3,21 @@ import Combine
 // swiftlint:disable force_cast
 struct MockNetworkClient: NetworkClientProtocol {
     func post<T>(endpoint: PostEndpoint, parameters: [String : String]) -> Future<T, Error> where T : Decodable, T : Encodable {
-        return Future { promise in
-            promise(.success("OK" as! T))
+        switch endpoint {
+        case .postChannelRequest:
+            return Future { promise in
+                let channelRequest = ChannelRequest(
+                        channelId: "UCicCFumqJgPj23vkAh_1TbA",
+                        title: "BubbleGum - TH - Vtuber _Maid Cafe_",
+                        thumbnailImageUrl: "https://yt3.ggpht.com/ytc/AAUvwnhmhwnVvT9NHI2aOaaHo8NElvdf_WdO819fTFuW=s800-c-k-c0x00ffffff-no-rj",
+                        type: .original,
+                        status: .accepted,
+                        updatedAt: 1613949914670
+                    )
+                promise(.success(channelRequest as! T))
+            }
+        default:
+            fatalError("not yet implemented")
         }
     }
     

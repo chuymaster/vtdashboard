@@ -3,4 +3,5 @@ enum ViewType: String, CaseIterable, Identifiable {
     
     case channels = "Channels"
     case channelRequests = "Channel Requests"
+    case addChannel = "Add Channel Request"
 }

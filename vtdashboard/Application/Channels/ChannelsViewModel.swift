@@ -11,7 +11,6 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
     
     init(networkClient: NetworkClientProtocol = NetworkClient()) {
         self.networkClient = networkClient
-        getChannels()
     }
     
     func getChannels() {

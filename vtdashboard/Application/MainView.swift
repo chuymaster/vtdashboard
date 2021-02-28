@@ -29,6 +29,13 @@ struct MainView: View {
                 )
             )
             .eraseToAnyView()
+        case .addChannel:
+            return AddChannelRequestView(
+                viewModel: .init(
+                    networkClient: MockNetworkClient()
+                )
+            )
+            .eraseToAnyView()
         }
     }
 }

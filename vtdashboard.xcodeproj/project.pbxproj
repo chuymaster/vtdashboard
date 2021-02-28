@@ -10,7 +10,7 @@
 		11722583BD77FCF24303A566 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D49C9C5353A159E3C559DFD /* Preview Assets.xcassets */; };
 		1677A81938142167B6B78B6C /* ChannelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6FC9657E3CD36FBB7EB75 /* ChannelType.swift */; };
 		3899C0656A774A44D857A178 /* ViewStatusManageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3288323CA31466DA45A7E8D6 /* ViewStatusManageable.swift */; };
-		39189764CD5F86684E0035F8 /* GetEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8044F4B17FFC7297B702F7E /* GetEndpoint.swift */; };
+		39189764CD5F86684E0035F8 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8044F4B17FFC7297B702F7E /* Endpoints.swift */; };
 		450DB27538E228D5C74AF224 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2352F18BCB91E480E6FC8225 /* NetworkClient.swift */; };
 		4D51EDF6EB42AFC9D7D05B56 /* ViewStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977C696191B7FBB1CB819729 /* ViewStatus.swift */; };
 		4F309CA89DE7466A1A9263CD /* ChannelRequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9605DE3E4D3A108E964EAC5A /* ChannelRequestsView.swift */; };
@@ -27,6 +27,8 @@
 		9EC4B4D45799B17AD86F3898 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F1445BA97934E47330A38C /* SidebarView.swift */; };
 		A1A12A97716B4562C2342130 /* ViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FB0A9FFFE5F4CAEDD67307 /* ViewType.swift */; };
 		ADC98AC2D54D47AED9D766EC /* TimeInterval+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E216E31D2AA5898CE38BBFFF /* TimeInterval+Extension.swift */; };
+		BE339D8125EBE0610077D029 /* AddChannelRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE339D8025EBE0610077D029 /* AddChannelRequestViewModel.swift */; };
+		BE339D8525EBE4760077D029 /* ChannelTypePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE339D8425EBE4760077D029 /* ChannelTypePicker.swift */; };
 		BE47948F69666ADC70DC171B /* ChannelRequestRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CDCF8FEF643D75FB3562BB /* ChannelRequestRow.swift */; };
 		BE4EC49225EA7B7F00237968 /* AddChannelRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4EC49125EA7B7F00237968 /* AddChannelRequestView.swift */; };
 		C51F75621AFA1D3D9EA3A76C /* ChannelRequestStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397F5D91A77BB009F442D71 /* ChannelRequestStatus.swift */; };
@@ -68,8 +70,10 @@
 		AAEB7E10822D0EEA7B7C81D9 /* VtDashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VtDashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6CDCF8FEF643D75FB3562BB /* ChannelRequestRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequestRow.swift; sourceTree = "<group>"; };
 		BB4678D039D9C9CC597D8C4B /* vtdashboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = vtdashboard.entitlements; sourceTree = "<group>"; };
+		BE339D8025EBE0610077D029 /* AddChannelRequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChannelRequestViewModel.swift; sourceTree = "<group>"; };
+		BE339D8425EBE4760077D029 /* ChannelTypePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTypePicker.swift; sourceTree = "<group>"; };
 		BE4EC49125EA7B7F00237968 /* AddChannelRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChannelRequestView.swift; sourceTree = "<group>"; };
-		C8044F4B17FFC7297B702F7E /* GetEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEndpoint.swift; sourceTree = "<group>"; };
+		C8044F4B17FFC7297B702F7E /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		C9F1445BA97934E47330A38C /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		CBC84BD25ABB0419BC51C556 /* VtDashboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VtDashboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D97C2508C6E20E4F53DE957D /* TagText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagText.swift; sourceTree = "<group>"; };
@@ -130,7 +134,7 @@
 		3CFDC17E0689EF43973825BA /* Infrastructures */ = {
 			isa = PBXGroup;
 			children = (
-				C8044F4B17FFC7297B702F7E /* GetEndpoint.swift */,
+				C8044F4B17FFC7297B702F7E /* Endpoints.swift */,
 				7AD45DA6016162F5F8735E0F /* MockNetworkClient.swift */,
 				2352F18BCB91E480E6FC8225 /* NetworkClient.swift */,
 			);
@@ -151,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				D97C2508C6E20E4F53DE957D /* TagText.swift */,
+				BE339D8425EBE4760077D029 /* ChannelTypePicker.swift */,
 			);
 			path = Atoms;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				BE4EC49125EA7B7F00237968 /* AddChannelRequestView.swift */,
+				BE339D8025EBE0610077D029 /* AddChannelRequestViewModel.swift */,
 			);
 			path = AddChannelRequest;
 			sourceTree = "<group>";
@@ -338,15 +344,17 @@
 				5F636FEEE2B4A6D2848D581C /* Channel.swift in Sources */,
 				9575694CD5C185B7FC0566C9 /* ChannelRequest.swift in Sources */,
 				BE47948F69666ADC70DC171B /* ChannelRequestRow.swift in Sources */,
+				BE339D8525EBE4760077D029 /* ChannelTypePicker.swift in Sources */,
 				C51F75621AFA1D3D9EA3A76C /* ChannelRequestStatus.swift in Sources */,
 				BE4EC49225EA7B7F00237968 /* AddChannelRequestView.swift in Sources */,
 				4F309CA89DE7466A1A9263CD /* ChannelRequestsView.swift in Sources */,
 				C5E16D068E4C4BE3158EC84D /* ChannelRequestsViewModel.swift in Sources */,
+				BE339D8125EBE0610077D029 /* AddChannelRequestViewModel.swift in Sources */,
 				80713FA74673B96F28219874 /* ChannelRow.swift in Sources */,
 				1677A81938142167B6B78B6C /* ChannelType.swift in Sources */,
 				82D923352607603131FBDA5F /* ChannelsView.swift in Sources */,
 				9B68E5B1FF99F926A51D375D /* ChannelsViewModel.swift in Sources */,
-				39189764CD5F86684E0035F8 /* GetEndpoint.swift in Sources */,
+				39189764CD5F86684E0035F8 /* Endpoints.swift in Sources */,
 				544B25685E4A7BE914E0E9F5 /* LoadingView.swift in Sources */,
 				D7E730223E5483FB20748753 /* MainView.swift in Sources */,
 				516D629A76FF2EEDF1A8C24D /* MockNetworkClient.swift in Sources */,

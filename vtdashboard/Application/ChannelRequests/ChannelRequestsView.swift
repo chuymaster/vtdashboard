@@ -20,6 +20,9 @@ struct ChannelRequestsView: View {
             }
         }
         .listStyle(PlainListStyle())
+        .onAppear {
+            viewModel.getChannelRequests()
+        }
     }
 }
 

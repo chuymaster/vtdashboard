@@ -4,37 +4,43 @@ struct ChannelsView: View {
     @StateObject var viewModel = ChannelsViewModel()
     
     var body: some View {
-        switch viewModel.viewStatus {
-        case .loading:
-            LoadingView().eraseToAnyView()
-        case .loaded:
-            
-            VStack(alignment: .leading) {
-                // header + search box
-                Text("Channels")
-                    .bold()
-                    .font(.title)
+        VStack {
+            switch viewModel.viewStatus {
+            case .loading:
+                LoadingView().eraseToAnyView()
+            case .loaded:
                 
-                List {
-                    ForEach(viewModel.channels) { channel in
-                        ChannelRow(
-                            type: channel.type,
-                            imageURL: channel.thumbnailImageUrl,
-                            title: channel.title
-                        )
+                VStack(alignment: .leading) {
+                    // header + search box
+                    Text("Channels")
+                        .bold()
+                        .font(.title)
+                    
+                    List {
+                        ForEach(viewModel.channels) { channel in
+                            ChannelRow(
+                                type: channel.type,
+                                imageURL: channel.thumbnailImageUrl,
+                                title: channel.title
+                            )
+                        }
                     }
+                    .listStyle(PlainListStyle())
                 }
-                .listStyle(PlainListStyle())
-            }
-            .frame(minWidth: 300)
-            .padding()
-            .eraseToAnyView()
-        case .error(let error):
-            Text(error.localizedDescription)
+                .frame(minWidth: 300)
+                .padding()
                 .eraseToAnyView()
+            case .error(let error):
+                Text(error.localizedDescription)
+                    .eraseToAnyView()
+            }
+            
+            // footer pagination
+        }
+        .onAppear {
+            viewModel.getChannels()
         }
         
-        // footer pagination
     }
 }
 

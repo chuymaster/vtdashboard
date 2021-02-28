@@ -19,20 +19,7 @@ struct ChannelRow: View {
                 Text(title)
                     .font(.title)
                     .bold()
-                Picker(
-                    selection: $type,
-                    label: Text("VTuber Type:")
-                        .bold()
-                        .fixedSize(horizontal: true, vertical: false)
-                ) {
-                    Text("Original")
-                        .tag(ChannelType.original)
-                        .fixedSize(horizontal: true, vertical: false)
-                    Text("Half")
-                        .tag(ChannelType.half)
-                        .fixedSize(horizontal: true, vertical: false)
-                }
-                .pickerStyle(RadioGroupPickerStyle())
+                ChannelTypePicker(channelType: $type)
             }
             Spacer()
         }

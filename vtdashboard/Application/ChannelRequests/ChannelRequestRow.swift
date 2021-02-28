@@ -20,20 +20,7 @@ struct ChannelRequestRow: View {
                         .font(.title)
                         .bold()
                     Spacer()
-                    Picker(
-                        selection: $channelRequest.type,
-                        label: Text("VTuber Type:")
-                            .bold()
-                            .fixedSize(horizontal: true, vertical: false)
-                    ) {
-                        Text("Original")
-                            .tag(ChannelType.original)
-                            .fixedSize(horizontal: true, vertical: false)
-                        Text("Half")
-                            .tag(ChannelType.half)
-                            .fixedSize(horizontal: true, vertical: false)
-                    }
-                    .pickerStyle(RadioGroupPickerStyle())
+                    ChannelTypePicker(channelType: $channelRequest.type)
                     Spacer()
                 }
                 HStack {
