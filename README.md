@@ -13,3 +13,10 @@ brew install mint
 - Run `make` to build the project
 
 
+## Tips command
+
+- Remove files created before `.gitignore`
+
+```
+git rm --cached `git ls-files -i --exclude-from=.gitignore`
+```
