@@ -1,10 +1,3 @@
-//
-//  SidebarView.swift
-//  vtdashboard
-//
-//  Created by CHATCHAI LOKNIYOM on 2021/02/22.
-//
-
 import SwiftUI
 
 struct SidebarView: View {

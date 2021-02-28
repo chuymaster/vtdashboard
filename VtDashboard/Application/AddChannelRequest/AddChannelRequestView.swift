@@ -25,7 +25,7 @@ struct AddChannelRequestView: View {
             Button(action: {
                 viewModel.postChannelRequest(
                     id: channelId,
-                    type: .original
+                    type: channelType
                 )
             }) {
                 Text("Submit")
