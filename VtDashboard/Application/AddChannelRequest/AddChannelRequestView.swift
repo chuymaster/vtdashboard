@@ -9,56 +9,62 @@ struct AddChannelRequestView: View {
     private let maxCharacterCount = 24
     
     var body: some View {
-        VStack(spacing: 16) {
-            VStack {
-                TextField("Enter Channel ID", text: $channelId)
-                    .font(.headline)
-                if isAbleToSubmit {
-                    Text("Channel ID must begin with UC, must be exact 24 characters.")
-                        .font(.callout)
-                        .foregroundColor(.red)
+        ZStack {
+            VStack(spacing: 16) {
+                VStack {
+                    TextField("Enter Channel ID", text: $channelId)
+                        .font(.headline)
+                    if isAbleToSubmit {
+                        Text("Channel ID must begin with UC, must be exact 24 characters.")
+                            .font(.callout)
+                            .foregroundColor(.red)
+                    }
                 }
+                .padding()
+                
+                ChannelTypePicker(channelType: $channelType)
+                
+                Button(action: {
+                    viewModel.postChannelRequest(
+                        id: channelId,
+                        type: channelType
+                    )
+                }) {
+                    Text("Submit")
+                }
+                .keyboardShortcut(.defaultAction)
+                .disabled(isAbleToSubmit)
+                
+                // Sample channel ids
+                List(sampleChannelIds, selection: $selectedChannelId) {
+                    Text($0)
+                }
+                .listStyle(SidebarListStyle())
+                .frame(maxHeight: 300)
+                .cornerRadius(8)
+                
+                Spacer()
             }
             .padding()
-            
-            ChannelTypePicker(channelType: $channelType)
-            
-            Button(action: {
-                viewModel.postChannelRequest(
-                    id: channelId,
-                    type: channelType
+            .alert(item: $viewModel.channelRequest) { channelRequest in
+                Alert(
+                    title: Text("Submission Completed"),
+                    message: Text("\(channelRequest.title)\nType: \(channelRequest.type.displayText)"),
+                    dismissButton: .default(Text("Close")
+                    )
                 )
-            }) {
-                Text("Submit")
             }
-            .keyboardShortcut(.defaultAction)
-            .disabled(isAbleToSubmit)
-            
-            // Sample channel ids
-            List(sampleChannelIds, selection: $selectedChannelId) {
-                Text($0)
+            .onChange(of: selectedChannelId, perform: { value in
+                channelId = selectedChannelId
+            })
+            .onChange(of: channelId) { value in
+                if channelId.count > maxCharacterCount {
+                    channelId = String(channelId.prefix(maxCharacterCount))
+                }
             }
-            .listStyle(SidebarListStyle())
-            .frame(maxHeight: 300)
-            .cornerRadius(8)
-            
-            Spacer()
-        }
-        .padding()
-        .alert(item: $viewModel.channelRequest) { channelRequest in
-            Alert(
-                title: Text("Submission Completed"),
-                message: Text("\(channelRequest.title)\nType: \(channelRequest.type.displayText)"),
-                dismissButton: .default(Text("Close")
-                )
-            )
-        }
-        .onChange(of: selectedChannelId, perform: { value in
-            channelId = selectedChannelId
-        })
-        .onChange(of: channelId) { value in
-            if channelId.count > maxCharacterCount {
-                channelId = String(channelId.prefix(maxCharacterCount))
+            if viewModel.viewStatus == .loading {
+                LoadingView()
+                    .background(Color.black.opacity(0.5))
             }
         }
     }

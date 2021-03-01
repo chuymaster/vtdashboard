@@ -4,22 +4,31 @@ struct ChannelRequestsView: View {
     @StateObject var viewModel = ChannelRequestsViewModel()
     
     var body: some View {
-        List {
-            ForEach(viewModel.channelRequests) { channelRequest in
-                let index = viewModel.channelRequests.firstIndex { $0.id == channelRequest.id
-                }!
-                HStack {
-                    ChannelRequestRow(
-                        channelRequest: $viewModel.channelRequests[index],
-                        changeAction: {
-                            print(viewModel.channelRequests[index].status)
+        VStack {
+            switch viewModel.viewStatus {
+            case .loading:
+                LoadingView().eraseToAnyView()
+            case .loaded:
+                List {
+                    ForEach(viewModel.channelRequests) { channelRequest in
+                        let index = viewModel.channelRequests.firstIndex { $0.id == channelRequest.id
+                        }!
+                        HStack {
+                            ChannelRequestRow(
+                                channelRequest: $viewModel.channelRequests[index],
+                                changeAction: {
+                                    print(viewModel.channelRequests[index].status)
+                                }
+                            )
+                            Spacer()
                         }
-                    )
-                    Spacer()
+                    }
                 }
+                .listStyle(PlainListStyle())
+            case .error:
+                Text("Error")
             }
         }
-        .listStyle(PlainListStyle())
         .onAppear {
             viewModel.getChannelRequests()
         }
