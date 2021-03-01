@@ -16,22 +16,13 @@ struct MainView: View {
     private var contentView: some View {
         switch currentViewType {
         case .channels:
-            return ChannelsView(
-                viewModel: ChannelsViewModel(
-                    networkClient: MockNetworkClient()
-                )
-            )
+            return ChannelsView()
             .eraseToAnyView()
         case .channelRequests:
-            return ChannelRequestsView(
-                viewModel: ChannelRequestsViewModel(
-                    networkClient: MockNetworkClient()
-                )
-            )
+            return ChannelRequestsView()
             .eraseToAnyView()
         case .addChannel:
-            return AddChannelRequestView(
-            )
+            return AddChannelRequestView()
             .eraseToAnyView()
         }
     }
