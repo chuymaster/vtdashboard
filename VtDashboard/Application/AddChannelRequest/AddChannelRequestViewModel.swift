@@ -2,7 +2,7 @@ import Combine
 import SwiftUI
 
 final class AddChannelRequestViewModel: ViewStatusManageable, ObservableObject {
-    @Published var viewStatus: ViewStatus = .loading
+    @Published var viewStatus: ViewStatus = .loaded
     @Published var channelRequest: ChannelRequest?
     @Published var isPostCompleted: String?
     
