@@ -1,25 +1,24 @@
 import SwiftUI
 
 struct SidebarView: View {
-    @Binding var viewType: ViewType
+    @Binding var viewType: ViewType?
+//    @Binding var ss: String
     
     var body: some View {
-        VStack(spacing: 0) {
-            ForEach(ViewType.allCases, id: \.id) { viewType in
+        List(selection: $viewType) {
+            ForEach(ViewType.allCases) { viewType in
                 HStack {
+                    Image(systemName: viewType.iconImageName)
+                        .frame(minWidth: 30)
                     Text(viewType.rawValue)
                     Spacer()
                 }
-                .padding()
-                .background(self.viewType == viewType ? Color.gray.opacity(0.2) : Color.clear)
-                .onTapGesture {
-                    self.viewType = viewType
-                }
+                .tag(viewType)
             }
-            Spacer()
         }
-        .padding()
+        .listStyle(SidebarListStyle())
     }
+    
 }
 
 struct SidebarView_Previews: PreviewProvider {

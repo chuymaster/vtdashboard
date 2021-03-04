@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MainView: View {
     
-    @State var currentViewType: ViewType = .channelRequests
+    @State var currentViewType: ViewType? = .channelRequests
     
     var body: some View {
         HStack {
@@ -24,6 +24,9 @@ struct MainView: View {
         case .addChannel:
             return AddChannelRequestView()
             .eraseToAnyView()
+        case .none:
+            return EmptyView()
+                .eraseToAnyView()
         }
     }
 }
