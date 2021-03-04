@@ -4,8 +4,8 @@ struct LoadingView: View {
     var body: some View {
         ZStack {
             Color.clear
-            Text("Loading...")
-                .font(.title)
+            Spinner()
+                .frame(width: 100, height: 100, alignment: .center)
         }
     }
 }
