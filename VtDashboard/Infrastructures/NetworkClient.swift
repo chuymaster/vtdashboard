@@ -50,8 +50,7 @@ struct NetworkClient: NetworkClientProtocol {
                 parameters: parameters,
                 //            encoder: URLEncodedFormEncoder,
                 headers: [
-                    "Accept": "application/json",
-                    "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
+                    "Content-Type": "application/x-www-form-urlencoded"
                 ])
                 .response { response in
                     switch response.result {

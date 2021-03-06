@@ -17,7 +17,13 @@ struct ChannelRequestsView: View {
                             ChannelRequestRow(
                                 channelRequest: $viewModel.channelRequests[index],
                                 changeAction: {
-                                    print(viewModel.channelRequests[index].status)
+                                    let channelRequest = viewModel.channelRequests[index]
+                                    viewModel.postChannel(
+                                        id: channelRequest.id,
+                                        title: channelRequest.title,
+                                        thumbnailImageUrl: channelRequest.thumbnailImageUrl,
+                                        type: channelRequest.type
+                                    )
                                 }
                             )
                             Spacer()
