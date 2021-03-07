@@ -5,7 +5,7 @@ struct SettingsView: View {
     
     var body: some View {
         ZStack {
-            VStack {
+            VStack(alignment: .leading) {
                 Picker("Server Environment",
                        selection: $serverEnvironment) {
                     ForEach(ServerEnvironmentValue.allCases) { environment in
@@ -16,6 +16,10 @@ struct SettingsView: View {
                 .pickerStyle(DefaultPickerStyle())
                 
                 Text(Endpoint.baseURL.absoluteString)
+                
+                Link("Cloud Storage", destination: URL(string: "https://console.cloud.google.com/storage/browser/thaivtuberranking.appspot.com/channel_data?project=thaivtuberranking&pageState=(%22StorageObjectListTable%22:(%22f%22:%22%255B%255D%22))&prefix=&forceOnObjectsSortingFiltering=false")!)
+                Link("Cloud Functions", destination: URL(string: "https://console.firebase.google.com/u/0/project/thaivtuberranking/functions/list")!)
+                Link("BigQuery", destination: URL(string: "https://console.cloud.google.com/bigquery?project=thaivtuberranking&p=thaivtuberranking&page=project")!)
                 Spacer()
             }
             .padding()
