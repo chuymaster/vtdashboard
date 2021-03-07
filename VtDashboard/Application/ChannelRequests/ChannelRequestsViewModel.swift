@@ -12,7 +12,7 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     init(networkClient: NetworkClientProtocol = NetworkClient()) {
-        self.networkClient = networkClientc
+        self.networkClient = networkClient
     }
     
     func getChannelRequests() {

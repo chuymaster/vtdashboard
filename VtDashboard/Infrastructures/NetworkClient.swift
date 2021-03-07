@@ -21,7 +21,7 @@ struct NetworkClient: NetworkClientProtocol {
     /// The object type must conform to Codable protocol
     func get<T: Codable>(endpoint: GetEndpoint) -> Future<T, Error> {
         return Future { promise in
-            let request = AF.request(endpoint.rawValue)
+            let request = AF.request(endpoint.url)
                 .response { response in
                     switch response.result {
                     case .success(let data):
@@ -45,7 +45,7 @@ struct NetworkClient: NetworkClientProtocol {
     func post<T: Codable>(endpoint: PostEndpoint, parameters: [String: String]) -> Future<T, Error> {
         return Future { promise in
             let request = AF.request(
-                endpoint.rawValue,
+                endpoint.url,
                 method: .post,
                 parameters: parameters,
                 //            encoder: URLEncodedFormEncoder,
