@@ -1,3 +1,5 @@
+import SwiftUI
+
 enum ChannelRequestStatus: Int, Codable {
     case unconfirmed = 1
     case accepted = 2
@@ -14,6 +16,18 @@ enum ChannelRequestStatus: Int, Codable {
             return "Pending"
         case .rejected:
             return "Rejected"
+        }
+    }
+    var backgroundColor: Color {
+        switch self {
+        case .unconfirmed:
+            return .blue
+        case .accepted:
+            return .green
+        case .pending:
+            return .orange
+        case .rejected:
+            return .gray
         }
     }
 }

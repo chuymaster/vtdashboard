@@ -24,7 +24,10 @@ struct ChannelRequestRow: View {
                     Spacer()
                 }
                 HStack {
-                    TagText(title: channelRequest.status.displayText)
+                    TagText(
+                        title: channelRequest.status.displayText,
+                        backgroundColor: channelRequest.status.backgroundColor
+                    )
                     Spacer()
                     Button(
                         action: {
@@ -33,6 +36,7 @@ struct ChannelRequestRow: View {
                         }, label: {
                             Text("Accept")
                         })
+                        .disabled(channelRequest.status == .accepted || channelRequest.status == .rejected)
                     Button(
                         action: {
                             channelRequest.status = .pending
@@ -40,18 +44,21 @@ struct ChannelRequestRow: View {
                         }, label: {
                             Text("Mark Pending")
                         })
+                        .disabled(channelRequest.status != .unconfirmed)
                     Button(
                         action: {
                             channelRequest.status = .rejected
                             changeAction()}, label: {
                                 Text("Reject")
                             })
+                        .disabled(channelRequest.status == .rejected || channelRequest.status == .accepted)
                     Button(
                         action: {
                             channelRequest.status = .unconfirmed
                             changeAction()}, label: {
                                 Text("Restore")
                             })
+                        .disabled(channelRequest.status != .rejected)
                 }
             }
             Spacer()
