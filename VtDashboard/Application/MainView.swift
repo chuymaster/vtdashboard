@@ -25,9 +25,12 @@ struct MainView: View {
         case .addChannel:
             return AddChannelRequestView()
             .eraseToAnyView()
+        case .settings:
+            return SettingsView()
+            .eraseToAnyView()
         case .none:
             return EmptyView()
-                .eraseToAnyView()
+            .eraseToAnyView()
         }
     }
 }

@@ -24,7 +24,6 @@ struct ChannelRequestRow: View {
                     }
                     Spacer()
                     ChannelTypePicker(channelType: $channelRequest.type)
-                    Spacer()
                 }
                 HStack {
                     TagText(
