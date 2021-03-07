@@ -16,9 +16,12 @@ struct ChannelRequestRow: View {
             
             VStack(alignment: .leading) {
                 HStack {
-                    Text(channelRequest.title)
-                        .font(.title)
-                        .bold()
+                    Link(destination: channelRequest.url) {
+                        Text(channelRequest.title)
+                            .font(.title)
+                            .foregroundColor(.white)
+                            .bold()
+                    }
                     Spacer()
                     ChannelTypePicker(channelType: $channelRequest.type)
                     Spacer()

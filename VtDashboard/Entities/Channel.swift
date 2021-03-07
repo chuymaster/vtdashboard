@@ -7,4 +7,8 @@ struct Channel: Identifiable, Codable {
     let thumbnailImageUrl: String
     var type: ChannelType
     let updatedAt: TimeInterval
+    
+    var url: URL {
+        URL(string: "https://youtube.com/channel/\(channelId)")!
+    }
 }

@@ -16,9 +16,12 @@ struct ChannelRow: View {
                 .clipShape(Circle())
             
             VStack(alignment: .leading) {
-                Text(channel.title)
-                    .font(.title)
-                    .bold()
+                Link(destination: channel.url) {
+                    Text(channel.title)
+                        .foregroundColor(.white)
+                        .font(.title)
+                        .bold()
+                }
                 HStack {
                     ChannelTypePicker(channelType: $channel.type)
                     Spacer()
@@ -52,7 +55,7 @@ struct ChannelRow_Previews: PreviewProvider {
             thumbnailImageUrl: "https://yt3.ggpht.com/ytc/AAUvwngABpVP2Dh5kziMwBubM3LoBbn9G813luZ-1HqS=s240-c-k-c0x00ffffff-no-rj",
             type: .original,
             updatedAt: 0
-            )
+        )
         return ChannelRow(channel: .constant(channel), updateAction: {}, deleteAction: {})
     }
 }
