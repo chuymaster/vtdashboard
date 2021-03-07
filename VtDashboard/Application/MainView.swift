@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct MainView: View {
+    @EnvironmentObject var uiState: UIState
     
     @State var currentViewType: ViewType? = .channelRequests
     
@@ -10,7 +11,7 @@ struct MainView: View {
                 .frame(width: 220)
             contentView
         }
-        
+        .alert(item: $uiState.currentAlert) { $0 }
     }
     
     private var contentView: some View {
@@ -34,6 +35,7 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
+            .environmentObject(UIState.shared)
             .previewLayout(.sizeThatFits)
     }
 }

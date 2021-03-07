@@ -1,14 +1,20 @@
 import Combine
 import SwiftUI
+import OSLog
 
 final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
+    
     @Published var viewStatus: ViewStatus = .loading
     @Published var channelRequests: [ChannelRequest] = []
-    @Published var isPostCompleted: String?
-    @Published var error: Error?
+    
+    @Published var isPosting: Bool = false
+    @Published var isPostCompleted: Bool = false
+    @Published var postError: Error?
+    @Published var postedChannel: Channel?
     
     private let networkClient: NetworkClientProtocol
     
+    private var lastPostChannelRequest: ChannelRequest?
     private var cancellables = Set<AnyCancellable>()
     
     init(networkClient: NetworkClientProtocol = NetworkClient()) {
@@ -34,26 +40,38 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
             
     }
     
-    func postChannel(id: String, title: String, thumbnailImageUrl: String, type: ChannelType) {
+    func postChannel(request: ChannelRequest) {
         cancellables.forEach { $0.cancel() }
+        isPosting = true
+        isPostCompleted = false
+        lastPostChannelRequest = request
+        
         networkClient.post(endpoint: .postChannel, parameters: [
-            "channel_id": id,
-            "title": title,
-            "thumbnail_image_url": thumbnailImageUrl,
-            "type": "\(type.rawValue)"
+            "channel_id": request.channelId,
+            "title": request.title,
+            "thumbnail_image_url": request.thumbnailImageUrl,
+            "type": "\(request.type.rawValue)"
         ])
         .receive(on: DispatchQueue.main)
-        .sink { [weak self] completion in
+        .sink(receiveCompletion: { [weak self] completion in
+            self?.isPosting = false
             switch completion {
             case .finished:
-                break
+                self?.isPostCompleted = true
             case .failure(let error):
-                self?.error = error
+                self?.postError = error
             }
-        } receiveValue: { [weak self] response in
-            self?.isPostCompleted = response
-        }
+        }, receiveValue: { [weak self] value in
+            self?.postedChannel = value
+        })
         .store(in: &cancellables)
-        
+    }
+    
+    func retryPostChannel() {
+        guard let request = lastPostChannelRequest else {
+            print(Logger().error("No request to retry"))
+            return
+        }
+        postChannel(request: request)
     }
 }

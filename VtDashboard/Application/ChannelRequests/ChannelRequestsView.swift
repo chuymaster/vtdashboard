@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ChannelRequestsView: View {
+    @EnvironmentObject private var uiState: UIState
     @StateObject var viewModel = ChannelRequestsViewModel()
     
     var body: some View {
@@ -9,35 +10,49 @@ struct ChannelRequestsView: View {
             case .loading:
                 LoadingView().eraseToAnyView()
             case .loaded:
-                List {
-                    ForEach(viewModel.channelRequests) { channelRequest in
-                        let index = viewModel.channelRequests.firstIndex { $0.id == channelRequest.id
-                        }!
-                        HStack {
-                            ChannelRequestRow(
-                                channelRequest: $viewModel.channelRequests[index],
-                                changeAction: {
-                                    let channelRequest = viewModel.channelRequests[index]
-                                    viewModel.postChannel(
-                                        id: channelRequest.id,
-                                        title: channelRequest.title,
-                                        thumbnailImageUrl: channelRequest.thumbnailImageUrl,
-                                        type: channelRequest.type
-                                    )
-                                }
-                            )
-                            Spacer()
-                        }
+                ZStack {
+                    channelRequestListView
+                    if viewModel.isPosting {
+                        LoadingOverlayView()
                     }
                 }
-                .listStyle(PlainListStyle())
             case .error:
                 Text("Error")
             }
         }
+        .onReceive(viewModel.$postError, perform: { error in
+            if let _ = error {
+                uiState.currentAlert = Alert(
+                    title: Text("Failure").bold(),
+                    message: Text("Failed to add new channel"),
+                    primaryButton: .default(
+                        Text("Retry"),
+                        action: viewModel.retryPostChannel
+                    ), secondaryButton: .cancel(Text("Cancel")))
+            }
+        })
         .onAppear {
             viewModel.getChannelRequests()
         }
+    }
+    
+    private var channelRequestListView: some View {
+        List {
+            ForEach(viewModel.channelRequests) { channelRequest in
+                let index = viewModel.channelRequests
+                    .firstIndex { $0.id == channelRequest.id }!
+                HStack {
+                    ChannelRequestRow(
+                        channelRequest: $viewModel.channelRequests[index],
+                        changeAction: {
+                            viewModel.postChannel(request: viewModel.channelRequests[index])
+                        }
+                    )
+                    Spacer()
+                }
+            }
+        }
+        .listStyle(PlainListStyle())
     }
 }
 
