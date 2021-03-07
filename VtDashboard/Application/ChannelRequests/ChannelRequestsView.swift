@@ -17,7 +17,10 @@ struct ChannelRequestsView: View {
                     }
                 }
             case .error:
-                Text("Error")
+                ZStack {
+                    Text("Error")
+                }
+                .eraseToAnyView()
             }
         }
         .onReceive(viewModel.$postError, perform: { error in

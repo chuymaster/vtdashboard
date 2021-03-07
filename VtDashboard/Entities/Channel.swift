@@ -5,6 +5,6 @@ struct Channel: Identifiable, Codable {
     let channelId: String
     let title: String
     let thumbnailImageUrl: String
-    let type: ChannelType
+    var type: ChannelType
     let updatedAt: TimeInterval
 }

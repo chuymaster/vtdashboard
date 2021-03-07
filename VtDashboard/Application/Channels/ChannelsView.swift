@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ChannelsView: View {
+    @EnvironmentObject private var uiState: UIState
     @StateObject var viewModel = ChannelsViewModel()
     
     var body: some View {
@@ -9,38 +10,55 @@ struct ChannelsView: View {
             case .loading:
                 LoadingView().eraseToAnyView()
             case .loaded:
-                
-                VStack(alignment: .leading) {
-                    // header + search box
-                    Text("Channels")
-                        .bold()
-                        .font(.title)
-                    
-                    List {
-                        ForEach(viewModel.channels) { channel in
-                            ChannelRow(
-                                type: channel.type,
-                                imageURL: channel.thumbnailImageUrl,
-                                title: channel.title
-                            )
-                        }
+                ZStack {
+                    channelListView
+                    if viewModel.isPosting {
+                        LoadingOverlayView()
                     }
-                    .listStyle(PlainListStyle())
                 }
-                .frame(minWidth: 300)
-                .padding()
                 .eraseToAnyView()
-            case .error(let error):
-                Text(error.localizedDescription)
-                    .eraseToAnyView()
+            case .error:
+                ZStack {
+                    Text("Error")
+                }
+                .eraseToAnyView()
             }
-            
-            // footer pagination
         }
+        .onReceive(viewModel.$postError, perform: { error in
+            if let _ = error {
+                uiState.currentAlert = Alert(
+                    title: Text("Failure").bold(),
+                    message: Text("Failed to update channel"),
+                    primaryButton: .default(
+                        Text("Retry"),
+                        action: viewModel.retryLastOperation
+                    ), secondaryButton: .cancel(Text("Cancel")))
+            }
+        })
         .onAppear {
             viewModel.getChannels()
         }
         
+    }
+    
+    private var channelListView: some View {
+        VStack(alignment: .leading) {
+            Text("Channels")
+                .bold()
+                .font(.title)
+            
+            List {
+                ForEach(viewModel.channels) { channel in
+                    let index = viewModel.channels.firstIndex { $0.id == channel.id }!
+                    ChannelRow(channel: $viewModel.channels[index]) {
+                        viewModel.updateChannel(channel: viewModel.channels[index])
+                    } deleteAction: {
+                        viewModel.deleteChannel(channelId: channel.id)
+                    }
+                }
+            }
+            .listStyle(PlainListStyle())
+        }
     }
 }
 

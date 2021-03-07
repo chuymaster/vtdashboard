@@ -3,24 +3,41 @@ import SwiftUI
 
 struct ChannelRow: View {
     
-    @State var type: ChannelType = .original
-    let imageURL: String
-    let title: String
+    @Binding var channel: Channel
+    let updateAction: () -> Void
+    let deleteAction: () -> Void
     
     var body: some View {
         HStack(spacing: 16) {
-            KFImage(URL(string: imageURL))
+            KFImage(URL(string: channel.thumbnailImageUrl))
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 100, height: 100)
                 .clipShape(Circle())
             
             VStack(alignment: .leading) {
-                Text(title)
+                Text(channel.title)
                     .font(.title)
                     .bold()
-                ChannelTypePicker(channelType: $type)
+                HStack {
+                    ChannelTypePicker(channelType: $channel.type)
+                    Spacer()
+                    Button(
+                        action: updateAction,
+                        label: {
+                            Text("Update")
+                        })
+                        .cornerRadius(4)
+                    Button(
+                        action: deleteAction,
+                        label: {
+                            Text("Delete")
+                        })
+                        .background(Color.red)
+                        .cornerRadius(4)
+                }
             }
+            
             Spacer()
         }
         .padding()
@@ -29,9 +46,13 @@ struct ChannelRow: View {
 
 struct ChannelRow_Previews: PreviewProvider {
     static var previews: some View {
-        ChannelRow(
-            imageURL: "https://yt3.ggpht.com/ytc/AAUvwngABpVP2Dh5kziMwBubM3LoBbn9G813luZ-1HqS=s240-c-k-c0x00ffffff-no-rj",
-            title: "YuChan Channel"
-        )
+        let channel = Channel(
+            channelId: "1",
+            title: "YuChan Channel",
+            thumbnailImageUrl: "https://yt3.ggpht.com/ytc/AAUvwngABpVP2Dh5kziMwBubM3LoBbn9G813luZ-1HqS=s240-c-k-c0x00ffffff-no-rj",
+            type: .original,
+            updatedAt: 0
+            )
+        return ChannelRow(channel: .constant(channel), updateAction: {}, deleteAction: {})
     }
 }
