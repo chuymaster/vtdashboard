@@ -7,23 +7,39 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
     @Published var viewStatus: ViewStatus = .loading
     @Published var channelRequests: [ChannelRequest] = []
     
-    @Published var isPosting: Bool = false
-    @Published var isPostCompleted: Bool = false
-    @Published var postError: Error?
-    @Published var postedChannel: Channel?
+    @Published private(set) var isPosting: Bool = false
+    @Published private(set) var postError: Error?
+    @Published private(set) var postedChannel: Channel?
     
     private let networkClient: NetworkClientProtocol
     
-    private var lastPostChannelRequest: ChannelRequest?
+    private var postErrorSubject = CurrentValueSubject<Error?, Never>(nil)
+    private var postCompletedSubject = PassthroughSubject<Void, Never>()
+    private var lastUpdateChannelRequest: ChannelRequest?
     private var cancellables = Set<AnyCancellable>()
     
     init(networkClient: NetworkClientProtocol = NetworkClient()) {
         self.networkClient = networkClient
+        
+        postCompletedSubject
+            .sink(receiveValue: { [weak self] _ in
+                self?.isPosting = false
+                self?.getChannelRequests()
+            })
+            .store(in: &cancellables)
+        
+        postErrorSubject
+            .sink(receiveValue: { [weak self] error in
+                self?.isPosting = false
+                self?.postError = error
+            })
+            .store(in: &cancellables)
     }
     
     func getChannelRequests() {
-        cancellables.forEach { $0.cancel() }
-        viewStatus = .loading
+        if channelRequests.isEmpty {
+            viewStatus = .loading
+        }
         networkClient.get(endpoint: .getChannelRequestList)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
@@ -37,41 +53,62 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
                 self?.channelRequests = channelRequests
             }
             .store(in: &cancellables)
-            
     }
     
-    func postChannel(request: ChannelRequest) {
-        cancellables.forEach { $0.cancel() }
+    func updateChannelRequest(request: ChannelRequest) {
         isPosting = true
-        isPostCompleted = false
-        lastPostChannelRequest = request
+        lastUpdateChannelRequest = request
         
-        networkClient.post(endpoint: .postChannel, parameters: [
-            "channel_id": request.channelId,
-            "title": request.title,
-            "thumbnail_image_url": request.thumbnailImageUrl,
-            "type": "\(request.type.rawValue)"
-        ])
-        .receive(on: DispatchQueue.main)
-        .sink(receiveCompletion: { [weak self] completion in
-            self?.isPosting = false
-            switch completion {
-            case .finished:
-                self?.isPostCompleted = true
-            case .failure(let error):
-                self?.postError = error
-            }
-        }, receiveValue: { [weak self] value in
-            self?.postedChannel = value
-        })
-        .store(in: &cancellables)
+        let postChannelRequest: Future<ChannelRequest, Error> =
+            networkClient.post(endpoint: .postChannelRequest, parameters: [
+                "channel_id": request.channelId,
+                "type": "\(request.type.rawValue)",
+                "status": "\(request.status.rawValue)"
+            ])
+        
+        if request.status == .accepted {
+            // Add new Channel and update ChannelRequest
+            let postChannel: Future<Channel, Error> =
+                networkClient.post(endpoint: .postChannel, parameters: [
+                    "channel_id": request.channelId,
+                    "title": request.title,
+                    "thumbnail_image_url": request.thumbnailImageUrl,
+                    "type": "\(request.type.rawValue)"
+                ])
+            
+            postChannelRequest
+                .combineLatest(postChannel)
+                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { [weak self] completion in
+                    switch completion {
+                    case .finished:
+                        self?.postCompletedSubject.send()
+                    case .failure(let error):
+                        self?.postErrorSubject.send(error)
+                    }
+                }, receiveValue: { _ in })
+                .store(in: &cancellables)
+        } else {
+            // Update ChannelRequest only
+            postChannelRequest
+                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { [weak self] completion in
+                    switch completion {
+                    case .finished:
+                        self?.postCompletedSubject.send()
+                    case .failure(let error):
+                        self?.postErrorSubject.send(error)
+                    }
+                }, receiveValue: { _ in })
+                .store(in: &cancellables)
+        }
     }
     
-    func retryPostChannel() {
-        guard let request = lastPostChannelRequest else {
+    func retryUpdateChannelRequest() {
+        guard let request = lastUpdateChannelRequest else {
             print(Logger().error("No request to retry"))
             return
         }
-        postChannel(request: request)
+        updateChannelRequest(request: request)
     }
 }

@@ -27,7 +27,7 @@ struct ChannelRequestsView: View {
                     message: Text("Failed to add new channel"),
                     primaryButton: .default(
                         Text("Retry"),
-                        action: viewModel.retryPostChannel
+                        action: viewModel.retryUpdateChannelRequest
                     ), secondaryButton: .cancel(Text("Cancel")))
             }
         })
@@ -45,7 +45,7 @@ struct ChannelRequestsView: View {
                     ChannelRequestRow(
                         channelRequest: $viewModel.channelRequests[index],
                         changeAction: {
-                            viewModel.postChannel(request: viewModel.channelRequests[index])
+                            viewModel.updateChannelRequest(request: viewModel.channelRequests[index])
                         }
                     )
                     Spacer()
