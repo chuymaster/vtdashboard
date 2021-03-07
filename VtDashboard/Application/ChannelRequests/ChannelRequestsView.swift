@@ -40,22 +40,35 @@ struct ChannelRequestsView: View {
     }
     
     private var channelRequestListView: some View {
-        List {
-            ForEach(viewModel.channelRequests) { channelRequest in
-                let index = viewModel.channelRequests
-                    .firstIndex { $0.id == channelRequest.id }!
+        if viewModel.channelRequests.isEmpty {
+            return ZStack {
                 HStack {
-                    ChannelRequestRow(
-                        channelRequest: $viewModel.channelRequests[index],
-                        changeAction: {
-                            viewModel.updateChannelRequest(request: viewModel.channelRequests[index])
-                        }
-                    )
+                    Spacer()
+                    Text("No Request")
                     Spacer()
                 }
             }
+            .eraseToAnyView()
+        } else {
+            return List {
+                ForEach(viewModel.channelRequests) { channelRequest in
+                    let index = viewModel.channelRequests
+                        .firstIndex { $0.id == channelRequest.id }!
+                    HStack {
+                        ChannelRequestRow(
+                            channelRequest: $viewModel.channelRequests[index],
+                            changeAction: {
+                                viewModel.updateChannelRequest(request: viewModel.channelRequests[index])
+                            }
+                        )
+                        Spacer()
+                    }
+                }
+            }
+            .listStyle(PlainListStyle())
+            .eraseToAnyView()
         }
-        .listStyle(PlainListStyle())
+        
     }
 }
 

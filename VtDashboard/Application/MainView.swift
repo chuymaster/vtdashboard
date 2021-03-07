@@ -3,7 +3,7 @@ import SwiftUI
 struct MainView: View {
     @EnvironmentObject var uiState: UIState
     
-    @State var currentViewType: ViewType? = .channels
+    @State var currentViewType: ViewType? = .channelRequests
     
     var body: some View {
         HStack {

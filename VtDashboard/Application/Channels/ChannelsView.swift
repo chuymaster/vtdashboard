@@ -42,22 +42,39 @@ struct ChannelsView: View {
     }
     
     private var channelListView: some View {
-        VStack(alignment: .leading) {
-            Text("Channels")
-                .bold()
-                .font(.title)
-            
-            List {
-                ForEach(viewModel.channels) { channel in
-                    let index = viewModel.channels.firstIndex { $0.id == channel.id }!
-                    ChannelRow(channel: $viewModel.channels[index]) {
-                        viewModel.updateChannel(channel: viewModel.channels[index])
-                    } deleteAction: {
-                        viewModel.deleteChannel(channelId: channel.id)
-                    }
+        if viewModel.channels.isEmpty {
+            return ZStack {
+                HStack {
+                    Spacer()
+                    Text("No Channel")
+                    Spacer()
                 }
             }
-            .listStyle(PlainListStyle())
+            .eraseToAnyView()
+        } else {
+            return VStack(alignment: .leading) {
+                List {
+                    ForEach(viewModel.channels) { channel in
+                        let index = viewModel.channels.firstIndex { $0.id == channel.id }!
+                        ChannelRow(channel: $viewModel.channels[index]) {
+                            viewModel.updateChannel(channel: viewModel.channels[index])
+                        } deleteAction: {
+                            uiState.currentAlert = Alert(
+                                title: Text("WARNING!"),
+                                message: Text("Are you sure to delete \(channel.title)?"),
+                                primaryButton: .destructive(
+                                    Text("Delete"),
+                                    action: {
+                                        viewModel.deleteChannel(channelId: channel.id)
+                                    }),
+                                secondaryButton: .cancel())
+                            
+                        }
+                    }
+                }
+                .listStyle(PlainListStyle())
+            }
+            .eraseToAnyView()
         }
     }
 }
