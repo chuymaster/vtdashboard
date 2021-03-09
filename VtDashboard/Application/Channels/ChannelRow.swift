@@ -18,11 +18,30 @@ struct ChannelRow: View {
             }
             
             VStack(alignment: .leading) {
-                Text(channel.title)
-                    .foregroundColor(.white)
-                    .font(.title)
-                    .bold()
-                    .lineLimit(1)
+                HStack {
+                    Text(channel.title)
+                        .foregroundColor(.white)
+                        .font(.title)
+                        .bold()
+                        .lineLimit(1)
+                    Spacer()
+                    VStack(alignment: .leading, spacing: 4) {
+                        HStack {
+                            Image(systemName: "person.3")
+                                .frame(width: 28)
+                            Text("\(channel.statistics?.subscribers ?? 0)")
+                                .font(.caption)
+                        }
+                        .help("Follower")
+                        HStack {
+                            Image(systemName: "eye")
+                                .frame(width: 28)
+                            Text("\(channel.statistics?.views ?? 0)")
+                                .font(.caption)
+                        }
+                        .help("Views")
+                    }
+                }
                 HStack {
                     ChannelTypePicker(channelType: $channel.type)
                     Spacer()
@@ -41,7 +60,6 @@ struct ChannelRow: View {
                         .cornerRadius(4)
                 }
             }
-            
             Spacer()
         }
         .help("Updated at \(channel.updatedAt.displayText)")

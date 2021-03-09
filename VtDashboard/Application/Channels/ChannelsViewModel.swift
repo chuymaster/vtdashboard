@@ -22,6 +22,7 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
     private var postErrorSubject = CurrentValueSubject<Error?, Never>(nil)
     private var postCompletedSubject = PassthroughSubject<Void, Never>()
     private var cancellables = Set<AnyCancellable>()
+    private var channelStatistics: [ChannelStatistics] = []
     
     init(networkClient: NetworkClientProtocol = NetworkClient()) {
         self.networkClient = networkClient
@@ -61,6 +62,29 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
                     .sorted(by: { ch1, ch2 -> Bool in
                         ch1.updatedAt > ch2.updatedAt
                     })
+                self?.getChannelStatistics()
+            }
+            .store(in: &cancellables)
+    }
+    
+    func getChannelStatistics() {
+        let getChannelStatistics: Future<ChannelStatisticsResult, Error> = networkClient.get(endpoint: .getChannelDataList)
+        
+        getChannelStatistics
+            .receive(on: DispatchQueue.main)
+            .catch({ error in
+                return Empty<ChannelStatisticsResult, Error>(completeImmediately: false)
+            })
+            .map { $0.result.flatMap { $0 } }
+            .sink { _ in
+            } receiveValue: { [weak self] channelStatistics in
+                guard let self = self else { return }
+                self.channels.indices.forEach { index in
+                    if let matchedStatistic = channelStatistics
+                        .first(where: { $0.channelId == self.channels[index].id }) {
+                        self.channels[index].statistics = matchedStatistic
+                    }
+                }
             }
             .store(in: &cancellables)
     }

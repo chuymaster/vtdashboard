@@ -65,6 +65,29 @@ struct MockNetworkClient: NetworkClientProtocol {
                 ]
                 promise(.success(channelRequests as! T))
             }
+        case .getChannelDataList:
+            return Future { promise in
+                let data: [[ChannelStatistics]] = [
+                    [
+                        .init(
+                            channelId: "UCqhhWjpw23dWhJ5rRwCCrMA",
+                            title: "Aisha Channel",
+                            description: "Guppa! Virtual Idol Aisha is here! \nMeet Aisha's enjoyable video contents here! ♡ (~￣▽￣)~\n---------\nสวัสดีค่ะ ไอช่า Virtual Idol มาแล้วค่า!\nพบกับเรื่องราวสนุกสนานเฮฮาแบบฉบับของไอช่า\nได้ที่นี่เลยน้า เย้! ♡ (~￣▽￣)~",
+                            thumbnailIconUrl: "https://yt3.ggpht.com/ytc/AAUvwniQOl0Xy77wbhbcYRHdDzBflm5ZvHUTNgZiFO_EQg=s240-c-k-c0x00ffffff-no-rj",
+                            subscribers: 279000,
+                            views: 20000000,
+                            comments: nil,
+                            videos: 261,
+                            uploads: "UUqhhWjpw23dWhJ5rRwCCrMA",
+                            publishedAt: "2019-07-12T10:32:09Z",
+                            lastPublishedVideoAt: "2021-03-06T07:37:14Z",
+                            updatedAt: 1615287606826,
+                            isRebranded: false
+                        )
+                    ]
+                ]
+                promise(.success(data as! T))
+            }
         }
     }
 }

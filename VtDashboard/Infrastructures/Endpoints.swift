@@ -15,11 +15,14 @@ struct Endpoint {
 }
 
 enum GetEndpoint {
+    case getChannelDataList
     case getChannelList
     case getChannelRequestList
     
     var url: URL {
         switch self {
+        case .getChannelDataList:
+            return URL(string: "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/list.json")!
         case .getChannelList:
             return Endpoint.baseURL.appendingPathComponent("getChannelList")
         case .getChannelRequestList:
