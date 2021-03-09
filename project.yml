@@ -16,14 +16,17 @@ targets:
     platform: macOS
     sources: 
       - path: VtDashboard
+        excludes: &testTarget
+          - "**/*Tests.swift"
     dependencies:
       - package: Kingfisher
       - package: Alamofire
   VtDashboardTests:
     type: bundle.unit-test
     platform: macOS
-    sources: 
-      - path: VtDashboardTests
+    sources:
+      - path: VtDashboard
+        includes: *testTarget
     dependencies:
       - target: VtDashboard
 schemes:
@@ -35,8 +38,11 @@ schemes:
     run:
       config: Debug
     test:
-      config: Debug
+      targets:
+        - name: VtDashboardTests
       gatherCoverageData: true
+      coverageTargets:
+        - VtDashboard
     profile:
       config: Release
     analyze:
