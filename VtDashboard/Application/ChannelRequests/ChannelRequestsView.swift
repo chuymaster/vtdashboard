@@ -54,15 +54,12 @@ struct ChannelRequestsView: View {
                 ForEach(viewModel.channelRequests) { channelRequest in
                     let index = viewModel.channelRequests
                         .firstIndex { $0.id == channelRequest.id }!
-                    HStack {
-                        ChannelRequestRow(
-                            channelRequest: $viewModel.channelRequests[index],
-                            changeAction: {
-                                viewModel.updateChannelRequest(request: viewModel.channelRequests[index])
-                            }
-                        )
-                        Spacer()
-                    }
+                    ChannelRequestRow(
+                        channelRequest: $viewModel.channelRequests[index],
+                        changeAction: {
+                            viewModel.updateChannelRequest(request: viewModel.channelRequests[index])
+                        }
+                    )
                 }
             }
             .listStyle(PlainListStyle())

@@ -53,6 +53,14 @@ struct ChannelsView: View {
             .eraseToAnyView()
         } else {
             return VStack(alignment: .leading) {
+                HStack {
+                    Spacer()
+                    Text("Total channels: \(viewModel.channels.count)")
+                        .font(.callout)
+                        .padding()
+                }
+                Divider()
+                
                 List {
                     ForEach(viewModel.channels) { channel in
                         let index = viewModel.channels.firstIndex { $0.id == channel.id }!

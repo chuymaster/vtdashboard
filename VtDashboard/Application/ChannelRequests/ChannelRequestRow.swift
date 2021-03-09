@@ -8,22 +8,24 @@ struct ChannelRequestRow: View {
     
     var body: some View {
         HStack(spacing: 16) {
-            KFImage(URL(string: channelRequest.thumbnailImageUrl))
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 100, height: 100)
-                .clipShape(Circle())
+            Link(destination: channelRequest.url) {
+                KFImage(URL(string: channelRequest.thumbnailImageUrl))
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 100, height: 100)
+                    .clipShape(Circle())
+            }
             
             VStack(alignment: .leading) {
                 HStack {
-                    Link(destination: channelRequest.url) {
-                        Text(channelRequest.title)
-                            .font(.title)
-                            .foregroundColor(.white)
-                            .bold()
-                    }
+                    Text(channelRequest.title)
+                        .font(.title)
+                        .foregroundColor(.white)
+                        .bold()
+                        .lineLimit(1)
                     Spacer()
                     ChannelTypePicker(channelType: $channelRequest.type)
+                        .fixedSize(horizontal: true, vertical: true)
                 }
                 HStack {
                     TagText(
@@ -63,7 +65,6 @@ struct ChannelRequestRow: View {
                         .disabled(channelRequest.status != .rejected)
                 }
             }
-            Spacer()
         }
         .help("Updated at \(channelRequest.updatedAt.displayText)")
         .padding()
@@ -76,7 +77,7 @@ struct ChannelRequestRow_Previews: PreviewProvider {
             channelRequest: .constant(
                 .init(
                     channelId: "1",
-                    title: "YuChan Channel",
+                    title: "YuChan Channel YuChan Channel",
                     thumbnailImageUrl: "https://yt3.ggpht.com/ytc/AAUvwngABpVP2Dh5kziMwBubM3LoBbn9G813luZ-1HqS=s240-c-k-c0x00ffffff-no-rj",
                     type: .original,
                     status: .unconfirmed,
@@ -84,6 +85,7 @@ struct ChannelRequestRow_Previews: PreviewProvider {
                 )
             ), changeAction: {}
         )
+        .previewLayout(.fixed(width: 200, height: 200))
     }
 }
 

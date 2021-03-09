@@ -6,7 +6,7 @@ struct VtDashboardApp: App {
         WindowGroup {
             MainView()
                 .environmentObject(UIState.shared)
-                .frame(minWidth: 640, maxWidth: .infinity, minHeight: 400, maxHeight: .infinity)
+                .frame(minWidth: 800, idealWidth: 1280, maxWidth: .infinity, minHeight: 400, idealHeight: 720, maxHeight: .infinity)
         }
     }
 }

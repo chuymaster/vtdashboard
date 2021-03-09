@@ -9,19 +9,20 @@ struct ChannelRow: View {
     
     var body: some View {
         HStack(spacing: 16) {
-            KFImage(URL(string: channel.thumbnailImageUrl))
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 100, height: 100)
-                .clipShape(Circle())
+            Link(destination: channel.url) {
+                KFImage(URL(string: channel.thumbnailImageUrl))
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 100, height: 100)
+                    .clipShape(Circle())
+            }
             
             VStack(alignment: .leading) {
-                Link(destination: channel.url) {
-                    Text(channel.title)
-                        .foregroundColor(.white)
-                        .font(.title)
-                        .bold()
-                }
+                Text(channel.title)
+                    .foregroundColor(.white)
+                    .font(.title)
+                    .bold()
+                    .lineLimit(1)
                 HStack {
                     ChannelTypePicker(channelType: $channel.type)
                     Spacer()
