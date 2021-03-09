@@ -43,6 +43,7 @@ struct ChannelRow: View {
             
             Spacer()
         }
+        .help("Updated at \(channel.updatedAt.displayText)")
         .padding()
     }
 }

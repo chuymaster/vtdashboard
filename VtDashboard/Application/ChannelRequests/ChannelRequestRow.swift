@@ -65,6 +65,7 @@ struct ChannelRequestRow: View {
             }
             Spacer()
         }
+        .help("Updated at \(channelRequest.updatedAt.displayText)")
         .padding()
     }
 }

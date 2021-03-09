@@ -45,7 +45,9 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
         if channels.isEmpty {
             viewStatus = .loading
         }
-        networkClient.get(endpoint: .getChannelList)
+        let getChannelList: Future<[Channel], Error> = networkClient.get(endpoint: .getChannelList)
+        
+        getChannelList
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 switch completion {
@@ -56,6 +58,10 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
                 }
             } receiveValue: { [weak self] channels in
                 self?.channels = channels
+                self?.channels = channels
+                    .sorted(by: { ch1, ch2 -> Bool in
+                        ch1.updatedAt > ch2.updatedAt
+                    })
             }
             .store(in: &cancellables)
     }
