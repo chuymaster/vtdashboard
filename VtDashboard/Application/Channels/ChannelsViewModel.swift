@@ -58,7 +58,6 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
                 }
             } receiveValue: { [weak self] channels in
                 self?.channels = channels
-                self?.channels = channels
                     .sorted(by: { ch1, ch2 -> Bool in
                         ch1.updatedAt > ch2.updatedAt
                     })
