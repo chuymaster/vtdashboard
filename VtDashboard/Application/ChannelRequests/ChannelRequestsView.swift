@@ -50,17 +50,15 @@ struct ChannelRequestsView: View {
             }
             .eraseToAnyView()
         } else {
-            return List {
-                ForEach(viewModel.channelRequests) { channelRequest in
-                    let index = viewModel.channelRequests
-                        .firstIndex { $0.id == channelRequest.id }!
-                    ChannelRequestRow(
-                        channelRequest: $viewModel.channelRequests[index],
-                        changeAction: {
-                            viewModel.updateChannelRequest(request: viewModel.channelRequests[index])
-                        }
-                    )
-                }
+            return List(viewModel.channelRequests) { channelRequest in
+                let index = viewModel.channelRequests
+                    .firstIndex { $0.id == channelRequest.id }!
+                ChannelRequestRow(
+                    channelRequest: $viewModel.channelRequests[index],
+                    changeAction: {
+                        viewModel.updateChannelRequest(request: viewModel.channelRequests[index])
+                    }
+                )
             }
             .listStyle(PlainListStyle())
             .eraseToAnyView()

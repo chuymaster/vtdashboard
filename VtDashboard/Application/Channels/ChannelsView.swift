@@ -63,23 +63,21 @@ struct ChannelsView: View {
                     Spacer()
                 }
             } else {
-                List {
-                    ForEach(viewModel.filteredChannels) { channel in
-                        let index = viewModel.channels.firstIndex { $0.id == channel.id }!
-                        ChannelRow(channel: $viewModel.channels[index]) {
-                            viewModel.updateChannel(channel: viewModel.filteredChannels[index])
-                        } deleteAction: {
-                            uiState.currentAlert = Alert(
-                                title: Text("WARNING!"),
-                                message: Text("Are you sure to delete \(channel.title)?"),
-                                primaryButton: .destructive(
-                                    Text("Delete"),
-                                    action: {
-                                        viewModel.deleteChannel(channelId: channel.id)
-                                    }),
-                                secondaryButton: .cancel())
-                            
-                        }
+                List(viewModel.filteredChannels) { channel in
+                    let index = viewModel.channels.firstIndex { $0.id == channel.id }!
+                    ChannelRow(channel: $viewModel.channels[index]) {
+                        viewModel.updateChannel(channel: viewModel.filteredChannels[index])
+                    } deleteAction: {
+                        uiState.currentAlert = Alert(
+                            title: Text("WARNING!"),
+                            message: Text("Are you sure to delete \(channel.title)?"),
+                            primaryButton: .destructive(
+                                Text("Delete"),
+                                action: {
+                                    viewModel.deleteChannel(channelId: channel.id)
+                                }),
+                            secondaryButton: .cancel())
+                        
                     }
                 }
                 .listStyle(PlainListStyle())
