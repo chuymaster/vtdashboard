@@ -1,10 +1,13 @@
 enum UserDefaultsKey: String {
     case serverEnvironment
+    case channelsSortType
     
     var values: [String] {
         switch self {
         case .serverEnvironment:
             return ServerEnvironmentValue.allCases.map { $0.rawValue }
+        default:
+            return []
         }
     }
 }

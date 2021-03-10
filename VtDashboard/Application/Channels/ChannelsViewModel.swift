@@ -4,7 +4,7 @@ import OSLog
 
 final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
     
-    enum SortType {
+    enum SortType: Int {
         case updatedAt
         case subscribers
         case views
@@ -18,7 +18,12 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
     @Published var viewStatus: ViewStatus = .loading
     @Published var channels: [Channel] = []
     @Published var filterText = ""
-    @Published var sortType = SortType.updatedAt
+    @AppStorage(UserDefaultsKey.channelsSortType.rawValue) var sortType = SortType.updatedAt {
+        didSet {
+            // Need to update value as @Published
+            objectWillChange.send()
+        }
+    }
     
     @Published private(set) var isPosting: Bool = false
     @Published private(set) var postError: Error?
