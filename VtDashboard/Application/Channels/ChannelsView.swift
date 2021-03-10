@@ -85,6 +85,23 @@ struct ChannelsView: View {
                 .listStyle(PlainListStyle())
             }
         }
+        .contextMenu {
+            Button {
+                viewModel.sortType = .updatedAt
+            } label: {
+                ImageLabel(iconImageName: "clock", label: "Sort by Updated")
+            }
+            Button {
+                viewModel.sortType = .subscribers
+            } label: {
+                ImageLabel(iconImageName: "person.3", label: "Sort by Subscribers")
+            }
+            Button {
+                viewModel.sortType = .views
+            } label: {
+                ImageLabel(iconImageName: "eyes", label: "Sort by Views")
+            }
+        }
     }
 }
 

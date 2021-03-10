@@ -4,14 +4,21 @@ import OSLog
 
 final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
     
+    enum SortType {
+        case updatedAt
+        case subscribers
+        case views
+    }
+        
     private enum Operation {
         case updateChannel(channel: Channel)
         case deleteChannel(channelId: String)
     }
-    
+
     @Published var viewStatus: ViewStatus = .loading
     @Published var channels: [Channel] = []
-    @Published var filterText: String = ""
+    @Published var filterText = ""
+    @Published var sortType = SortType.updatedAt
     
     @Published private(set) var isPosting: Bool = false
     @Published private(set) var postError: Error?
@@ -26,11 +33,23 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
     private var channelStatistics: [ChannelStatistics] = []
     
     var filteredChannels: [Channel] {
+        let channels: [Channel]
         if filterText.isEmpty {
-            return channels
+            channels = self.channels
         } else {
-            return channels.filter { $0.title.lowercased().contains(filterText.lowercased()) }
+            channels = self.channels.filter { $0.title.lowercased().contains(filterText.lowercased()) }
         }
+        return channels
+            .sorted { lhs, rhs -> Bool in
+                switch sortType {
+                case .updatedAt:
+                    return lhs.updatedAt > rhs.updatedAt
+                case .subscribers:
+                    return lhs.statistics?.subscribers ?? 0 > rhs.statistics?.subscribers ?? 0
+                case .views:
+                    return lhs.statistics?.views ?? 0 > rhs.statistics?.views ?? 0
+                }
+            }
     }
     
     init(networkClient: NetworkClientProtocol = NetworkClient()) {
