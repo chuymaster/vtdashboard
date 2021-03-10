@@ -11,6 +11,7 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
     
     @Published var viewStatus: ViewStatus = .loading
     @Published var channels: [Channel] = []
+    @Published var filterText: String = ""
     
     @Published private(set) var isPosting: Bool = false
     @Published private(set) var postError: Error?
@@ -23,6 +24,14 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
     private var postCompletedSubject = PassthroughSubject<Void, Never>()
     private var cancellables = Set<AnyCancellable>()
     private var channelStatistics: [ChannelStatistics] = []
+    
+    var filteredChannels: [Channel] {
+        if filterText.isEmpty {
+            return channels
+        } else {
+            return channels.filter { $0.title.lowercased().contains(filterText.lowercased()) }
+        }
+    }
     
     init(networkClient: NetworkClientProtocol = NetworkClient()) {
         self.networkClient = networkClient

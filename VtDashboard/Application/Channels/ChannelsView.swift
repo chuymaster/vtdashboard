@@ -3,6 +3,7 @@ import SwiftUI
 struct ChannelsView: View {
     @EnvironmentObject private var uiState: UIState
     @StateObject var viewModel = ChannelsViewModel()
+    @State var filterText: String = ""
     
     var body: some View {
         VStack {
@@ -38,34 +39,35 @@ struct ChannelsView: View {
         .onAppear {
             viewModel.getChannels()
         }
-        
     }
     
     private var channelListView: some View {
-        if viewModel.channels.isEmpty {
-            return ZStack {
-                HStack {
-                    Spacer()
-                    Text("No Channel")
-                    Spacer()
-                }
+        VStack(alignment: .leading) {
+            HStack {
+                FilterBar(text: $viewModel.filterText)
+                Spacer()
+                Text("Total channels: \(viewModel.channels.count)")
+                    .font(.callout)
+                    .padding()
             }
-            .eraseToAnyView()
-        } else {
-            return VStack(alignment: .leading) {
-                HStack {
+            Divider()
+            
+            if viewModel.filteredChannels.isEmpty {
+                VStack {
                     Spacer()
-                    Text("Total channels: \(viewModel.channels.count)")
-                        .font(.callout)
-                        .padding()
+                    HStack {
+                        Spacer()
+                        Text("No Channel")
+                        Spacer()
+                    }
+                    Spacer()
                 }
-                Divider()
-                
+            } else {
                 List {
-                    ForEach(viewModel.channels) { channel in
+                    ForEach(viewModel.filteredChannels) { channel in
                         let index = viewModel.channels.firstIndex { $0.id == channel.id }!
                         ChannelRow(channel: $viewModel.channels[index]) {
-                            viewModel.updateChannel(channel: viewModel.channels[index])
+                            viewModel.updateChannel(channel: viewModel.filteredChannels[index])
                         } deleteAction: {
                             uiState.currentAlert = Alert(
                                 title: Text("WARNING!"),
@@ -82,7 +84,6 @@ struct ChannelsView: View {
                 }
                 .listStyle(PlainListStyle())
             }
-            .eraseToAnyView()
         }
     }
 }
