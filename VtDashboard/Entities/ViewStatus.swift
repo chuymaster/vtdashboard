@@ -9,7 +9,7 @@ enum ViewStatus: Equatable {
             return true
         case (.loaded, .loaded):
             return true
-        case (.error(error: let lhsError), .error(error: let rhsError)):
+        case (.error(error: _), .error(error: _)):
             return true
         default:
             return false
