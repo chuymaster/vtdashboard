@@ -9,7 +9,7 @@ struct ChannelsView: View {
         VStack {
             switch viewModel.viewStatus {
             case .loading:
-                LoadingView().eraseToAnyView()
+                LoadingView()
             case .loaded:
                 ZStack {
                     reloadKeyboardShortcut
@@ -18,13 +18,11 @@ struct ChannelsView: View {
                         LoadingOverlayView()
                     }
                 }
-                .eraseToAnyView()
             case .error:
                 ZStack {
                     reloadKeyboardShortcut
                     Text("Error")
                 }
-                .eraseToAnyView()
             }
         }
         .onReceive(viewModel.$postError, perform: { error in

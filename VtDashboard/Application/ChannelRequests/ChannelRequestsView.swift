@@ -8,7 +8,7 @@ struct ChannelRequestsView: View {
         VStack {
             switch viewModel.viewStatus {
             case .loading:
-                LoadingView().eraseToAnyView()
+                LoadingView()
             case .loaded:
                 ZStack {
                     reloadKeyboardShortcut
@@ -22,7 +22,6 @@ struct ChannelRequestsView: View {
                     reloadKeyboardShortcut
                     Text("Error")
                 }
-                .eraseToAnyView()
             }
         }
         .onReceive(viewModel.$postError, perform: { error in
@@ -41,18 +40,18 @@ struct ChannelRequestsView: View {
         }
     }
     
+    @ViewBuilder
     private var channelRequestListView: some View {
         if viewModel.channelRequests.isEmpty {
-            return ZStack {
+            ZStack {
                 HStack {
                     Spacer()
                     Text("No Request")
                     Spacer()
                 }
             }
-            .eraseToAnyView()
         } else {
-            return List(viewModel.channelRequests) { channelRequest in
+            List(viewModel.channelRequests) { channelRequest in
                 let index = viewModel.channelRequests
                     .firstIndex { $0.id == channelRequest.id }!
                 ChannelRequestRow(
@@ -63,7 +62,6 @@ struct ChannelRequestsView: View {
                 )
             }
             .listStyle(PlainListStyle())
-            .eraseToAnyView()
         }
         
     }

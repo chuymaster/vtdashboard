@@ -14,23 +14,19 @@ struct MainView: View {
         .alert(item: $uiState.currentAlert) { $0 }
     }
     
+    @ViewBuilder
     private var contentView: some View {
         switch currentViewType {
         case .channels:
-            return ChannelsView()
-            .eraseToAnyView()
+            ChannelsView()
         case .channelRequests:
-            return ChannelRequestsView()
-            .eraseToAnyView()
+            ChannelRequestsView()
         case .addChannel:
-            return AddChannelRequestView()
-            .eraseToAnyView()
+            AddChannelRequestView()
         case .settings:
-            return SettingsView()
-            .eraseToAnyView()
+            SettingsView()
         case .none:
-            return EmptyView()
-            .eraseToAnyView()
+            EmptyView()
         }
     }
 }
