@@ -88,7 +88,9 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
                 self?.isReloading = false
                 switch completion {
                 case .finished:
-                    self?.viewStatus = .loaded
+                    withAnimation(.easeInOut(duration: 1.5)) {
+                        self?.viewStatus = .loaded
+                    }
                 case .failure(let error):
                     self?.viewStatus = .error(error: error)
                 }
