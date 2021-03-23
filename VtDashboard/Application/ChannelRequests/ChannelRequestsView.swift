@@ -64,6 +64,7 @@ struct ChannelRequestsView: View {
     }
     
     private var reloadKeyboardShortcut: some View {
+        // TODO:- Create a real button and toolstip for shortcut
         Button(action: {
             viewModel.getChannelRequests()
         }, label: {

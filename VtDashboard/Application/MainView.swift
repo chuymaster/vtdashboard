@@ -16,6 +16,7 @@ struct MainView: View {
     
     @ViewBuilder
     private var contentView: some View {
+        // TODO:- Store created view in ViewModel to prevent reinitialization
         switch currentViewType {
         case .channels:
             ChannelsView()
