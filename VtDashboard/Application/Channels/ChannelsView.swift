@@ -36,9 +36,6 @@ struct ChannelsView: View {
                     ), secondaryButton: .cancel(Text("Cancel")))
             }
         })
-        .onAppear {
-            viewModel.getChannels()
-        }
     }
     
     private var channelListView: some View {

@@ -35,6 +35,8 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
                 self?.postError = error
             })
             .store(in: &cancellables)
+        
+        getChannelRequests()
     }
     
     func getChannelRequests() {

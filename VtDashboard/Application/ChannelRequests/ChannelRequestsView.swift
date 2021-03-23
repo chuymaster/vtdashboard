@@ -35,9 +35,6 @@ struct ChannelRequestsView: View {
                     ), secondaryButton: .cancel(Text("Cancel")))
             }
         })
-        .onAppear {
-            viewModel.getChannelRequests()
-        }
     }
     
     @ViewBuilder
