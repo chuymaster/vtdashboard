@@ -10,11 +10,8 @@ struct ChannelRow: View {
     var body: some View {
         HStack(spacing: 16) {
             Link(destination: channel.url) {
-                KFImage(URL(string: channel.thumbnailImageUrl))
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
+                AvatarIconImage(thumbnailImageUrl: channel.thumbnailImageUrl)
                     .frame(width: 100, height: 100)
-                    .clipShape(Circle())
             }
             
             VStack(alignment: .leading) {
@@ -76,6 +73,16 @@ struct ChannelRow_Previews: PreviewProvider {
             type: .original,
             updatedAt: 0
         )
-        return ChannelRow(channel: .constant(channel), updateAction: {}, deleteAction: {})
+        let placeholderChannel = Channel(
+            channelId: "1",
+            title: "YuChan Channel",
+            thumbnailImageUrl: "https://",
+            type: .original,
+            updatedAt: 0
+        )
+        Group {
+            ChannelRow(channel: .constant(channel), updateAction: {}, deleteAction: {})
+            ChannelRow(channel: .constant(placeholderChannel), updateAction: {}, deleteAction: {})
+        }
     }
 }

@@ -9,11 +9,8 @@ struct ChannelRequestRow: View {
     var body: some View {
         HStack(spacing: 16) {
             Link(destination: channelRequest.url) {
-                KFImage(URL(string: channelRequest.thumbnailImageUrl))
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
+                AvatarIconImage(thumbnailImageUrl: channelRequest.thumbnailImageUrl)
                     .frame(width: 100, height: 100)
-                    .clipShape(Circle())
             }
             
             VStack(alignment: .leading) {
