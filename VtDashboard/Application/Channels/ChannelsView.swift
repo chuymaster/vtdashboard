@@ -12,14 +12,16 @@ struct ChannelsView: View {
                 LoadingView().eraseToAnyView()
             case .loaded:
                 ZStack {
+                    reloadKeyboardShortcut
                     channelListView
-                    if viewModel.isPosting {
+                    if viewModel.isPosting || viewModel.isReloading {
                         LoadingOverlayView()
                     }
                 }
                 .eraseToAnyView()
             case .error:
                 ZStack {
+                    reloadKeyboardShortcut
                     Text("Error")
                 }
                 .eraseToAnyView()
@@ -100,6 +102,16 @@ struct ChannelsView: View {
                 ImageLabel(iconImageName: "eyes", label: "Sort by Views")
             }
         }
+    }
+    
+    private var reloadKeyboardShortcut: some View {
+        Button(action: {
+            viewModel.getChannels()
+        }, label: {
+            EmptyView()
+        })
+        .keyboardShortcut("r")
+        .opacity(0) // workaround to enable .keyboardShortcut while hiding button
     }
 }
 

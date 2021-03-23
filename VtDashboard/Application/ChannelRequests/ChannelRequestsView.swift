@@ -11,13 +11,15 @@ struct ChannelRequestsView: View {
                 LoadingView().eraseToAnyView()
             case .loaded:
                 ZStack {
+                    reloadKeyboardShortcut
                     channelRequestListView
-                    if viewModel.isPosting {
+                    if viewModel.isPosting || viewModel.isReloading {
                         LoadingOverlayView()
                     }
                 }
             case .error:
                 ZStack {
+                    reloadKeyboardShortcut
                     Text("Error")
                 }
                 .eraseToAnyView()
@@ -64,6 +66,16 @@ struct ChannelRequestsView: View {
             .eraseToAnyView()
         }
         
+    }
+    
+    private var reloadKeyboardShortcut: some View {
+        Button(action: {
+            viewModel.getChannelRequests()
+        }, label: {
+            EmptyView()
+        })
+        .keyboardShortcut("r")
+        .opacity(0) // workaround to enable .keyboardShortcut while hiding button
     }
 }
 

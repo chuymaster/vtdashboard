@@ -8,6 +8,7 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
     @Published var channelRequests: [ChannelRequest] = []
     
     @Published private(set) var isPosting: Bool = false
+    @Published private(set) var isReloading: Bool = false
     @Published private(set) var postError: Error?
     @Published private(set) var postedChannel: Channel?
     
@@ -37,8 +38,9 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
     }
     
     func getChannelRequests() {
-        if channelRequests.isEmpty {
-            viewStatus = .loading
+        cancellables.forEach { $0.cancel() }
+        if viewStatus != .loading {
+            isReloading = true
         }
         let getChannelRequestList: Future<[ChannelRequest], Error> =
             networkClient.get(endpoint: .getChannelRequestList)
@@ -46,6 +48,7 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
             getChannelRequestList
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
+                self?.isReloading = false
                 switch completion {
                 case .finished:
                     self?.viewStatus = .loaded
@@ -62,6 +65,7 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
     }
     
     func updateChannelRequest(request: ChannelRequest) {
+        cancellables.forEach { $0.cancel() }
         isPosting = true
         lastUpdateChannelRequest = request
         

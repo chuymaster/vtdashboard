@@ -25,6 +25,7 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
         }
     }
     
+    @Published private(set) var isReloading: Bool = false
     @Published private(set) var isPosting: Bool = false
     @Published private(set) var postError: Error?
     @Published private(set) var postedChannel: Channel?
@@ -76,14 +77,15 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
     }
     
     func getChannels() {
-        if channels.isEmpty {
-            viewStatus = .loading
+        if viewStatus != .loading {
+            isReloading = true
         }
         let getChannelList: Future<[Channel], Error> = networkClient.get(endpoint: .getChannelList)
         
         getChannelList
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
+                self?.isReloading = false
                 switch completion {
                 case .finished:
                     self?.viewStatus = .loaded
