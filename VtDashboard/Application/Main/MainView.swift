@@ -17,10 +17,10 @@ struct MainView: View {
     @ViewBuilder
     private var contentView: some View {
         switch currentViewType {
-        case .channels:
-            ChannelsView(viewModel: viewModel.channelsViewModel)
         case .channelRequests:
             ChannelRequestsView(viewModel: viewModel.channelRequestsViewModel)
+        case .channels:
+            ChannelsView(viewModel: viewModel.channelsViewModel)
         case .addChannel:
             AddChannelRequestView()
         case .settings:

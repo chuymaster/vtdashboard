@@ -24,6 +24,9 @@ struct ChannelRequestsView: View {
                 }
             }
         }
+        .onAppear {
+            viewModel.getChannelRequests()
+        }
         .onReceive(viewModel.$postError, perform: { error in
             if let _ = error {
                 uiState.currentAlert = Alert(
