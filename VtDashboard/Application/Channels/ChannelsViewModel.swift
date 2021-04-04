@@ -165,7 +165,7 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
                 case .finished:
                     self?.postCompletedSubject.send()
                 case .failure(let error):
-                    // FIxME:- Temporary fix until server returns json-encoding response
+                    // FIXME:- Temporary fix until server returns json-encoding response
                     if error is DecodingError {
                         self?.postCompletedSubject.send()
                     } else {

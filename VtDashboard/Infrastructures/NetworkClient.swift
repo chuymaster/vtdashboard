@@ -48,7 +48,6 @@ struct NetworkClient: NetworkClientProtocol {
                 endpoint.url,
                 method: .post,
                 parameters: parameters,
-                //            encoder: URLEncodedFormEncoder,
                 headers: [
                     "Content-Type": "application/x-www-form-urlencoded"
                 ])

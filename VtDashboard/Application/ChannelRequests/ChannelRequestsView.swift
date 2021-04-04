@@ -13,7 +13,7 @@ struct ChannelRequestsView: View {
                 ZStack {
                     reloadKeyboardShortcut
                     channelRequestListView
-                    if viewModel.isPosting || viewModel.isReloading {
+                    if viewModel.isBusy {
                         LoadingOverlayView()
                     }
                 }

@@ -7,10 +7,11 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
     @Published var viewStatus: ViewStatus = .loading
     @Published var channelRequests: [ChannelRequest] = []
 
-    @Published private(set) var isPosting: Bool = false
-    @Published private(set) var isReloading: Bool = false
+    @Published private(set) var isBusy = false
     @Published private(set) var postError: Error?
     @Published private(set) var postedChannel: Channel?
+    @Published private var isPosting = false
+    @Published private var isReloading = false
 
     private let networkClient: NetworkClientProtocol
 
@@ -35,6 +36,11 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
                 self?.postError = error
             })
             .store(in: &cancellables)
+        
+        $isPosting
+            .combineLatest($isReloading)
+            .map { $0 || $1 }
+            .assign(to: &$isBusy)
     }
 
     func getChannelRequests() {
@@ -116,7 +122,7 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
 
     func retryUpdateChannelRequest() {
         guard let request = lastUpdateChannelRequest else {
-            print(Logger().error("No request to retry"))
+            Logger().error("No request to retry")
             return
         }
         updateChannelRequest(request: request)
