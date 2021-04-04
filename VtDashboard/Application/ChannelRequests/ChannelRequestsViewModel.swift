@@ -40,7 +40,6 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
     }
     
     func getChannelRequests() {
-        cancellables.forEach { $0.cancel() }
         if viewStatus != .loading {
             isReloading = true
         }
@@ -69,7 +68,6 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
     }
     
     func updateChannelRequest(request: ChannelRequest) {
-        cancellables.forEach { $0.cancel() }
         isPosting = true
         lastUpdateChannelRequest = request
         
