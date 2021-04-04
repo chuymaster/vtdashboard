@@ -1,37 +1,38 @@
+#### macos-11.0 environment is not available yet so we can't automate yet... https://github.com/actions/virtual-environments ####
+
 # This workflows refer from this article https://qiita.com/koogawa/items/ddf86b56d6b82ae11473
 
-name: macOS build
+# name: macOS build
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+# on:
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+#   workflow_dispatch:
 
-jobs:
-  build:
-    runs-on: macos-11.0
+# jobs:
+#   build:
+#     runs-on: macos-11.0
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Select Xcode version
-        run: sudo xcode-select -s '/Applications/Xcode_11.4.app/Contents/Developer'
-      - name: Show Xcode version
-        run: xcodebuild -version
-      - name: Install Mint
-        run: brew install mint
-      - name: make
-        run: make
-      - name: Test
-        run: xcodebuild -scheme VtDashboard test
-      - name: Archive
-        run: xcodebuild -scheme VtDashboard archive -archivePath archive
-      - name: 'Upload Artifact'
-        uses: actions/upload-artifact@v2
-        with:
-          name: Archive
-          path: archive.xcarchive
-          retention-days: 7
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Select Xcode version
+#         run: sudo xcode-select -s '/Applications/Xcode_11.4.app/Contents/Developer'
+#       - name: Show Xcode version
+#         run: xcodebuild -version
+#       - name: Install Mint
+#         run: brew install mint
+#       - name: make
+#         run: make
+#       - name: Test
+#         run: xcodebuild -scheme VtDashboard test
+#       - name: Archive
+#         run: xcodebuild -scheme VtDashboard archive -archivePath archive
+#       - name: 'Upload Artifact'
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: Archive
+#           path: archive.xcarchive
+#           retention-days: 7
