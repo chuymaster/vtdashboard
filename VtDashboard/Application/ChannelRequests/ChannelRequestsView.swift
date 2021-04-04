@@ -3,7 +3,7 @@ import SwiftUI
 struct ChannelRequestsView: View {
     @EnvironmentObject private var uiState: UIState
     @StateObject var viewModel = ChannelRequestsViewModel()
-    
+
     var body: some View {
         VStack {
             switch viewModel.viewStatus {
@@ -36,7 +36,7 @@ struct ChannelRequestsView: View {
             }
         })
     }
-    
+
     @ViewBuilder
     private var channelRequestListView: some View {
         if viewModel.channelRequests.isEmpty {
@@ -60,9 +60,9 @@ struct ChannelRequestsView: View {
             }
             .listStyle(PlainListStyle())
         }
-        
+
     }
-    
+
     private var reloadKeyboardShortcut: some View {
         // TODO:- Create a real button and toolstip for shortcut
         Button(action: {

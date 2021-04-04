@@ -3,7 +3,7 @@ import SwiftUI
 
 struct Endpoint {
     @AppStorage(UserDefaultsKey.serverEnvironment.rawValue) private static var serverEnvironment: ServerEnvironmentValue = .development
-    
+
     static var baseURL: URL {
         switch serverEnvironment {
         case .development:
@@ -18,7 +18,7 @@ enum GetEndpoint {
     case getChannelDataList
     case getChannelList
     case getChannelRequestList
-    
+
     var url: URL {
         switch self {
         case .getChannelDataList:
@@ -35,7 +35,7 @@ enum PostEndpoint {
     case postChannelRequest
     case postChannel
     case deleteChannel
-    
+
     var url: URL {
         switch self {
         case .postChannelRequest:

@@ -1,7 +1,7 @@
 enum UserDefaultsKey: String {
     case serverEnvironment
     case channelsSortType
-    
+
     var values: [String] {
         switch self {
         case .serverEnvironment:
@@ -14,7 +14,7 @@ enum UserDefaultsKey: String {
 
 enum ServerEnvironmentValue: String, CaseIterable, Identifiable {
     var id: String { self.rawValue }
-    
+
     case development
     case production
 }

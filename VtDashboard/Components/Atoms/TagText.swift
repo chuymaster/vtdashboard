@@ -3,7 +3,7 @@ import SwiftUI
 struct TagText: View {
     let title: String
     var backgroundColor = Color.blue
-    
+
     var body: some View {
         Text(title)
             .font(.title3)

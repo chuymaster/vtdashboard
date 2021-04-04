@@ -5,7 +5,7 @@ enum ChannelRequestStatus: Int, Codable {
     case accepted = 2
     case pending = 3
     case rejected = 4
-    
+
     var displayText: String {
         switch self {
         case .unconfirmed:

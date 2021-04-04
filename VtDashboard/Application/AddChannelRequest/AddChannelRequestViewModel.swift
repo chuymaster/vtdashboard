@@ -5,15 +5,15 @@ final class AddChannelRequestViewModel: ViewStatusManageable, ObservableObject {
     @Published var viewStatus: ViewStatus = .loaded
     @Published var channelRequest: ChannelRequest?
     @Published var isPostCompleted: String?
-    
+
     private let networkClient: NetworkClientProtocol
-    
+
     private var cancellables = Set<AnyCancellable>()
-    
+
     init(networkClient: NetworkClientProtocol = NetworkClient()) {
         self.networkClient = networkClient
     }
-    
+
     func postChannelRequest(id: String, type: ChannelType) {
         viewStatus = .loading
         cancellables.forEach { $0.cancel() }
@@ -33,6 +33,6 @@ final class AddChannelRequestViewModel: ViewStatusManageable, ObservableObject {
             self?.channelRequest = response
         }
         .store(in: &cancellables)
-        
+
     }
 }

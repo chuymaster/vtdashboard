@@ -4,7 +4,7 @@ struct ChannelsView: View {
     @EnvironmentObject private var uiState: UIState
     @StateObject var viewModel = ChannelsViewModel()
     @State var filterText: String = ""
-    
+
     var body: some View {
         VStack {
             switch viewModel.viewStatus {
@@ -37,7 +37,7 @@ struct ChannelsView: View {
             }
         })
     }
-    
+
     private var channelListView: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -48,7 +48,7 @@ struct ChannelsView: View {
                     .padding()
             }
             Divider()
-            
+
             if viewModel.filteredChannels.isEmpty {
                 VStack {
                     Spacer()
@@ -74,7 +74,7 @@ struct ChannelsView: View {
                                     viewModel.deleteChannel(channelId: channel.id)
                                 }),
                             secondaryButton: .cancel())
-                        
+
                     }
                 }
                 .listStyle(PlainListStyle())
@@ -98,7 +98,7 @@ struct ChannelsView: View {
             }
         }
     }
-    
+
     private var reloadKeyboardShortcut: some View {
         Button(action: {
             viewModel.getChannels()

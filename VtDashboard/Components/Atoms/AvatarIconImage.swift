@@ -3,7 +3,7 @@ import SwiftUI
 
 struct AvatarIconImage: View {
     let thumbnailImageUrl: String
-    
+
     var body: some View {
         KFImage(URL(string: thumbnailImageUrl))
             .placeholder {

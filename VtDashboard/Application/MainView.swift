@@ -2,9 +2,9 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject var uiState: UIState
-    
+
     @State var currentViewType: ViewType? = .channelRequests
-    
+
     var body: some View {
         HStack {
             SidebarView(viewType: $currentViewType)
@@ -13,7 +13,7 @@ struct MainView: View {
         }
         .alert(item: $uiState.currentAlert) { $0 }
     }
-    
+
     @ViewBuilder
     private var contentView: some View {
         // TODO:- Store created view in ViewModel to prevent reinitialization

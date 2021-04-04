@@ -8,7 +8,7 @@ struct Channel: Identifiable, Codable {
     var type: ChannelType
     let updatedAt: TimeInterval
     var statistics: ChannelStatistics?
-    
+
     var url: URL {
         URL(string: "https://youtube.com/channel/\(channelId)")!
     }

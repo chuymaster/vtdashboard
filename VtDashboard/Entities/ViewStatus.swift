@@ -2,7 +2,7 @@ enum ViewStatus: Equatable {
     case loading
     case loaded
     case error(error: Error)
-    
+
     static func == (lhs: Self, rhs: Self) -> Bool {
         switch(lhs, rhs) {
         case (.loading, .loading):
@@ -14,6 +14,6 @@ enum ViewStatus: Equatable {
         default:
             return false
         }
-        
+
     }
 }

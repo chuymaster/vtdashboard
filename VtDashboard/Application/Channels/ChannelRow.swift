@@ -2,18 +2,18 @@ import Kingfisher
 import SwiftUI
 
 struct ChannelRow: View {
-    
+
     @Binding var channel: Channel
     let updateAction: () -> Void
     let deleteAction: () -> Void
-    
+
     var body: some View {
         HStack(spacing: 16) {
             Link(destination: channel.url) {
                 AvatarIconImage(thumbnailImageUrl: channel.thumbnailImageUrl)
                     .frame(width: 100, height: 100)
             }
-            
+
             VStack(alignment: .leading) {
                 HStack {
                     Text(channel.title)

@@ -18,11 +18,11 @@ struct ChannelStatistics: Identifiable, Codable {
     let lastPublishedVideoAt: String
     let updatedAt: TimeInterval
     let isRebranded: Bool
-    
+
     var type: ChannelType {
         isRebranded ? .half : .original
     }
-    
+
     var url: URL {
         URL(string: "https://youtube.com/channel/\(channelId)")!
     }

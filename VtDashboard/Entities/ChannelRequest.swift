@@ -8,7 +8,7 @@ struct ChannelRequest: Identifiable, Codable {
     var type: ChannelType
     var status: ChannelRequestStatus
     let updatedAt: TimeInterval
-    
+
     var url: URL {
         URL(string: "https://youtube.com/channel/\(channelId)")!
     }

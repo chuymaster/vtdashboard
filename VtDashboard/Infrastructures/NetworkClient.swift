@@ -8,15 +8,15 @@ protocol NetworkClientProtocol {
 }
 
 struct NetworkClient: NetworkClientProtocol {
-    
+
     private let jsonDecoder: JSONDecoder
-    
+
     init() {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
         self.jsonDecoder = jsonDecoder
     }
-    
+
     /// Get data from the url and automatically create the desired object type
     /// The object type must conform to Codable protocol
     func get<T: Codable>(endpoint: GetEndpoint) -> Future<T, Error> {
@@ -41,7 +41,7 @@ struct NetworkClient: NetworkClientProtocol {
             request.resume()
         }
     }
-    
+
     func post<T: Codable>(endpoint: PostEndpoint, parameters: [String: String]) -> Future<T, Error> {
         return Future { promise in
             let request = AF.request(

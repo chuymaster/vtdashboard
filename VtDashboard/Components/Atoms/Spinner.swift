@@ -6,35 +6,35 @@ struct Spinner: View {
     @State var spinnerStart: CGFloat = 0.0
     @State var rotationDegreeS1 = initialDegree
     @State var rotationDegreeS2 = initialDegree
-    
+
     private static let initialDegree: Angle = .degrees(270)
-    
+
     private let animationTime: Double = 1
     private let rotationTime: Double = 0.75
     private let fullRotation: Angle = .degrees(360)
-    
+
     var body: some View {
         ZStack {
             // S2
             SpinnerCircle(start: 0.5, end: 0.6, rotation: rotationDegreeS2, color: .purple)
-            
+
             // S1
             SpinnerCircle(start: 0, end: 0.9, rotation: rotationDegreeS1, color: .blue)
         }
-        .onAppear() {
+        .onAppear {
             animateSpinner()
-            Timer.scheduledTimer(withTimeInterval: animationTime, repeats: true) { timer in
+            Timer.scheduledTimer(withTimeInterval: animationTime, repeats: true) { _ in
                 animateSpinner()
             }
         }
     }
-    
+
     private func animateSpinner() {
-        
+
         withAnimation(Animation.easeInOut(duration: rotationTime)) {
             rotationDegreeS1 += fullRotation
         }
-        
+
         withAnimation(Animation.easeInOut(duration: rotationTime * 2 + 0.525)) {
             rotationDegreeS2 += fullRotation
         }
@@ -46,7 +46,7 @@ private struct SpinnerCircle: View {
     var end: CGFloat
     var rotation: Angle
     var color: Color
-    
+
     var body: some View {
         Circle()
             .trim(from: start, to: end)

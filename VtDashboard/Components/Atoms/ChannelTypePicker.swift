@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ChannelTypePicker: View {
     @Binding var channelType: ChannelType
-    
+
     var body: some View {
         Picker(
             selection: $channelType,

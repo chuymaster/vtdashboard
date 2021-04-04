@@ -5,9 +5,9 @@ struct AddChannelRequestView: View {
     @State private var channelType = ChannelType.original
     @State private var selectedChannelId: String!
     @StateObject var viewModel = AddChannelRequestViewModel()
-    
+
     private let maxCharacterCount = 24
-    
+
     var body: some View {
         ZStack {
             VStack(spacing: 16) {
@@ -21,9 +21,9 @@ struct AddChannelRequestView: View {
                     }
                 }
                 .padding()
-                
+
                 ChannelTypePicker(channelType: $channelType)
-                
+
                 Button(action: {
                     viewModel.postChannelRequest(
                         id: channelId,
@@ -34,7 +34,7 @@ struct AddChannelRequestView: View {
                 }
                 .keyboardShortcut(.defaultAction)
                 .disabled(isAbleToSubmit)
-                
+
                 // Sample channel ids
                 List(sampleChannelIds, selection: $selectedChannelId) {
                     Text($0)
@@ -42,7 +42,7 @@ struct AddChannelRequestView: View {
                 .listStyle(SidebarListStyle())
                 .frame(maxHeight: 300)
                 .cornerRadius(8)
-                
+
                 Spacer()
             }
             .padding()
@@ -54,10 +54,10 @@ struct AddChannelRequestView: View {
                     )
                 )
             }
-            .onChange(of: selectedChannelId, perform: { value in
+            .onChange(of: selectedChannelId, perform: { _ in
                 channelId = selectedChannelId
             })
-            .onChange(of: channelId) { value in
+            .onChange(of: channelId) { _ in
                 if channelId.count > maxCharacterCount {
                     channelId = String(channelId.prefix(maxCharacterCount))
                 }
@@ -68,7 +68,7 @@ struct AddChannelRequestView: View {
             }
         }
     }
-    
+
     private var isAbleToSubmit: Bool {
         channelId.prefix(2) != "UC" || channelId.count != maxCharacterCount
     }

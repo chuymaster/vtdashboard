@@ -3,50 +3,50 @@ import SwiftUI
 import OSLog
 
 final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
-    
+
     @Published var viewStatus: ViewStatus = .loading
     @Published var channelRequests: [ChannelRequest] = []
-    
+
     @Published private(set) var isPosting: Bool = false
     @Published private(set) var isReloading: Bool = false
     @Published private(set) var postError: Error?
     @Published private(set) var postedChannel: Channel?
-    
+
     private let networkClient: NetworkClientProtocol
-    
+
     private var postErrorSubject = CurrentValueSubject<Error?, Never>(nil)
     private var postCompletedSubject = PassthroughSubject<Void, Never>()
     private var lastUpdateChannelRequest: ChannelRequest?
     private var cancellables = Set<AnyCancellable>()
-    
+
     init(networkClient: NetworkClientProtocol = NetworkClient()) {
         self.networkClient = networkClient
-        
+
         postCompletedSubject
             .sink(receiveValue: { [weak self] _ in
                 self?.isPosting = false
                 self?.getChannelRequests()
             })
             .store(in: &cancellables)
-        
+
         postErrorSubject
             .sink(receiveValue: { [weak self] error in
                 self?.isPosting = false
                 self?.postError = error
             })
             .store(in: &cancellables)
-        
+
         getChannelRequests()
     }
-    
+
     func getChannelRequests() {
         if viewStatus != .loading {
             isReloading = true
         }
         let getChannelRequestList: Future<[ChannelRequest], Error> =
             networkClient.get(endpoint: .getChannelRequestList)
-        
-            getChannelRequestList
+
+        getChannelRequestList
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 self?.isReloading = false
@@ -66,18 +66,18 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
             }
             .store(in: &cancellables)
     }
-    
+
     func updateChannelRequest(request: ChannelRequest) {
         isPosting = true
         lastUpdateChannelRequest = request
-        
+
         let postChannelRequest: Future<ChannelRequest, Error> =
             networkClient.post(endpoint: .postChannelRequest, parameters: [
                 "channel_id": request.channelId,
                 "type": "\(request.type.rawValue)",
                 "status": "\(request.status.rawValue)"
             ])
-        
+
         if request.status == .accepted {
             // Add new Channel and update ChannelRequest
             let postChannel: Future<Channel, Error> =
@@ -87,7 +87,7 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
                     "thumbnail_image_url": request.thumbnailImageUrl,
                     "type": "\(request.type.rawValue)"
                 ])
-            
+
             postChannelRequest
                 .combineLatest(postChannel)
                 .receive(on: DispatchQueue.main)
@@ -115,7 +115,7 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
                 .store(in: &cancellables)
         }
     }
-    
+
     func retryUpdateChannelRequest() {
         guard let request = lastUpdateChannelRequest else {
             print(Logger().error("No request to retry"))

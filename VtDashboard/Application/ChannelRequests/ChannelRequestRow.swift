@@ -2,17 +2,17 @@ import Kingfisher
 import SwiftUI
 
 struct ChannelRequestRow: View {
-    
+
     @Binding var channelRequest: ChannelRequest
     let changeAction: () -> Void
-    
+
     var body: some View {
         HStack(spacing: 16) {
             Link(destination: channelRequest.url) {
                 AvatarIconImage(thumbnailImageUrl: channelRequest.thumbnailImageUrl)
                     .frame(width: 100, height: 100)
             }
-            
+
             VStack(alignment: .leading) {
                 HStack {
                     Text(channelRequest.title)
@@ -85,4 +85,3 @@ struct ChannelRequestRow_Previews: PreviewProvider {
         .previewLayout(.fixed(width: 200, height: 200))
     }
 }
-

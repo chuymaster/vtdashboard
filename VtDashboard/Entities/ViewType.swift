@@ -1,11 +1,11 @@
 enum ViewType: String, CaseIterable, Identifiable {
     var id: String { self.rawValue }
-    
+
     case channelRequests = "Channel Requests"
     case channels = "Channels"
     case addChannel = "Add Channel Request"
     case settings = "Settings"
-    
+
     var iconImageName: String {
         switch self {
         case .channels:
