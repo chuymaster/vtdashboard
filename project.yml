@@ -6,10 +6,10 @@ options:
 packages:
   Kingfisher:
     url: https://github.com/onevcat/Kingfisher
-    from: 6.1.1
+    exactVersion: 6.1.1
   Alamofire:
     url: https://github.com/Alamofire/Alamofire
-    from: 5.4.1
+    exactVersion: 5.4.1
 targets:
   VtDashboard:
     type: application
