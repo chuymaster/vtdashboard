@@ -1,0 +1,25 @@
+# This workflows refer from this article https://qiita.com/koogawa/items/ddf86b56d6b82ae11473
+
+name: macOS build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Select Xcode version
+        run: sudo xcode-select -s '/Applications/Xcode_11.4.app/Contents/Developer'
+      - name: Show Xcode version
+        run: xcodebuild -version
+      - name: Build # シミュレーター向けにビルド
+        run: xcodebuild -scheme VtDashboard archive -archivePath archive
