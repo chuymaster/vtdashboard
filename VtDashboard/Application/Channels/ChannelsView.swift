@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ChannelsView: View {
     @EnvironmentObject private var uiState: UIState
-    @StateObject var viewModel = ChannelsViewModel()
+    @ObservedObject var viewModel: ChannelsViewModel
     @State var filterText: String = ""
 
     var body: some View {

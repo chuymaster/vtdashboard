@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ChannelRequestsView: View {
     @EnvironmentObject private var uiState: UIState
-    @StateObject var viewModel = ChannelRequestsViewModel()
+    @ObservedObject var viewModel: ChannelRequestsViewModel
 
     var body: some View {
         VStack {

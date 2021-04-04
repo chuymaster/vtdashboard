@@ -2,8 +2,8 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject var uiState: UIState
-
-    @State var currentViewType: ViewType? = .channelRequests
+    @State private var currentViewType: ViewType? = .channelRequests
+    private let viewModel = MainViewModel()
 
     var body: some View {
         HStack {
@@ -16,12 +16,11 @@ struct MainView: View {
 
     @ViewBuilder
     private var contentView: some View {
-        // TODO:- Store created view in ViewModel to prevent reinitialization
         switch currentViewType {
         case .channels:
-            ChannelsView()
+            ChannelsView(viewModel: viewModel.channelsViewModel)
         case .channelRequests:
-            ChannelRequestsView()
+            ChannelRequestsView(viewModel: viewModel.channelRequestsViewModel)
         case .addChannel:
             AddChannelRequestView()
         case .settings:
