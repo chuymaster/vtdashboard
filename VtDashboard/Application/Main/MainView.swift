@@ -2,7 +2,8 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject var uiState: UIState
-    @State private var currentViewType: ViewType? = .channelRequests
+    @EnvironmentObject private var authenticationClient: AuthenticationClient
+    @State private var currentViewType: ViewType? = .login
     private let viewModel = MainViewModel()
 
     var body: some View {
@@ -25,6 +26,8 @@ struct MainView: View {
             AddChannelRequestView()
         case .settings:
             SettingsView()
+        case .login:
+            LoginView(viewModel: LoginViewModel(authenticationClient: authenticationClient))
         case .none:
             EmptyView()
         }

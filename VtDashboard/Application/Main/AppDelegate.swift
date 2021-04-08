@@ -1,3 +1,4 @@
+import Firebase
 import Foundation
 import SwiftUI
 
@@ -13,6 +14,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         popover.contentViewController = NSHostingController(rootView: mainView)
         return popover
     }()
+    
+    override init() {
+        super.init()
+        FirebaseApp.configure()
+    }
     
     func applicationDidFinishLaunching(_ notification: Notification) {
         menuBarItem = NSStatusBar.system.statusItem(withLength: CGFloat(NSStatusItem.variableLength))

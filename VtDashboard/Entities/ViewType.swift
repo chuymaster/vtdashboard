@@ -5,6 +5,7 @@ enum ViewType: String, CaseIterable, Identifiable {
     case channels = "Channels"
     case addChannel = "Add Channel Request"
     case settings = "Settings"
+    case login = "Login"
 
     var iconImageName: String {
         switch self {
@@ -16,6 +17,8 @@ enum ViewType: String, CaseIterable, Identifiable {
             return "pencil.tip.crop.circle.badge.plus"
         case .settings:
             return "wrench.and.screwdriver.fill"
+        case .login:
+            return "key.fill"
         }
     }
 }
