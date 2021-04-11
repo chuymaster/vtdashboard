@@ -1,11 +1,11 @@
 import SwiftUI
 
 struct LoginView: View {
-    
+
     @StateObject var viewModel: LoginViewModel
-    
+
     var body: some View {
-        GeometryReader { proxy in
+        GeometryReader { _ in
             VStack {
                 Button(action: viewModel.signup, label: {
                     Text("Sign Up")

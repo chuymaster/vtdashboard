@@ -18,7 +18,7 @@ struct SettingsView: View {
                 .onChange(of: serverEnvironment, perform: { _ in
                     authenticationClient.signOut()
                 })
-            
+
                 Text(Endpoint.baseURL.absoluteString)
 
                 Link("Cloud Storage", destination: URL(string: "https://console.cloud.google.com/storage/browser/thaivtuberranking.appspot.com/channel_data?project=thaivtuberranking&pageState=(%22StorageObjectListTable%22:(%22f%22:%22%255B%255D%22))&prefix=&forceOnObjectsSortingFiltering=false")!)

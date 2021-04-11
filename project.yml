@@ -35,7 +35,7 @@ targets:
       - name: Copy Google Service Info plist
         path: "scripts/copy_appropriate_google-service-info-plist.sh"
       - name: Run SwiftLint
-        script: mint run swiftlint --fix --format
+        script: swiftlint --fix --format
   VtDashboardTests:
     type: bundle.unit-test
     platform: iOS
