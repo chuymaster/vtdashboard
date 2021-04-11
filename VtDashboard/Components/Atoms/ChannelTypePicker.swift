@@ -17,7 +17,7 @@ struct ChannelTypePicker: View {
                 .tag(ChannelType.half)
                 .fixedSize(horizontal: true, vertical: false)
         }
-        .pickerStyle(RadioGroupPickerStyle())
+        .pickerStyle(MenuPickerStyle())
     }
 }
 

@@ -10,7 +10,7 @@ struct SidebarView: View {
                     .tag(viewType)
             }
         }
-        .listStyle(SidebarListStyle())
+//        .listStyle(SidebarListStyle())
     }
 
 }

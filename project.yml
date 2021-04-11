@@ -2,7 +2,12 @@ name: VtDashboard
 options:
   bundleIdPrefix: com.chuysan.vtuber
   deploymentTarget:
-    macOS: 11.0
+    iOS: 14.0
+settings:
+  base:
+    MARKETING_VERSION: 1.0.0
+    CURRENT_PROJECT_VERSION: 1
+    DEVELOPMENT_TEAM: 9WMV2V9J5Z
 packages:
   Kingfisher:
     url: https://github.com/onevcat/Kingfisher
@@ -16,7 +21,7 @@ packages:
 targets:
   VtDashboard:
     type: application
-    platform: macOS
+    platform: iOS
     sources: 
       - path: VtDashboard
         excludes: &testTarget
@@ -31,7 +36,7 @@ targets:
         path: "scripts/copy_appropriate_google-service-info-plist.sh"
   VtDashboardTests:
     type: bundle.unit-test
-    platform: macOS
+    platform: iOS
     sources:
       - path: VtDashboard
         includes: *testTarget

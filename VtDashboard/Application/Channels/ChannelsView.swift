@@ -44,7 +44,7 @@ struct ChannelsView: View {
     private var channelListView: some View {
         VStack(alignment: .leading) {
             HStack {
-                FilterBar(text: $viewModel.filterText)
+                SearchBar(text: $viewModel.filterText)
                 Spacer()
                 Text("Total channels: \(viewModel.channels.count)")
                     .font(.callout)

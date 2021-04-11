@@ -1,36 +1,35 @@
 import SwiftUI
+import UIKit
 
-struct FilterBar: NSViewRepresentable {
+struct SearchBar: UIViewRepresentable {
 
     @Binding var text: String
 
-    func makeCoordinator() -> Coordinator {
-        Coordinator(binding: $text)
-    }
+    class Coordinator: NSObject, UISearchBarDelegate {
 
-    func makeNSView(context: Context) -> NSSearchField {
-        let searchField = NSSearchField(string: text)
-        searchField.delegate = context.coordinator
-        searchField.bezelStyle = .roundedBezel
-        searchField.focusRingType = .none
-        return searchField
-    }
+        @Binding var text: String
 
-    func updateNSView(_ nsView: NSSearchField, context: Context) {
-        nsView.stringValue = text
-    }
-
-    class Coordinator: NSObject, NSSearchFieldDelegate {
-        let binding: Binding<String>
-
-        init(binding: Binding<String>) {
-            self.binding = binding
-            super.init()
+        init(text: Binding<String>) {
+            _text = text
         }
 
-        func controlTextDidChange(_ obj: Notification) {
-            guard let textField = obj.object as? NSTextField else { return }
-            binding.wrappedValue = textField.stringValue
+        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            text = searchText
         }
+    }
+
+    func makeCoordinator() -> SearchBar.Coordinator {
+        return Coordinator(text: $text)
+    }
+
+    func makeUIView(context: UIViewRepresentableContext<SearchBar>) -> UISearchBar {
+        let searchBar = UISearchBar(frame: .zero)
+        searchBar.delegate = context.coordinator
+        searchBar.searchBarStyle = .minimal
+        return searchBar
+    }
+
+    func updateUIView(_ uiView: UISearchBar, context: UIViewRepresentableContext<SearchBar>) {
+        uiView.text = text
     }
 }

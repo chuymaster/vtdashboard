@@ -91,3 +91,7 @@ iOSInjectionProject/
 
 # XcodeGen
 VtDashboard.xcodeproj/*
+
+
+# macOS junks
+.DS_Store
