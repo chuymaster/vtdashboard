@@ -7,31 +7,33 @@ struct ChannelRequestRow: View {
 
     var body: some View {
         HStack {
-            AvatarIconImage(thumbnailImageUrl: channelRequest.thumbnailImageUrl)
-                .frame(width: 64, height: 64)
 
             let isOriginalBinding = Binding(
                 get: { channelRequest.type == .original },
                 set: { channelRequest.type = $0 ? .original : .half }
             )
 
-            VStack(alignment: .leading) {
-                Text(channelRequest.title)
-                    .font(.title2)
-                    .bold()
-                    .fixedSize(horizontal: false, vertical: true)
-                HStack {
-                    TagText(
-                        title: channelRequest.status.displayText,
-                        backgroundColor: channelRequest.status.backgroundColor
-                    )
-                    Spacer()
-                    ChannelTypeToggle(isOriginalChannel: isOriginalBinding)
-                        .frame(maxWidth: 120)
+            HStack(spacing: 8) {
+                AvatarIconImage(thumbnailImageUrl: channelRequest.thumbnailImageUrl)
+                    .frame(width: 80, height: 80)
+
+                VStack(alignment: .leading) {
+                    Text(channelRequest.title)
+                        .font(.title2)
+                        .bold()
+                        .lineLimit(1)
+                    HStack(spacing: 16) {
+                        ChannelTypeToggle(isOriginalChannel: isOriginalBinding)
+                            .frame(maxWidth: 72)
+                        TagText(
+                            title: channelRequest.status.displayText,
+                            backgroundColor: channelRequest.status.backgroundColor
+                        )
+                        Spacer()
+                    }
                 }
             }
         }
-        .padding()
     }
 }
 

@@ -5,6 +5,31 @@ struct ChannelTypeToggle: View {
 
     var body: some View {
         Toggle("Original", isOn: $isOriginalChannel)
+            .font(.footnote)
+            .toggleStyle(CheckboxStyle())
+    }
+}
+
+private struct CheckboxStyle: ToggleStyle {
+
+    func makeBody(configuration: Self.Configuration) -> some View {
+
+        return HStack {
+
+            configuration.label
+
+            Spacer()
+
+            Image(systemName: configuration.isOn ? "checkmark.circle.fill" : "circle")
+                .resizable()
+                .frame(width: 16, height: 16)
+                .foregroundColor(configuration.isOn ? .purple : .gray)
+                .font(.system(size: 20, weight: .bold, design: .default))
+                .onTapGesture {
+                    configuration.isOn.toggle()
+                }
+        }
+
     }
 }
 
