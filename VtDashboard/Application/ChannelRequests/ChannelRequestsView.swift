@@ -27,11 +27,11 @@ struct ChannelRequestsView: View {
         .onAppear {
             viewModel.getChannelRequests()
         }
-        .onReceive(viewModel.$postError, perform: { error in
+        .onReceive(viewModel.postErrorSubject, perform: { error in
             if let _ = error {
                 uiState.currentAlert = Alert(
                     title: Text("Failure").bold(),
-                    message: Text("Failed to add new channel"),
+                    message: Text(error?.localizedDescription ?? "Unknown error"),
                     primaryButton: .default(
                         Text("Retry"),
                         action: viewModel.retryUpdateChannelRequest

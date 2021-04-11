@@ -3,7 +3,7 @@ import SwiftUI
 struct MainView: View {
     @EnvironmentObject var uiState: UIState
     @EnvironmentObject private var authenticationClient: AuthenticationClient
-    @State private var currentViewType: ViewType? = .login
+    @State private var currentViewType: ViewType? = .channelRequests
     private let viewModel = MainViewModel()
 
     var body: some View {

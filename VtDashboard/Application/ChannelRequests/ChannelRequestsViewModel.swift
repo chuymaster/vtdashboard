@@ -6,23 +6,21 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
 
     @Published var viewStatus: ViewStatus = .loading
     @Published var channelRequests: [ChannelRequest] = []
-
+    
     @Published private(set) var isBusy = false
-    @Published private(set) var postError: Error?
-    @Published private(set) var postedChannel: Channel?
     @Published private var isPosting = false
     @Published private var isReloading = false
 
+    let postErrorSubject = PassthroughSubject<Error?, Never>()
+    
     private let networkClient: NetworkClientProtocol
-
-    private var postErrorSubject = CurrentValueSubject<Error?, Never>(nil)
     private var postCompletedSubject = PassthroughSubject<Void, Never>()
     private var lastUpdateChannelRequest: ChannelRequest?
     private var cancellables = Set<AnyCancellable>()
 
     init(networkClient: NetworkClientProtocol = NetworkClient()) {
         self.networkClient = networkClient
-
+        
         postCompletedSubject
             .sink(receiveValue: { [weak self] _ in
                 self?.isPosting = false
@@ -33,7 +31,6 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
         postErrorSubject
             .sink(receiveValue: { [weak self] error in
                 self?.isPosting = false
-                self?.postError = error
             })
             .store(in: &cancellables)
         

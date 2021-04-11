@@ -28,12 +28,11 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
     @Published private(set) var isReloading: Bool = false
     @Published private(set) var isPosting: Bool = false
     @Published private(set) var postError: Error?
-    @Published private(set) var postedChannel: Channel?
 
     private let networkClient: NetworkClientProtocol
 
     private var lastOperation: Operation?
-    private var postErrorSubject = CurrentValueSubject<Error?, Never>(nil)
+    private var postErrorSubject = PassthroughSubject<Error?, Never>()
     private var postCompletedSubject = PassthroughSubject<Void, Never>()
     private var cancellables = Set<AnyCancellable>()
     private var channelStatistics: [ChannelStatistics] = []
@@ -165,12 +164,7 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
                 case .finished:
                     self?.postCompletedSubject.send()
                 case .failure(let error):
-                    // FIXME:- Temporary fix until server returns json-encoding response
-                    if error is DecodingError {
-                        self?.postCompletedSubject.send()
-                    } else {
-                        self?.postErrorSubject.send(error)
-                    }
+                    self?.postErrorSubject.send(error)
                 }
             } receiveValue: { _ in }
             .store(in: &cancellables)

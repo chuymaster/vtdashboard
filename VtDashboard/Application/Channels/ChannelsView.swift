@@ -32,7 +32,7 @@ struct ChannelsView: View {
             if let _ = error {
                 uiState.currentAlert = Alert(
                     title: Text("Failure").bold(),
-                    message: Text("Failed to update channel"),
+                    message: Text(error?.localizedDescription ?? "Unknown error"),
                     primaryButton: .default(
                         Text("Retry"),
                         action: viewModel.retryLastOperation
