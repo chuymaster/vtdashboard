@@ -3,14 +3,29 @@ import SwiftUI
 struct MainView: View {
     @EnvironmentObject var uiState: UIState
     @EnvironmentObject private var authenticationClient: AuthenticationClient
-    @State private var currentViewType: ViewType? = .channelRequests
+    @State private var currentViewType: ViewType?
     private let viewModel = MainViewModel()
 
     var body: some View {
-        HStack {
-            SidebarView(viewType: $currentViewType)
-                .frame(width: 220)
-            contentView
+        NavigationView {
+            List {
+                ForEach(ViewType.allCases) { viewType in
+                    NavigationLink(
+                        destination: contentView.navigationTitle(viewType.rawValue),
+                        tag: viewType,
+                        selection: $currentViewType,
+                        label: {
+                            ImageLabel(iconImageName: viewType.iconImageName, label: viewType.rawValue)
+                        })
+                }
+            }
+            .navigationTitle("Menu")
+            .listStyle(GroupedListStyle())
+
+            Text("Select a menu!")
+                .font(.title)
+                .bold()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .alert(item: $uiState.currentAlert) { $0 }
     }
@@ -38,6 +53,6 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
             .environmentObject(UIState.shared)
-            .previewLayout(.sizeThatFits)
+            .environmentObject(AuthenticationClient.shared)
     }
 }

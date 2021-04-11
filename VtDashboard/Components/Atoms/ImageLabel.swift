@@ -24,8 +24,8 @@ struct ImageLabel_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ImageLabel(iconImageName: "clock", label: "Label")
-
             ImageLabel(iconImageName: "clock", label: "Label", isBold: true)
         }
+        .previewLayout(.sizeThatFits)
     }
 }
