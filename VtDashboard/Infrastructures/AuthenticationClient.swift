@@ -69,4 +69,8 @@ final class AuthenticationClient: AuthenticationClientProtocol, ObservableObject
             self?.error = error
         })
     }
+    
+    func signOut() {
+        try? auth.signOut()
+    }
 }
