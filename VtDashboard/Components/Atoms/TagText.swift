@@ -6,10 +6,11 @@ struct TagText: View {
 
     var body: some View {
         Text(title)
-            .font(.title3)
+            .font(.body)
             .bold()
             .padding(.horizontal, 16)
             .padding(.vertical, 4)
+            .foregroundColor(.white)
             .background(backgroundColor)
             .cornerRadius(16)
             .fixedSize(horizontal: true, vertical: true)

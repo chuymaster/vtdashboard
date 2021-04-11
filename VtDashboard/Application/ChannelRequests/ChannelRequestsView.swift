@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ChannelRequestsView: View {
     @EnvironmentObject private var uiState: UIState
+    @State private var selectedChannelRequest: ChannelRequest?
     @ObservedObject var viewModel: ChannelRequestsViewModel
 
     var body: some View {
@@ -11,7 +12,6 @@ struct ChannelRequestsView: View {
                 LoadingView()
             case .loaded:
                 ZStack {
-                    reloadKeyboardShortcut
                     channelRequestListView
                     if viewModel.isBusy {
                         LoadingOverlayView()
@@ -19,7 +19,6 @@ struct ChannelRequestsView: View {
                 }
             case .error:
                 ZStack {
-                    reloadKeyboardShortcut
                     Text("Error")
                 }
             }
@@ -38,6 +37,63 @@ struct ChannelRequestsView: View {
                     ), secondaryButton: .cancel(Text("Cancel")))
             }
         })
+        .actionSheet(item: $selectedChannelRequest) { selectedChannelRequest in
+            var selectedChannelRequest = selectedChannelRequest
+            let openLinkButton = ActionSheet.Button.default(Text("Open YouTube")) {
+                UIApplication.shared.open(selectedChannelRequest.url, options: [:], completionHandler: nil)
+            }
+            let buttons: [ActionSheet.Button]
+            switch selectedChannelRequest.status {
+            case .unconfirmed:
+                buttons = [
+                    openLinkButton,
+                    .default(Text("Accept"), action: {
+                        selectedChannelRequest.status = .accepted
+                        viewModel.updateChannelRequest(request: selectedChannelRequest)
+                    }),
+                    .default(Text("Mark Pending"), action: {
+                        selectedChannelRequest.status = .pending
+                        viewModel.updateChannelRequest(request: selectedChannelRequest)
+                    }),
+                    .destructive(Text("Reject"), action: {
+                        viewModel.updateChannelRequest(request: selectedChannelRequest)
+                    }),
+                    .cancel()
+                ]
+            case .accepted:
+                buttons = [
+                    openLinkButton,
+                    .destructive(Text("Reject"), action: {
+                        selectedChannelRequest.status = .rejected
+                        viewModel.updateChannelRequest(request: selectedChannelRequest)
+                    }),
+                    .cancel()
+                ]
+            case .pending:
+                buttons = [
+                    openLinkButton,
+                    .default(Text("Accept"), action: {
+                        selectedChannelRequest.status = .accepted
+                        viewModel.updateChannelRequest(request: selectedChannelRequest)
+                    }),
+                    .destructive(Text("Reject"), action: {
+                        selectedChannelRequest.status = .rejected
+                        viewModel.updateChannelRequest(request: selectedChannelRequest)
+                    }),
+                    .cancel()
+                ]
+            case .rejected:
+                buttons = [
+                    openLinkButton,
+                    .destructive(Text("Restore"), action: {
+                        selectedChannelRequest.status = .unconfirmed
+                        viewModel.updateChannelRequest(request: selectedChannelRequest)
+                    }),
+                    .cancel()
+                ]
+            }
+            return ActionSheet(title: Text("Select Menu"), message: nil, buttons: buttons)
+        }
     }
 
     @ViewBuilder
@@ -54,27 +110,14 @@ struct ChannelRequestsView: View {
             List(viewModel.channelRequests) { channelRequest in
                 let index = viewModel.channelRequests
                     .firstIndex { $0.id == channelRequest.id }!
-                ChannelRequestRow(
-                    channelRequest: $viewModel.channelRequests[index],
-                    changeAction: {
-                        viewModel.updateChannelRequest(request: viewModel.channelRequests[index])
-                    }
-                )
+                Button(action: {
+                    selectedChannelRequest = viewModel.channelRequests[index]
+                }, label: {
+                    ChannelRequestRow(channelRequest: $viewModel.channelRequests[index])
+                })
             }
             .listStyle(PlainListStyle())
         }
-
-    }
-
-    private var reloadKeyboardShortcut: some View {
-        // TODO:- Create a real button and toolstip for shortcut
-        Button(action: {
-            viewModel.getChannelRequests()
-        }, label: {
-            EmptyView()
-        })
-        .keyboardShortcut("r")
-        .opacity(0) // workaround to enable .keyboardShortcut while hiding button
     }
 }
 

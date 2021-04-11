@@ -17,12 +17,13 @@ struct ChannelTypePicker: View {
                 .tag(ChannelType.half)
                 .fixedSize(horizontal: true, vertical: false)
         }
-        .pickerStyle(MenuPickerStyle())
+        .pickerStyle(DefaultPickerStyle())
     }
 }
 
 struct ChannelTypePicker_Previews: PreviewProvider {
     static var previews: some View {
         ChannelTypePicker(channelType: .constant(.original))
+            .previewLayout(.sizeThatFits)
     }
 }
