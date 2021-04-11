@@ -44,29 +44,35 @@ struct NetworkClient: NetworkClientProtocol {
 
     func post<T: Codable>(endpoint: PostEndpoint, parameters: [String: String]) -> Future<T, Error> {
         return Future { promise in
+            var headers: HTTPHeaders = [
+                "Content-Type": "application/x-www-form-urlencoded"
+            ]
+            if let accessToken = AuthenticationClient.shared.accessToken {
+                headers["Authorization"] = "Bearer \(accessToken)"
+            }
             let request = AF.request(
                 endpoint.url,
                 method: .post,
                 parameters: parameters,
-                headers: [
-                    "Content-Type": "application/x-www-form-urlencoded"
-                ])
-                .response { response in
-                    switch response.result {
-                    case .success(let data):
-                        guard let data = data else {
-                            fatalError("data must not be nil in success case.")
-                        }
-                        do {
-                            let object = try self.jsonDecoder.decode(T.self, from: data)
-                            promise(.success(object))
-                        } catch let error {
-                            promise(.failure(error))
-                        }
-                    case .failure(let error):
+                headers: headers
+            )
+            .response { response in
+                switch response.result {
+                case .success(let data):
+                    guard let data = data else {
+                        fatalError("data must not be nil in success case.")
+                    }
+                    do {
+                        let object = try self.jsonDecoder.decode(T.self, from: data)
+                        promise(.success(object))
+                    } catch let error {
                         promise(.failure(error))
                     }
+                case .failure(let error):
+                    // TODO:- auto refresh token for one time
+                    promise(.failure(error))
                 }
+            }
             request.resume()
         }
     }

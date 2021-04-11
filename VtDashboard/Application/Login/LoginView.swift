@@ -20,6 +20,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(viewModel: LoginViewModel(authenticationClient: AuthenticationClient()))
+        LoginView(viewModel: LoginViewModel(authenticationClient: AuthenticationClient.shared))
     }
 }

@@ -13,6 +13,8 @@ final class AuthenticationClient: AuthenticationClientProtocol, ObservableObject
     @Published var error: Error?
     @Published private var currentUser = CurrentValueSubject<User?, Never>(nil)
     
+    static let shared = AuthenticationClient()
+    
     private var cancellables = Set<AnyCancellable>()
     private let auth = Auth.auth()
     
