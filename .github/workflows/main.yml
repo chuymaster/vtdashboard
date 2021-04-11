@@ -2,7 +2,7 @@
 
 # This workflows refer from this article https://qiita.com/koogawa/items/ddf86b56d6b82ae11473
 
-name: macOS build
+name: iOS build
 
 on:
   push:
