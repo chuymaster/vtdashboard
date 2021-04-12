@@ -12,7 +12,6 @@ struct ChannelsView: View {
                 LoadingView()
             case .loaded:
                 ZStack {
-                    reloadKeyboardShortcut
                     channelListView
                     if viewModel.isPosting || viewModel.isReloading {
                         LoadingOverlayView()
@@ -20,7 +19,6 @@ struct ChannelsView: View {
                 }
             case .error:
                 ZStack {
-                    reloadKeyboardShortcut
                     Text("Error")
                 }
             }
@@ -65,21 +63,22 @@ struct ChannelsView: View {
             } else {
                 List(viewModel.filteredChannels) { channel in
                     let index = viewModel.channels.firstIndex { $0.id == channel.id }!
-                    ChannelRow(channel: $viewModel.channels[index]) {
-                        viewModel.updateChannel(channel: viewModel.filteredChannels[index])
-                    } deleteAction: {
-                        uiState.currentAlert = Alert(
-                            title: Text("WARNING!"),
-                            message: Text("Are you sure to delete \(channel.title)?"),
-                            primaryButton: .destructive(
-                                Text("Delete"),
-                                action: {
-                                    viewModel.deleteChannel(channelId: channel.id)
-                                }),
-                            secondaryButton: .cancel())
-
-                    }
+                    ChannelRow(channel: $viewModel.channels[index])
                 }
+                //                {
+                //                    viewModel.updateChannel(channel: viewModel.filteredChannels[index])
+                //                } deleteAction: {
+                //                    uiState.currentAlert = Alert(
+                //                        title: Text("WARNING!"),
+                //                        message: Text("Are you sure to delete \(channel.title)?"),
+                //                        primaryButton: .destructive(
+                //                            Text("Delete"),
+                //                            action: {
+                //                                viewModel.deleteChannel(channelId: channel.id)
+                //                            }),
+                //                        secondaryButton: .cancel())
+                //
+                //                }
                 .listStyle(PlainListStyle())
             }
         }
@@ -100,16 +99,6 @@ struct ChannelsView: View {
                 ImageLabel(iconImageName: "eyes", label: "Sort by Views")
             }
         }
-    }
-
-    private var reloadKeyboardShortcut: some View {
-        Button(action: {
-            viewModel.getChannels()
-        }, label: {
-            EmptyView()
-        })
-        .keyboardShortcut("r")
-        .opacity(0) // workaround to enable .keyboardShortcut while hiding button
     }
 }
 

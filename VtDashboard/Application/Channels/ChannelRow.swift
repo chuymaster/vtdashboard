@@ -4,60 +4,40 @@ import SwiftUI
 struct ChannelRow: View {
 
     @Binding var channel: Channel
-    let updateAction: () -> Void
-    let deleteAction: () -> Void
+    private let iconSize: CGFloat = 80
 
     var body: some View {
+
+        let isOriginalBinding = Binding(
+            get: { channel.type == .original },
+            set: { channel.type = $0 ? .original : .half }
+        )
+
         HStack(spacing: 16) {
-            Link(destination: channel.url) {
-                AvatarIconImage(thumbnailImageUrl: channel.thumbnailImageUrl)
-                    .frame(width: 100, height: 100)
-            }
+            AvatarIconImage(thumbnailImageUrl: channel.thumbnailImageUrl)
+                .frame(width: iconSize, height: iconSize)
 
             VStack(alignment: .leading) {
+                OneLineTitleText(text: channel.title)
                 HStack {
-                    Text(channel.title)
-                        .foregroundColor(.white)
-                        .font(.title)
-                        .bold()
-                        .lineLimit(1)
+                    ChannelTypeToggle(isOriginalChannel: isOriginalBinding)
                     Spacer()
-                    VStack(alignment: .leading, spacing: 4) {
-                        HStack {
-                            Image(systemName: "person.3")
-                                .frame(width: 28)
-                            Text("\(channel.statistics?.subscribers ?? 0)")
-                                .font(.caption)
-                        }
-                        .help("Follower")
-                        HStack {
-                            Image(systemName: "eye")
-                                .frame(width: 28)
-                            Text("\(channel.statistics?.views ?? 0)")
-                                .font(.caption)
-                        }
-                        .help("Views")
+                    HStack {
+                        Image(systemName: "person.3")
+                            .frame(width: 28)
+                        Text("\(channel.statistics?.subscribers ?? 0)")
+                            .font(.caption)
                     }
-                }
-                HStack {
-                    ChannelTypePicker(channelType: $channel.type)
-                    Spacer()
-                    Button(
-                        action: updateAction,
-                        label: {
-                            Text("Update")
-                        })
-                        .cornerRadius(4)
-                    Button(
-                        action: deleteAction,
-                        label: {
-                            Text("Delete")
-                        })
-                        .background(Color.red)
-                        .cornerRadius(4)
+                    .help("Follower")
+                    HStack {
+                        Image(systemName: "eye")
+                            .frame(width: 28)
+                        Text("\(channel.statistics?.views ?? 0)")
+                            .font(.caption)
+                    }
+                    .help("Views")
                 }
             }
-            Spacer()
         }
         .help("Updated at \(channel.updatedAt.displayText)")
         .padding()
@@ -81,8 +61,9 @@ struct ChannelRow_Previews: PreviewProvider {
             updatedAt: 0
         )
         Group {
-            ChannelRow(channel: .constant(channel), updateAction: {}, deleteAction: {})
-            ChannelRow(channel: .constant(placeholderChannel), updateAction: {}, deleteAction: {})
+            ChannelRow(channel: .constant(channel))
+            ChannelRow(channel: .constant(placeholderChannel))
         }
+        .previewLayout(.sizeThatFits)
     }
 }

@@ -5,9 +5,10 @@ struct ChannelRequestRow: View {
 
     @Binding var channelRequest: ChannelRequest
 
+    private let iconSize: CGFloat = 80
+
     var body: some View {
         HStack {
-
             let isOriginalBinding = Binding(
                 get: { channelRequest.type == .original },
                 set: { channelRequest.type = $0 ? .original : .half }
@@ -15,16 +16,12 @@ struct ChannelRequestRow: View {
 
             HStack(spacing: 8) {
                 AvatarIconImage(thumbnailImageUrl: channelRequest.thumbnailImageUrl)
-                    .frame(width: 80, height: 80)
+                    .frame(width: iconSize, height: iconSize)
 
                 VStack(alignment: .leading) {
-                    Text(channelRequest.title)
-                        .font(.title2)
-                        .bold()
-                        .lineLimit(1)
+                    OneLineTitleText(text: channelRequest.title)
                     HStack(spacing: 16) {
                         ChannelTypeToggle(isOriginalChannel: isOriginalBinding)
-                            .frame(maxWidth: 72)
                         TagText(
                             title: channelRequest.status.displayText,
                             backgroundColor: channelRequest.status.backgroundColor
@@ -34,6 +31,7 @@ struct ChannelRequestRow: View {
                 }
             }
         }
+        .help("Updated at \(channelRequest.updatedAt.displayText)")
     }
 }
 

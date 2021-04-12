@@ -7,6 +7,7 @@ struct ChannelTypeToggle: View {
         Toggle("Original", isOn: $isOriginalChannel)
             .font(.footnote)
             .toggleStyle(CheckboxStyle())
+            .frame(maxWidth: 76)
     }
 }
 
