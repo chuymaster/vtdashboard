@@ -43,9 +43,7 @@ struct MainView: View {
         case .addChannel:
             AddChannelRequestView()
         case .settings:
-            SettingsView()
-        case .login:
-            LoginView(viewModel: LoginViewModel(authenticationClient: authenticationClient))
+            SettingsView(viewModel: SettingsViewModel(authenticationClient: authenticationClient))
         case .none:
             EmptyView()
         }
