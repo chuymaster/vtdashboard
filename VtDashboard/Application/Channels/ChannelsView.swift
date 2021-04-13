@@ -4,7 +4,7 @@ struct ChannelsView: View {
     @EnvironmentObject private var uiState: UIState
     @ObservedObject var viewModel: ChannelsViewModel
     @State var filterText: String = ""
-    
+
     var body: some View {
         VStack {
             switch viewModel.viewStatus {
@@ -36,7 +36,7 @@ struct ChannelsView: View {
             uiState.isLoadingBlockingUserInteraction = isBusy
         })
     }
-    
+
     private var channelListView: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -47,7 +47,7 @@ struct ChannelsView: View {
                     .padding()
             }
             Divider()
-            
+
             if viewModel.filteredChannels.isEmpty {
                 VStack {
                     Spacer()
@@ -70,7 +70,7 @@ struct ChannelsView: View {
                 .listStyle(PlainListStyle())
             }
         }
-        .toolbar{
+        .toolbar {
             Button(action: {
                 let buttons: [ActionSheet.Button] = [
                     .default(Text("Sort by Updated at")) {
@@ -94,7 +94,7 @@ struct ChannelsView: View {
             })
         }
     }
-    
+
     private func makeActionSheet(channel: Channel) -> ActionSheet {
         let buttons: [ActionSheet.Button] = [
             .default(Text("Open YouTube")) {

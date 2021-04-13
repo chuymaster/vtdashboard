@@ -6,9 +6,9 @@ struct AddChannelRequestView: View {
     @State private var selectedChannelId: String!
     @StateObject var viewModel = AddChannelRequestViewModel()
     @EnvironmentObject private var uiState: UIState
-    
+
     private let maxCharacterCount = 24
-    
+
     var body: some View {
         VStack {
             VStack {
@@ -23,16 +23,16 @@ struct AddChannelRequestView: View {
                 }
             }
             .padding()
-            
+
             let isOriginalBinding = Binding(
                 get: { channelType == .original },
                 set: { channelType = $0 ? .original : .half }
             )
             ChannelTypeToggle(isOriginalChannel: isOriginalBinding)
                 .padding(.bottom)
-            
+
             Divider()
-            
+
             Text("Sample Channel IDs for debugging")
                 .bold()
             List(viewModel.sampleChannelIds, selection: $selectedChannelId) {
@@ -40,7 +40,7 @@ struct AddChannelRequestView: View {
             }
             .environment(\.editMode, .constant(.active))
             .frame(maxHeight: 300)
-            
+
             Spacer()
         }
         .toolbar {
@@ -76,7 +76,7 @@ struct AddChannelRequestView: View {
             uiState.isLoadingBlockingUserInteraction = status == .loading
         })
     }
-    
+
     private var isSubmissionDisabled: Bool {
         channelId.prefix(2) != "UC" || channelId.count != maxCharacterCount
     }

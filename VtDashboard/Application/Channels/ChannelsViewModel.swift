@@ -73,7 +73,7 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
                 self?.isPosting = false
             })
             .store(in: &cancellables)
-        
+
         $isPosting
             .combineLatest($isReloading)
             .map { $0 || $1 }

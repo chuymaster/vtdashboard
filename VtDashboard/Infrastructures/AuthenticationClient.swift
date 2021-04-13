@@ -50,7 +50,7 @@ final class AuthenticationClient: AuthenticationClientProtocol, ObservableObject
                 Logger.auth.error("\(description)")
             }
             .store(in: &cancellables)
-        
+
         $accessToken
             .print()
             .sink(receiveValue: { [weak self]_ in

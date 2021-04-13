@@ -2,21 +2,21 @@ import Kingfisher
 import SwiftUI
 
 struct ChannelRow: View {
-    
+
     @Binding var channel: Channel
     private let iconSize: CGFloat = 80
-    
+
     var body: some View {
-        
+
         let isOriginalBinding = Binding(
             get: { channel.type == .original },
             set: { channel.type = $0 ? .original : .half }
         )
-        
+
         HStack(spacing: 16) {
             AvatarIconImage(thumbnailImageUrl: channel.thumbnailImageUrl)
                 .frame(width: iconSize, height: iconSize)
-            
+
             VStack(alignment: .leading) {
                 OneLineTitleText(text: channel.title)
                 HStack(spacing: 24) {

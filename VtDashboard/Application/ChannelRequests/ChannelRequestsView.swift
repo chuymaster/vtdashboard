@@ -59,7 +59,7 @@ struct ChannelRequestsView: View {
             .listStyle(PlainListStyle())
         }
     }
-    
+
     private func makeActionSheet(channelRequest: ChannelRequest) -> ActionSheet {
         var channelRequest = channelRequest
         let openLinkButton = ActionSheet.Button.default(Text("Open YouTube")) {

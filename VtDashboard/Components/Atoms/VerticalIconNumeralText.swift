@@ -3,7 +3,7 @@ import SwiftUI
 struct VerticalIconNumeralText: View {
     let imageSystemName: String
     let text: Int
-    
+
     var body: some View {
         VStack(spacing: 4) {
             Image(systemName: imageSystemName)

@@ -8,7 +8,7 @@ struct SettingsView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("Server Environment")
-            
+
             Picker("Server Environment",
                    selection: $serverEnvironment) {
                 ForEach(ServerEnvironmentValue.allCases) { environment in
@@ -20,7 +20,7 @@ struct SettingsView: View {
             .onChange(of: serverEnvironment, perform: { _ in
                 viewModel.signOut()
             })
-            
+
             VStack(alignment: .leading) {
                 Text("Current host")
                     .font(.caption2)
@@ -29,7 +29,7 @@ struct SettingsView: View {
                     .font(.caption)
             }
             .padding(.bottom, 4)
-            
+
             VStack(alignment: .leading) {
                 Text("Access Token")
                     .font(.caption2)
@@ -37,9 +37,9 @@ struct SettingsView: View {
                 Text(viewModel.accessToken)
                     .font(.caption)
             }
-            
+
             Divider()
-            
+
             HStack {
                 Button(action: viewModel.signup, label: {
                     Text("Sign Up")
