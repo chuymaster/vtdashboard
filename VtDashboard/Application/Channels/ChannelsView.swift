@@ -66,7 +66,7 @@ struct ChannelsView: View {
                 List(viewModel.filteredChannels) { channel in
                     let index = viewModel.channels.firstIndex { $0.id == channel.id }!
                     Button(action: {
-                        selectedChannel = viewModel.channels[index]
+                        uiState.currentActionSheet = makeActionSheet(channel: viewModel.channels[index])
                     }, label: {
                         ChannelRow(channel: $viewModel.channels[index])
                     })
@@ -74,46 +74,53 @@ struct ChannelsView: View {
                 .listStyle(PlainListStyle())
             }
         }
-        .actionSheet(item: $selectedChannel) { selectedChannel in
-            let buttons: [ActionSheet.Button] = [
-                .default(Text("Open YouTube")) {
-                    UIApplication.shared.open(selectedChannel.url, options: [:], completionHandler: nil)
-                },
-                .default(Text("Update"), action: {
-                    viewModel.updateChannel(channel: selectedChannel)
-                }),
-                .destructive(Text("Delete"), action: {
-                    uiState.currentAlert = Alert(
-                        title: Text("WARNING!"),
-                        message: Text("Are you sure to delete \(selectedChannel.title)?"),
-                        primaryButton: .destructive(
-                            Text("Delete"),
-                            action: {
-                                viewModel.deleteChannel(channelId: selectedChannel.id)
-                            }),
-                        secondaryButton: .cancel())
-                }),
-                .cancel()
-            ]
-            return ActionSheet(title: Text("Select Menu"), message: nil, buttons: buttons)
+        .toolbar{
+            Button(action: {
+                let buttons: [ActionSheet.Button] = [
+                    .default(Text("Sort by Updated at")) {
+                        viewModel.sortType = .updatedAt
+                    },
+                    .default(Text("Sort by Subscribers"), action: {
+                        viewModel.sortType = .subscribers
+                    }),
+                    .default(Text("Sort by Views"), action: {
+                        viewModel.sortType = .views
+                    }),
+                    .cancel()
+                ]
+                uiState.currentActionSheet = ActionSheet(
+                    title: Text("Select Sort Filter"),
+                    message: nil,
+                    buttons: buttons
+                )
+            }, label: {
+                Image(systemName: "line.horizontal.3.decrease.circle")
+            })
         }
-        .contextMenu {
-            Button {
-                viewModel.sortType = .updatedAt
-            } label: {
-                ImageLabel(iconImageName: "clock", label: "Sort by Updated")
-            }
-            Button {
-                viewModel.sortType = .subscribers
-            } label: {
-                ImageLabel(iconImageName: "person.3", label: "Sort by Subscribers")
-            }
-            Button {
-                viewModel.sortType = .views
-            } label: {
-                ImageLabel(iconImageName: "eyes", label: "Sort by Views")
-            }
-        }
+    }
+    
+    private func makeActionSheet(channel: Channel) -> ActionSheet {
+        let buttons: [ActionSheet.Button] = [
+            .default(Text("Open YouTube")) {
+                UIApplication.shared.open(channel.url, options: [:], completionHandler: nil)
+            },
+            .default(Text("Update"), action: {
+                viewModel.updateChannel(channel: channel)
+            }),
+            .destructive(Text("Delete"), action: {
+                uiState.currentAlert = Alert(
+                    title: Text("WARNING!"),
+                    message: Text("Are you sure to delete \(channel.title)?"),
+                    primaryButton: .destructive(
+                        Text("Delete"),
+                        action: {
+                            viewModel.deleteChannel(channelId: channel.id)
+                        }),
+                    secondaryButton: .cancel())
+            }),
+            .cancel()
+        ]
+        return ActionSheet(title: Text("Select Menu"), message: nil, buttons: buttons)
     }
 }
 

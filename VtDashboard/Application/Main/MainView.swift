@@ -28,6 +28,7 @@ struct MainView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .alert(item: $uiState.currentAlert) { $0 }
+        .actionSheet(item: $uiState.currentActionSheet) { $0 }
     }
 
     @ViewBuilder
