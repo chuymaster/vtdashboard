@@ -44,12 +44,14 @@ struct NetworkClient: NetworkClientProtocol {
 
     func post<T: Codable>(endpoint: PostEndpoint, parameters: [String: String]) -> Future<T, Error> {
         return Future { promise in
-            var headers: HTTPHeaders = [
-                "Content-Type": "application/x-www-form-urlencoded"
-            ]
-            if let accessToken = AuthenticationClient.shared.accessToken {
-                headers["Authorization"] = "Bearer \(accessToken)"
+            guard let accessToken = AuthenticationClient.shared.accessToken else {
+                promise(.failure(NetworkClientError.unauthenticated))
+                return
             }
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": "Bearer \(accessToken)"
+            ]
             let request = AF.request(
                 endpoint.url,
                 method: .post,
