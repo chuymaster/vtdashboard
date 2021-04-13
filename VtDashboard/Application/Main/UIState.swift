@@ -11,6 +11,7 @@ class UIState: ObservableObject {
     static let shared = UIState()
     @Published var currentSheet: Sheet?
     @Published var currentAlert: Alert?
+    @Published var currentActionSheet: ActionSheet?
 
     private init() { }
 }

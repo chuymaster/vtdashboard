@@ -34,8 +34,8 @@ targets:
     postBuildScripts:
       - name: Copy Google Service Info plist
         path: "scripts/copy_appropriate_google-service-info-plist.sh"
-      - name: Run SwiftLint
-        script: swiftlint --fix --format
+      # - name: Run SwiftLint
+      # script: swiftlint --fix --format
   VtDashboardTests:
     type: bundle.unit-test
     platform: iOS

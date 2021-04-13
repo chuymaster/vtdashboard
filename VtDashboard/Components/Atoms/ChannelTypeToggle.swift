@@ -30,6 +30,7 @@ private struct CheckboxStyle: ToggleStyle {
                     configuration.isOn.toggle()
                 }
         }
+        .fixedSize(horizontal: true, vertical: true)
 
     }
 }

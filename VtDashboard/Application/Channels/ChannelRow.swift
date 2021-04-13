@@ -2,39 +2,34 @@ import Kingfisher
 import SwiftUI
 
 struct ChannelRow: View {
-
+    
     @Binding var channel: Channel
     private let iconSize: CGFloat = 80
-
+    
     var body: some View {
-
+        
         let isOriginalBinding = Binding(
             get: { channel.type == .original },
             set: { channel.type = $0 ? .original : .half }
         )
-
+        
         HStack(spacing: 16) {
             AvatarIconImage(thumbnailImageUrl: channel.thumbnailImageUrl)
                 .frame(width: iconSize, height: iconSize)
-
+            
             VStack(alignment: .leading) {
                 OneLineTitleText(text: channel.title)
-                HStack {
+                HStack(spacing: 24) {
                     ChannelTypeToggle(isOriginalChannel: isOriginalBinding)
-                    Spacer()
-                    HStack {
-                        Image(systemName: "person.3")
-                            .frame(width: 28)
-                        Text("\(channel.statistics?.subscribers ?? 0)")
-                            .font(.caption)
-                    }
-                    .help("Follower")
-                    HStack {
-                        Image(systemName: "eye")
-                            .frame(width: 28)
-                        Text("\(channel.statistics?.views ?? 0)")
-                            .font(.caption)
-                    }
+                    VerticalIconNumeralText(
+                        imageSystemName: "person.3",
+                        text: channel.statistics?.subscribers ?? 0
+                    )
+                    .help("Followers")
+                    VerticalIconNumeralText(
+                        imageSystemName: "eye",
+                        text: channel.statistics?.views ?? 0
+                    )
                     .help("Views")
                 }
             }

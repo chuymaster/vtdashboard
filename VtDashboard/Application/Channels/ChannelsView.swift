@@ -4,7 +4,9 @@ struct ChannelsView: View {
     @EnvironmentObject private var uiState: UIState
     @ObservedObject var viewModel: ChannelsViewModel
     @State var filterText: String = ""
-
+    
+    @State private var selectedChannel: Channel?
+    
     var body: some View {
         VStack {
             switch viewModel.viewStatus {
@@ -38,7 +40,7 @@ struct ChannelsView: View {
             }
         })
     }
-
+    
     private var channelListView: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -49,7 +51,7 @@ struct ChannelsView: View {
                     .padding()
             }
             Divider()
-
+            
             if viewModel.filteredChannels.isEmpty {
                 VStack {
                     Spacer()
@@ -63,24 +65,37 @@ struct ChannelsView: View {
             } else {
                 List(viewModel.filteredChannels) { channel in
                     let index = viewModel.channels.firstIndex { $0.id == channel.id }!
-                    ChannelRow(channel: $viewModel.channels[index])
+                    Button(action: {
+                        selectedChannel = viewModel.channels[index]
+                    }, label: {
+                        ChannelRow(channel: $viewModel.channels[index])
+                    })
                 }
-                //                {
-                //                    viewModel.updateChannel(channel: viewModel.filteredChannels[index])
-                //                } deleteAction: {
-                //                    uiState.currentAlert = Alert(
-                //                        title: Text("WARNING!"),
-                //                        message: Text("Are you sure to delete \(channel.title)?"),
-                //                        primaryButton: .destructive(
-                //                            Text("Delete"),
-                //                            action: {
-                //                                viewModel.deleteChannel(channelId: channel.id)
-                //                            }),
-                //                        secondaryButton: .cancel())
-                //
-                //                }
                 .listStyle(PlainListStyle())
             }
+        }
+        .actionSheet(item: $selectedChannel) { selectedChannel in
+            let buttons: [ActionSheet.Button] = [
+                .default(Text("Open YouTube")) {
+                    UIApplication.shared.open(selectedChannel.url, options: [:], completionHandler: nil)
+                },
+                .default(Text("Update"), action: {
+                    viewModel.updateChannel(channel: selectedChannel)
+                }),
+                .destructive(Text("Delete"), action: {
+                    uiState.currentAlert = Alert(
+                        title: Text("WARNING!"),
+                        message: Text("Are you sure to delete \(selectedChannel.title)?"),
+                        primaryButton: .destructive(
+                            Text("Delete"),
+                            action: {
+                                viewModel.deleteChannel(channelId: selectedChannel.id)
+                            }),
+                        secondaryButton: .cancel())
+                }),
+                .cancel()
+            ]
+            return ActionSheet(title: Text("Select Menu"), message: nil, buttons: buttons)
         }
         .contextMenu {
             Button {
