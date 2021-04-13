@@ -12,6 +12,7 @@ class UIState: ObservableObject {
     @Published var currentSheet: Sheet?
     @Published var currentAlert: Alert?
     @Published var currentActionSheet: ActionSheet?
+    @Published var isLoadingBlockingUserInteraction = false
 
     private init() { }
 }

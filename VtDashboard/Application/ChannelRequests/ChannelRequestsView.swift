@@ -10,12 +10,7 @@ struct ChannelRequestsView: View {
             case .loading:
                 LoadingView()
             case .loaded:
-                ZStack {
-                    channelRequestListView
-                    if viewModel.isBusy {
-                        LoadingOverlayView()
-                    }
-                }
+                channelRequestListView
             case .error:
                 ZStack {
                     Text("Error")
@@ -35,6 +30,9 @@ struct ChannelRequestsView: View {
                         action: viewModel.retryUpdateChannelRequest
                     ), secondaryButton: .cancel(Text("Cancel")))
             }
+        })
+        .onReceive(viewModel.$isBusy, perform: { isBusy in
+            uiState.isLoadingBlockingUserInteraction = isBusy
         })
     }
 

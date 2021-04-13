@@ -5,8 +5,9 @@ struct MainView: View {
     @EnvironmentObject private var authenticationClient: AuthenticationClient
     @State private var currentViewType: ViewType?
     private let viewModel = MainViewModel()
-
+    
     var body: some View {
+        
         NavigationView {
             List {
                 ForEach(ViewType.allCases) { viewType in
@@ -21,7 +22,7 @@ struct MainView: View {
             }
             .navigationTitle("Menu")
             .listStyle(GroupedListStyle())
-
+            
             Text("Select a menu!")
                 .font(.title)
                 .bold()
@@ -29,8 +30,9 @@ struct MainView: View {
         }
         .alert(item: $uiState.currentAlert) { $0 }
         .actionSheet(item: $uiState.currentActionSheet) { $0 }
+        .overlay(uiState.isLoadingBlockingUserInteraction ? AnyView(LoadingOverlayView()).ignoresSafeArea() : AnyView(EmptyView()).ignoresSafeArea())
     }
-
+    
     @ViewBuilder
     private var contentView: some View {
         switch currentViewType {

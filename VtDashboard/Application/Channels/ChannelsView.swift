@@ -5,20 +5,13 @@ struct ChannelsView: View {
     @ObservedObject var viewModel: ChannelsViewModel
     @State var filterText: String = ""
     
-    @State private var selectedChannel: Channel?
-    
     var body: some View {
         VStack {
             switch viewModel.viewStatus {
             case .loading:
                 LoadingView()
             case .loaded:
-                ZStack {
-                    channelListView
-                    if viewModel.isPosting || viewModel.isReloading {
-                        LoadingOverlayView()
-                    }
-                }
+                channelListView
             case .error:
                 ZStack {
                     Text("Error")
@@ -38,6 +31,9 @@ struct ChannelsView: View {
                         action: viewModel.retryLastOperation
                     ), secondaryButton: .cancel(Text("Cancel")))
             }
+        })
+        .onReceive(viewModel.$isBusy, perform: { isBusy in
+            uiState.isLoadingBlockingUserInteraction = isBusy
         })
     }
     

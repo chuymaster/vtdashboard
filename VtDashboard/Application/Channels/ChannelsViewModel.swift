@@ -25,8 +25,9 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
         }
     }
 
-    @Published private(set) var isReloading: Bool = false
-    @Published private(set) var isPosting: Bool = false
+    @Published private(set) var isBusy: Bool = false
+    @Published private var isReloading: Bool = false
+    @Published private var isPosting: Bool = false
 
     let postErrorSubject = PassthroughSubject<Error?, Never>()
 
@@ -72,6 +73,11 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
                 self?.isPosting = false
             })
             .store(in: &cancellables)
+        
+        $isPosting
+            .combineLatest($isReloading)
+            .map { $0 || $1 }
+            .assign(to: &$isBusy)
     }
 
     func getChannels() {
