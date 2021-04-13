@@ -25,7 +25,7 @@ jobs:
       - name: make
         run: make
       - name: Test
-        run: xcodebuild -scheme VtDashboard test
+        run: xcodebuild -scheme VtDashboard test -destination 'platform=iOS Simulator,name=iPhone 12 Pro' \
       - name: Archive
         run: xcodebuild -scheme VtDashboard archive -archivePath archive
       - name: 'Upload Artifact'
