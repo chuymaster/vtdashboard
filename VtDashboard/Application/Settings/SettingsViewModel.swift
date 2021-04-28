@@ -2,11 +2,14 @@ import Combine
 
 final class SettingsViewModel: ObservableObject {
 
-    private let authenticationClient: AuthenticationClient
-
-    @Published private(set) var accessToken: String = "null"
+    @Published var email = ""
+    @Published var password = ""
+    
+    @Published private(set) var isBusy = false
+    @Published private(set) var accessToken = "null"
     @Published private(set) var error: Error?
-
+    
+    private let authenticationClient: AuthenticationClient
     private var cancellables = Set<AnyCancellable>()
 
     init(authenticationClient: AuthenticationClient) {
@@ -17,6 +20,9 @@ final class SettingsViewModel: ObservableObject {
                 self?.accessToken = accessToken ?? "null"
             }
             .store(in: &cancellables)
+        
+        self.authenticationClient.$isLoading
+            .assign(to: &$isBusy)
 
         self.authenticationClient.$error
             .sink { [weak self] error in
@@ -24,13 +30,13 @@ final class SettingsViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
-
+    
     func signup() {
-        authenticationClient.signup(email: "test@test.com", password: "testtest")
+        authenticationClient.signup(email: email, password: password)
     }
 
     func signin() {
-        authenticationClient.signin(email: "test@test.com", password: "testtest")
+        authenticationClient.signin(email: email, password: password)
     }
 
     func signOut() {

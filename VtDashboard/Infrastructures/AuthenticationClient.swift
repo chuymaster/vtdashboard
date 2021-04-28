@@ -9,6 +9,7 @@ protocol AuthenticationClientProtocol {
 final class AuthenticationClient: AuthenticationClientProtocol, ObservableObject {
 
     @Published var isLoggedIn = false
+    @Published var isLoading = false
     @Published var accessToken: String?
     @Published var error: Error?
     @Published private var currentUser = CurrentValueSubject<User?, Never>(nil)
@@ -60,14 +61,18 @@ final class AuthenticationClient: AuthenticationClientProtocol, ObservableObject
     }
 
     func signup(email: String, password: String) {
+        isLoading = true
         auth.createUser(withEmail: email, password: password) { [weak self] _, error in
             self?.error = error
+            self?.isLoading = false
         }
     }
 
     func signin(email: String, password: String) {
+        isLoading = true
         auth.signIn(withEmail: email, password: password, completion: { [weak self] _, error in
             self?.error = error
+            self?.isLoading = false
         })
     }
 
