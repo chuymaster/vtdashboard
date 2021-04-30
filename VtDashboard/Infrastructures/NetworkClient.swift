@@ -71,7 +71,6 @@ struct NetworkClient: NetworkClientProtocol {
                         promise(.failure(error))
                     }
                 case .failure(let error):
-                    // TODO:- auto refresh token for one time
                     promise(.failure(error))
                 }
             }

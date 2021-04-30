@@ -13,7 +13,7 @@ final class AuthenticationClient: AuthenticationClientProtocol, ObservableObject
     @Published var accessToken: String?
     @Published var userId: String?
     @Published var error: Error?
-    @Published private var currentUser = CurrentValueSubject<User?, Never>(nil)
+    @Published private var currentUser: User?
 
     static let shared = AuthenticationClient()
 
@@ -22,14 +22,14 @@ final class AuthenticationClient: AuthenticationClientProtocol, ObservableObject
 
     init() {
         auth.addStateDidChangeListener { [weak self] (_, user) in
-            self?.currentUser.send(user)
+            self?.currentUser = user
         }
 
-        currentUser
+        $currentUser
             .map { $0 != nil }
             .assign(to: &$isLoggedIn)
         
-        currentUser
+        $currentUser
             .compactMap { $0?.uid }
             .assign(to: &$userId)
 
@@ -40,11 +40,12 @@ final class AuthenticationClient: AuthenticationClientProtocol, ObservableObject
             })
             .store(in: &cancellables)
 
-        currentUser
+        $currentUser
             .compactMap { $0 }
             .sink(receiveValue: { user in
-                user.getIDTokenForcingRefresh(true, completion: { [weak self] accessToken, _ in
+                user.getIDToken(completion: { [weak self] accessToken, error in
                     self?.accessToken = accessToken
+                    self?.error = error
                 })
             })
             .store(in: &cancellables)
@@ -82,5 +83,12 @@ final class AuthenticationClient: AuthenticationClientProtocol, ObservableObject
 
     func signOut() {
         try? auth.signOut()
+    }
+    
+    func refreshToken() {
+        currentUser?.getIDToken(completion: { [weak self] accessToken, error in
+            self?.accessToken = accessToken
+            self?.error = error
+        })
     }
 }

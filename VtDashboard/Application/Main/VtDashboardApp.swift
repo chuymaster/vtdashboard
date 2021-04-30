@@ -9,6 +9,9 @@ struct VtDashboardApp: App {
             MainView()
                 .environmentObject(UIState.shared)
                 .environmentObject(AuthenticationClient.shared)
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                    AuthenticationClient.shared.refreshToken()
+                }
         }
     }
 }
