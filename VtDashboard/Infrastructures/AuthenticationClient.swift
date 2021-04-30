@@ -1,6 +1,7 @@
 import Combine
 import Firebase
 import Foundation
+import GoogleSignIn
 import OSLog
 
 protocol AuthenticationClientProtocol {

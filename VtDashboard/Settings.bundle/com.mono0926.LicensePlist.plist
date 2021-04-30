@@ -12,14 +12,6 @@
 		</dict>
 		<dict>
 			<key>File</key>
-			<string>com.mono0926.LicensePlist/abseil-cpp-SwiftPM</string>
-			<key>Title</key>
-			<string>abseil (0.20200225.3)</string>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-		</dict>
-		<dict>
-			<key>File</key>
 			<string>com.mono0926.LicensePlist/Alamofire</string>
 			<key>Title</key>
 			<string>Alamofire (5.4.1)</string>
@@ -28,17 +20,57 @@
 		</dict>
 		<dict>
 			<key>File</key>
-			<string>com.mono0926.LicensePlist/boringssl-SwiftPM</string>
+			<string>com.mono0926.LicensePlist/AppAuth</string>
 			<key>Title</key>
-			<string>BoringSSL-GRPC (0.7.1)</string>
+			<string>AppAuth (1.4.0)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
 		<dict>
 			<key>File</key>
-			<string>com.mono0926.LicensePlist/firebase-ios-sdk</string>
+			<string>com.mono0926.LicensePlist/Firebase</string>
 			<key>Title</key>
-			<string>Firebase (7.10.0)</string>
+			<string>Firebase (7.11.0)</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
+			<key>File</key>
+			<string>com.mono0926.LicensePlist/FirebaseAnalytics</string>
+			<key>Title</key>
+			<string>FirebaseAnalytics (7.11.0)</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
+			<key>File</key>
+			<string>com.mono0926.LicensePlist/FirebaseAuth</string>
+			<key>Title</key>
+			<string>FirebaseAuth (7.11.0)</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
+			<key>File</key>
+			<string>com.mono0926.LicensePlist/FirebaseCore</string>
+			<key>Title</key>
+			<string>FirebaseCore (7.11.0)</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
+			<key>File</key>
+			<string>com.mono0926.LicensePlist/FirebaseCoreDiagnostics</string>
+			<key>Title</key>
+			<string>FirebaseCoreDiagnostics (7.11.0)</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
+			<key>File</key>
+			<string>com.mono0926.LicensePlist/FirebaseInstallations</string>
+			<key>Title</key>
+			<string>FirebaseInstallations (7.11.0)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -46,7 +78,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/GoogleAppMeasurement</string>
 			<key>Title</key>
-			<string>GoogleAppMeasurement (7.10.0)</string>
+			<string>GoogleAppMeasurement (7.11.0)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -60,6 +92,14 @@
 		</dict>
 		<dict>
 			<key>File</key>
+			<string>com.mono0926.LicensePlist/GoogleSignIn</string>
+			<key>Title</key>
+			<string>GoogleSignIn (5.0.2)</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
+			<key>File</key>
 			<string>com.mono0926.LicensePlist/GoogleUtilities</string>
 			<key>Title</key>
 			<string>GoogleUtilities (7.4.0)</string>
@@ -68,15 +108,15 @@
 		</dict>
 		<dict>
 			<key>File</key>
-			<string>com.mono0926.LicensePlist/grpc-SwiftPM</string>
+			<string>com.mono0926.LicensePlist/GTMAppAuth</string>
 			<key>Title</key>
-			<string>gRPC (1.28.4)</string>
+			<string>GTMAppAuth (1.2.1)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
 		<dict>
 			<key>File</key>
-			<string>com.mono0926.LicensePlist/gtm-session-fetcher</string>
+			<string>com.mono0926.LicensePlist/GTMSessionFetcher</string>
 			<key>Title</key>
 			<string>GTMSessionFetcher (1.5.0)</string>
 			<key>Type</key>
@@ -87,14 +127,6 @@
 			<string>com.mono0926.LicensePlist/Kingfisher</string>
 			<key>Title</key>
 			<string>Kingfisher (6.1.1)</string>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-		</dict>
-		<dict>
-			<key>File</key>
-			<string>com.mono0926.LicensePlist/leveldb</string>
-			<key>Title</key>
-			<string>leveldb (1.22.2)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -116,17 +148,9 @@
 		</dict>
 		<dict>
 			<key>File</key>
-			<string>com.mono0926.LicensePlist/promises</string>
+			<string>com.mono0926.LicensePlist/PromisesObjC</string>
 			<key>Title</key>
-			<string>Promises (1.2.12)</string>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-		</dict>
-		<dict>
-			<key>File</key>
-			<string>com.mono0926.LicensePlist/swift-protobuf</string>
-			<key>Title</key>
-			<string>SwiftProtobuf (1.16.0)</string>
+			<string>PromisesObjC (1.2.12)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
