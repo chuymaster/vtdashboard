@@ -12,6 +12,9 @@ brew install mint
 
 - Run `make` to build the project
 
+## UserDefaults
+
+Keys and values of UserDefaults are defined in `UserDefaultsKey` enum.
 
 ## Tips command
 

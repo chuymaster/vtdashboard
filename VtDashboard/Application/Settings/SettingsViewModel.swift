@@ -1,4 +1,5 @@
 import Combine
+import Darwin
 
 final class SettingsViewModel: ObservableObject {
 
@@ -8,6 +9,7 @@ final class SettingsViewModel: ObservableObject {
     @Published private(set) var isBusy = false
     @Published private(set) var accessToken = "null"
     @Published private(set) var error: Error?
+    @Published private(set) var shouldAlertApplicationWillTerminate = false
     
     private let authenticationClient: AuthenticationClient
     private var cancellables = Set<AnyCancellable>()
@@ -41,5 +43,14 @@ final class SettingsViewModel: ObservableObject {
 
     func signOut() {
         authenticationClient.signOut()
+    }
+    
+    func showApplicationWillTerminateAlert() {
+        shouldAlertApplicationWillTerminate = true
+    }
+    
+    func signOutAndTerminate() {
+        signOut()
+        exit(0)
     }
 }

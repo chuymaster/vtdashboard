@@ -18,7 +18,7 @@ struct SettingsView: View {
             }
             .pickerStyle(SegmentedPickerStyle())
             .onChange(of: serverEnvironment, perform: { _ in
-                viewModel.signOut()
+                viewModel.showApplicationWillTerminateAlert()
             })
             
             Divider()
@@ -84,6 +84,11 @@ struct SettingsView: View {
         })
         .onReceive(viewModel.$isBusy, perform: { isBusy in
             uiState.isLoadingBlockingUserInteraction = isBusy
+        })
+        .onReceive(viewModel.$shouldAlertApplicationWillTerminate, perform: { shouldAlertApplicationWillExit in
+            if shouldAlertApplicationWillExit {
+                uiState.currentAlert = Alert(title: Text("Warning"), message: Text("Application will be terminated to switch server environment. Please open again."), dismissButton: .destructive(Text("Close"), action: viewModel.signOutAndTerminate))
+            }
         })
     }
 }

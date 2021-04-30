@@ -17,4 +17,13 @@ enum ServerEnvironmentValue: String, CaseIterable, Identifiable {
 
     case development
     case production
+    
+    var googleServiceInfoFileName: String {
+        switch self {
+        case .development:
+            return "GoogleService-Info-Development"
+        case .production:
+            return "GoogleService-Info-Production"
+        }
+    }
 }
