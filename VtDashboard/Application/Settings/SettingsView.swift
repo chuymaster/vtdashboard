@@ -22,54 +22,20 @@ struct SettingsView: View {
             })
             
             Divider()
-            
-            VStack {
-                TextField(
-                    "Email",
-                    text: $viewModel.email
-                )
-                .keyboardType(.emailAddress)
-                .padding(8)
-                .modifier(RoundedBorder())
-                SecureField(
-                    "Password",
-                    text: $viewModel.password,
-                    onCommit: viewModel.signin
-                )
-                .padding(8)
-                .modifier(RoundedBorder())
-            }
-            
-            HStack {
-                Button(action: viewModel.signup, label: {
-                    Text("Sign Up")
-                })
-                Spacer()
-                Button(action: viewModel.signin, label: {
-                    Text("Sign In")
-                })
-                Spacer()
-                Button(action: viewModel.signOut, label: {
-                    Text("Sign Out")
-                })
-            }
+            authorizationView
             
             Divider()
             
             VStack(alignment: .leading) {
-                Text("Current host")
-                    .font(.caption2)
-                    .foregroundColor(.gray)
+                CaptionText(text: "Current Host")
                 Text(Endpoint.baseURL.absoluteString)
                     .font(.caption)
             }
             .padding(.bottom, 4)
             
             VStack(alignment: .leading) {
-                Text("Access Token")
-                    .font(.caption2)
-                    .foregroundColor(.gray)
-                Text(viewModel.accessToken)
+                CaptionText(text: "Access Token")
+                Text(viewModel.accessToken ?? "null")
                     .font(.caption)
             }
             
@@ -90,6 +56,50 @@ struct SettingsView: View {
                 uiState.currentAlert = Alert(title: Text("Warning"), message: Text("Application will be terminated to switch server environment. Please open again."), dismissButton: .destructive(Text("Close"), action: viewModel.signOutAndTerminate))
             }
         })
+    }
+    
+    private var authorizationView: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            if viewModel.accessToken == nil {
+                VStack {
+                    TextField(
+                        "Email",
+                        text: $viewModel.email
+                    )
+                    .keyboardType(.emailAddress)
+                    .padding(8)
+                    .modifier(RoundedBorder())
+                    SecureField(
+                        "Password",
+                        text: $viewModel.password,
+                        onCommit: viewModel.signin
+                    )
+                    .padding(8)
+                    .modifier(RoundedBorder())
+                }
+                
+                HStack {
+                    Button(action: viewModel.signup, label: {
+                        Text("Sign Up")
+                    })
+                    Spacer()
+                    Button(action: viewModel.signin, label: {
+                        Text("Sign In")
+                    })
+                }
+            } else {
+                VStack(alignment: .leading) {
+                    CaptionText(text: "User ID")
+                    Text(viewModel.userId ?? "null")
+                }
+                HStack {
+                    Button(action: viewModel.signOut, label: {
+                        Text("Sign Out")
+                    })
+                    Spacer()
+                }
+            }
+        }
     }
 }
 

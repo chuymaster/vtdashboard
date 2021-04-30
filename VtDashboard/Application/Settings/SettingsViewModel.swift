@@ -7,7 +7,8 @@ final class SettingsViewModel: ObservableObject {
     @Published var password = ""
     
     @Published private(set) var isBusy = false
-    @Published private(set) var accessToken = "null"
+    @Published private(set) var accessToken: String?
+    @Published private(set) var userId: String?
     @Published private(set) var error: Error?
     @Published private(set) var shouldAlertApplicationWillTerminate = false
     
@@ -19,12 +20,15 @@ final class SettingsViewModel: ObservableObject {
 
         self.authenticationClient.$accessToken
             .sink { [weak self] accessToken in
-                self?.accessToken = accessToken ?? "null"
+                self?.accessToken = accessToken
             }
             .store(in: &cancellables)
         
         self.authenticationClient.$isLoading
             .assign(to: &$isBusy)
+        
+        self.authenticationClient.$userId
+            .assign(to: &$userId)
 
         self.authenticationClient.$error
             .sink { [weak self] error in

@@ -11,6 +11,7 @@ final class AuthenticationClient: AuthenticationClientProtocol, ObservableObject
     @Published var isLoggedIn = false
     @Published var isLoading = false
     @Published var accessToken: String?
+    @Published var userId: String?
     @Published var error: Error?
     @Published private var currentUser = CurrentValueSubject<User?, Never>(nil)
 
@@ -27,6 +28,10 @@ final class AuthenticationClient: AuthenticationClientProtocol, ObservableObject
         currentUser
             .map { $0 != nil }
             .assign(to: &$isLoggedIn)
+        
+        currentUser
+            .compactMap { $0?.uid }
+            .assign(to: &$userId)
 
         $isLoggedIn
             .filter { !$0 }
@@ -53,7 +58,6 @@ final class AuthenticationClient: AuthenticationClientProtocol, ObservableObject
             .store(in: &cancellables)
 
         $accessToken
-            .print()
             .sink(receiveValue: { [weak self]_ in
                 self?.objectWillChange.send()
             })
