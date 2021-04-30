@@ -1,0 +1,37 @@
+name: LicensePlist, nameSpecified: , owner: mono0926, version: 3.11.0
+
+name: SwiftLint, nameSpecified: , owner: realm, version: 0.42.0
+
+name: xcodegen, nameSpecified: , owner: yonaskolb, version: 2.19.0
+
+name: abseil-cpp-SwiftPM, nameSpecified: abseil, owner: firebase, version: 0.20200225.3
+
+name: Alamofire, nameSpecified: Alamofire, owner: Alamofire, version: 5.4.1
+
+name: boringssl-SwiftPM, nameSpecified: BoringSSL-GRPC, owner: firebase, version: 0.7.1
+
+name: firebase-ios-sdk, nameSpecified: Firebase, owner: firebase, version: 7.10.0
+
+name: GoogleAppMeasurement, nameSpecified: GoogleAppMeasurement, owner: google, version: 7.10.0
+
+name: GoogleDataTransport, nameSpecified: GoogleDataTransport, owner: google, version: 8.4.0
+
+name: GoogleUtilities, nameSpecified: GoogleUtilities, owner: google, version: 7.3.0
+
+name: grpc-SwiftPM, nameSpecified: gRPC, owner: firebase, version: 1.28.4
+
+name: gtm-session-fetcher, nameSpecified: GTMSessionFetcher, owner: google, version: 1.5.0
+
+name: Kingfisher, nameSpecified: Kingfisher, owner: onevcat, version: 6.1.1
+
+name: leveldb, nameSpecified: leveldb, owner: firebase, version: 1.22.2
+
+name: nanopb, nameSpecified: nanopb, owner: firebase, version: 2.30908.0
+
+name: promises, nameSpecified: Promises, owner: google, version: 1.2.12
+
+name: swift-protobuf, nameSpecified: SwiftProtobuf, owner: apple, version: 1.16.0
+
+add-version-numbers: true
+
+LicensePlist Version: 3.0.7

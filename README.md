@@ -10,7 +10,20 @@ This project uses [XcodeGen](https://github.com/yonaskolb/XcodeGen) to generate 
 brew install mint
 ```
 
-- Run `make` to build the project
+- Install [Bundler](https://bundler.io/)
+
+```
+gem install bundler
+```
+
+- Run `make setup` to setup the project
+- Open `VtDashboard.xcworkspace` and happy coding!
+
+# Development
+
+## Xcodegen
+
+Run `make xcodegen` when you add new files or pulling new files from the repository.
 
 ## UserDefaults
 
