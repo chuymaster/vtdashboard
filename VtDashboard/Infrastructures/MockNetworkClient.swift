@@ -1,6 +1,6 @@
 import Combine
 
-// swiftlint:disable force_cast
+// swiftlint:disable force_cast function_body_length line_length
 struct MockNetworkClient: NetworkClientProtocol {
     func post<T>(endpoint: PostEndpoint, parameters: [String: String]) -> Future<T, Error> where T: Decodable, T: Encodable {
         switch endpoint {

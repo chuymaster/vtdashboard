@@ -21,15 +21,13 @@ struct ChannelRequestsView: View {
             viewModel.getChannelRequests()
         }
         .onReceive(viewModel.postErrorSubject, perform: { error in
-            if let _ = error {
-                uiState.currentAlert = Alert(
-                    title: Text("Failure").bold(),
-                    message: Text(error?.localizedDescription ?? "Unknown error"),
-                    primaryButton: .default(
-                        Text("Retry"),
-                        action: viewModel.retryUpdateChannelRequest
-                    ), secondaryButton: .cancel(Text("Cancel")))
-            }
+            uiState.currentAlert = Alert(
+                title: Text("Failure").bold(),
+                message: Text(error.localizedDescription),
+                primaryButton: .default(
+                    Text("Retry"),
+                    action: viewModel.retryUpdateChannelRequest
+                ), secondaryButton: .cancel(Text("Cancel")))
         })
         .onReceive(viewModel.$isBusy, perform: { isBusy in
             uiState.isLoadingBlockingUserInteraction = isBusy

@@ -11,7 +11,7 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
     @Published private var isPosting = false
     @Published private var isReloading = false
 
-    let postErrorSubject = PassthroughSubject<Error?, Never>()
+    let postErrorSubject = PassthroughSubject<Error, Never>()
 
     private let networkClient: NetworkClientProtocol
     private var postCompletedSubject = PassthroughSubject<Void, Never>()

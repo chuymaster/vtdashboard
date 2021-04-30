@@ -29,7 +29,7 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
     @Published private var isReloading: Bool = false
     @Published private var isPosting: Bool = false
 
-    let postErrorSubject = PassthroughSubject<Error?, Never>()
+    let postErrorSubject = PassthroughSubject<Error, Never>()
 
     private let networkClient: NetworkClientProtocol
 

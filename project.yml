@@ -31,11 +31,9 @@ targets:
       - package: Alamofire
       - package: Firebase
         product: FirebaseAuth
-    # postBuildScripts:
-    #   - name: Copy Google Service Info plist
-    #     path: "scripts/copy_appropriate_google-service-info-plist.sh"
-      # - name: Run SwiftLint
-      # script: swiftlint --fix --format
+    postBuildScripts:
+      - name: Run SwiftLint
+        path: "scripts/swiftlint.sh"
   VtDashboardTests:
     type: bundle.unit-test
     platform: iOS
