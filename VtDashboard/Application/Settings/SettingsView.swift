@@ -64,8 +64,15 @@ struct SettingsView: View {
     
     private var authorizationView: some View {
         VStack(alignment: .leading, spacing: 8) {
+            
             if viewModel.accessToken == nil {
-                VStack {
+                VStack(alignment: .leading) {
+                    CaptionText(text: "Sign in with Google")
+                    GoogleSignInButton()
+                }
+                
+                VStack(alignment: .leading) {
+                    CaptionText(text: "Sign in with Email and Password")
                     TextField(
                         "Email",
                         text: $viewModel.email
@@ -83,18 +90,24 @@ struct SettingsView: View {
                 }
                 
                 HStack {
-                    Button(action: viewModel.signup, label: {
-                        Text("Sign Up")
-                    })
-                    Spacer()
                     Button(action: viewModel.signin, label: {
                         Text("Sign In")
                     })
+                    Divider()
+                    Button(action: viewModel.signup, label: {
+                        Text("Sign Up")
+                    })
                 }
+                .frame(height: 28)
             } else {
                 VStack(alignment: .leading) {
                     CaptionText(text: "User ID")
                     Text(viewModel.userId ?? "null")
+                }
+                
+                VStack(alignment: .leading) {
+                    CaptionText(text: "Provider ID")
+                    Text(viewModel.providerId ?? "null")
                 }
                 HStack {
                     Button(action: viewModel.signOut, label: {

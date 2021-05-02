@@ -9,6 +9,7 @@ final class SettingsViewModel: ObservableObject {
     @Published private(set) var isBusy = false
     @Published private(set) var accessToken: String?
     @Published private(set) var userId: String?
+    @Published private(set) var providerId: String?
     @Published private(set) var error: Error?
     @Published private(set) var shouldAlertApplicationWillTerminate = false
     
@@ -29,6 +30,9 @@ final class SettingsViewModel: ObservableObject {
         
         self.authenticationClient.$userId
             .assign(to: &$userId)
+        
+        self.authenticationClient.$providerId
+            .assign(to: &$providerId)
 
         self.authenticationClient.$error
             .sink { [weak self] error in
