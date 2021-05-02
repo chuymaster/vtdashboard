@@ -1,7 +1,6 @@
-target 'VtDashboard' do
-  # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
+platform :ios, '14.0'
 
+target 'VtDashboard' do
   # Pods for VtDashboard
 
   pod 'Firebase/Analytics'
