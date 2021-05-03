@@ -20,8 +20,10 @@ jobs:
         run: xcodebuild -version
       - name: Install Mint
         run: brew install mint
-      - name: make
-        run: make
+      - name: Install Bundler
+        run: gem install bundler
+      - name: make setup
+        run: make setup
       - name: Test
         run: xcodebuild -scheme VtDashboard test -destination 'platform=iOS Simulator,name=iPhone 12 Pro' \
       ## Disable archiving due to not having provisioning profile
