@@ -1,6 +1,7 @@
 enum UserDefaultsKey: String {
     case serverEnvironment
     case channelsSortType
+    case channelsFilterType
 
     var values: [String] {
         switch self {

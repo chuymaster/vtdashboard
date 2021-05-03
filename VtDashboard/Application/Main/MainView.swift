@@ -30,6 +30,7 @@ struct MainView: View {
         }
         .alert(item: $uiState.currentAlert) { $0 }
         .actionSheet(item: $uiState.currentActionSheet) { $0 }
+        .sheet(item: $uiState.currentSheet) { $0.view }
         .overlay(uiState.isLoadingBlockingUserInteraction ? AnyView(LoadingOverlayView()).ignoresSafeArea() : AnyView(EmptyView()).ignoresSafeArea())
     }
 

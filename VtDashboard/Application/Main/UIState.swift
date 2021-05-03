@@ -2,12 +2,10 @@ import Combine
 import SwiftUI
 
 class UIState: ObservableObject {
-    enum Sheet: Int, Identifiable {
-        case nothing
-
-        var id: Int { rawValue }
+    struct Sheet: Identifiable {
+        let id = UUID().uuidString
+        let view: AnyView
     }
-
     static let shared = UIState()
     @Published var currentSheet: Sheet?
     @Published var currentAlert: Alert?

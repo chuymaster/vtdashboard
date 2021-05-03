@@ -3,18 +3,50 @@ import SwiftUI
 import OSLog
 
 final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
-
-    enum SortType: Int {
+    
+    enum SortType: Int, CaseIterable, Identifiable {
+        var id: Int { self.rawValue }
+        
         case updatedAt
         case subscribers
         case views
+        
+        var displayText: String {
+            switch self {
+            case .updatedAt:
+                return "Updated At"
+            case .subscribers:
+                return "Subscribers"
+            case .views:
+                return "Views"
+            }
+        }
     }
-
+    
+    enum FilterType: Int, CaseIterable, Identifiable {
+        var id: Int { self.rawValue }
+        
+        case all
+        case original
+        case half
+        
+        var displayText: String {
+            switch self {
+            case .all:
+                return "All"
+            case .original:
+                return "Original"
+            case .half:
+                return "Half"
+            }
+        }
+    }
+    
     private enum Operation {
         case updateChannel(channel: Channel)
         case deleteChannel(channelId: String)
     }
-
+    
     @Published var viewStatus: ViewStatus = .loading
     @Published var channels: [Channel] = []
     @Published var filterText = ""
@@ -24,25 +56,36 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
             objectWillChange.send()
         }
     }
-
+    @AppStorage(UserDefaultsKey.channelsFilterType.rawValue) var filterType = FilterType.all {
+        didSet {
+            objectWillChange.send()
+        }
+    }
+    
     @Published private(set) var isBusy: Bool = false
     @Published private var isReloading: Bool = false
     @Published private var isPosting: Bool = false
-
+    
     let postErrorSubject = PassthroughSubject<Error, Never>()
-
+    
     private let networkClient: NetworkClientProtocol
-
+    
     private var lastOperation: Operation?
     private var postCompletedSubject = PassthroughSubject<Void, Never>()
     private var cancellables = Set<AnyCancellable>()
     private var channelStatistics: [ChannelStatistics] = []
-
+    
     var filteredChannels: [Channel] {
-        let channels: [Channel]
-        if filterText.isEmpty {
+        var channels: [Channel]
+        switch filterType {
+        case .all:
             channels = self.channels
-        } else {
+        case .half:
+            channels = self.channels.filter { $0.type == .half }
+        case .original:
+            channels = self.channels.filter { $0.type == .original }
+        }
+        if !filterText.isEmpty {
             channels = self.channels.filter { $0.title.lowercased().contains(filterText.lowercased()) }
         }
         return channels
@@ -57,35 +100,35 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
                 }
             }
     }
-
+    
     init(networkClient: NetworkClientProtocol = NetworkClient()) {
         self.networkClient = networkClient
-
+        
         postCompletedSubject
             .sink(receiveValue: { [weak self] _ in
                 self?.isPosting = false
                 self?.getChannels()
             })
             .store(in: &cancellables)
-
+        
         postErrorSubject
             .sink(receiveValue: { [weak self] _ in
                 self?.isPosting = false
             })
             .store(in: &cancellables)
-
+        
         $isPosting
             .combineLatest($isReloading)
             .map { $0 || $1 }
             .assign(to: &$isBusy)
     }
-
+    
     func getChannels() {
         if viewStatus != .loading {
             isReloading = true
         }
         let getChannelList: Future<[Channel], Error> = networkClient.get(endpoint: .getChannelList)
-
+        
         getChannelList
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
@@ -107,10 +150,10 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
             }
             .store(in: &cancellables)
     }
-
+    
     func getChannelStatistics() {
         let getChannelStatistics: Future<ChannelStatisticsResult, Error> = networkClient.get(endpoint: .getChannelDataList)
-
+        
         getChannelStatistics
             .receive(on: DispatchQueue.main)
             .catch({ _ in
@@ -129,18 +172,18 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
             }
             .store(in: &cancellables)
     }
-
+    
     func updateChannel(channel: Channel) {
         isPosting = true
         lastOperation = .updateChannel(channel: channel)
-
+        
         let postChannel: Future<Channel, Error> = networkClient.post(endpoint: .postChannel, parameters: [
             "channel_id": channel.channelId,
             "title": channel.title,
             "thumbnail_image_url": channel.thumbnailImageUrl,
             "type": "\(channel.type.rawValue)"
         ])
-
+        
         postChannel
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
@@ -153,15 +196,15 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
             } receiveValue: { _ in }
             .store(in: &cancellables)
     }
-
+    
     func deleteChannel(channelId: String) {
         isPosting = true
         lastOperation = .deleteChannel(channelId: channelId)
-
+        
         let deleteChannel: Future<String?, Error> = networkClient.post(endpoint: .deleteChannel, parameters: [
             "channel_id": channelId
         ])
-
+        
         deleteChannel
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
@@ -174,7 +217,7 @@ final class ChannelsViewModel: ViewStatusManageable, ObservableObject {
             } receiveValue: { _ in }
             .store(in: &cancellables)
     }
-
+    
     func retryLastOperation() {
         switch lastOperation {
         case .updateChannel(let channel):

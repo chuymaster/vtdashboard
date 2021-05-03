@@ -3,7 +3,8 @@ import SwiftUI
 struct ChannelsView: View {
     @EnvironmentObject private var uiState: UIState
     @ObservedObject var viewModel: ChannelsViewModel
-    @State var filterText: String = ""
+    @State private var filterText: String = ""
+    @State private var isPresentingFilterView = false
 
     var body: some View {
         VStack {
@@ -40,7 +41,7 @@ struct ChannelsView: View {
             HStack {
                 SearchBar(text: $viewModel.filterText)
                 Spacer()
-                Text("Total channels: \(viewModel.channels.count)")
+                Text("Total channels: \(viewModel.filteredChannels.count)")
                     .font(.callout)
                     .padding()
             }
@@ -70,29 +71,22 @@ struct ChannelsView: View {
         }
         .toolbar {
             Button(action: {
-                let buttons: [ActionSheet.Button] = [
-                    .default(Text("Sort by Updated at")) {
-                        viewModel.sortType = .updatedAt
-                    },
-                    .default(Text("Sort by Subscribers"), action: {
-                        viewModel.sortType = .subscribers
-                    }),
-                    .default(Text("Sort by Views"), action: {
-                        viewModel.sortType = .views
-                    }),
-                    .cancel()
-                ]
-                uiState.currentActionSheet = ActionSheet(
-                    title: Text("Select Sort Filter"),
-                    message: nil,
-                    buttons: buttons
+                uiState.currentSheet = .init(
+                    view: AnyView(
+                        ChannelsFilterView(
+                            sortType: viewModel.$sortType,
+                            filterType: viewModel.$filterType,
+                            sortTypes: ChannelsViewModel.SortType.allCases,
+                            filterTypes: ChannelsViewModel.FilterType.allCases
+                        )
+                    )
                 )
             }, label: {
                 Image(systemName: "line.horizontal.3.decrease.circle")
             })
         }
     }
-
+    
     private func makeActionSheet(channel: Channel) -> ActionSheet {
         let buttons: [ActionSheet.Button] = [
             .default(Text("Open YouTube")) {
