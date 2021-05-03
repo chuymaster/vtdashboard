@@ -118,7 +118,7 @@ extension AuthenticationClient: GIDSignInDelegate {
                                                        accessToken: authentication.accessToken)
         
         isLoading = true
-        Auth.auth().signIn(with: credential) { [weak self] result, error in
+        Auth.auth().signIn(with: credential) { [weak self] _, error in
             self?.error = error
             self?.isLoading = false
         }
