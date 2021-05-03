@@ -125,5 +125,6 @@ struct ChannelsView_Previews: PreviewProvider {
                 networkClient: MockNetworkClient()
             )
         )
+        .environmentObject(UIState.shared)
     }
 }

@@ -88,5 +88,6 @@ struct AddChannelRequestView_Previews: PreviewProvider {
             viewModel: .init(networkClient: MockNetworkClient()
             )
         )
+        .environmentObject(UIState.shared)
     }
 }

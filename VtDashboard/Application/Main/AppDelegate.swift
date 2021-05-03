@@ -6,14 +6,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     private let userDefaults = UserDefaults.standard
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
-        
-        // Skip initializations for Previews
-        #if DEBUG
-        if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
-            return true
-        }
-        #endif
-        
         let serverEnvironmentValue: ServerEnvironmentValue
         if let serverEnvironment = userDefaults.value(forKey: UserDefaultsKey.serverEnvironment.rawValue) as? String {
             serverEnvironmentValue = ServerEnvironmentValue(rawValue: serverEnvironment) ?? .development
