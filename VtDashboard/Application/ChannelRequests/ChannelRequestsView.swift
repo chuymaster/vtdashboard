@@ -119,5 +119,6 @@ struct ChannelRequestsView_Previews: PreviewProvider {
         ChannelRequestsView(
             viewModel: ChannelRequestsViewModel(networkClient: MockNetworkClient())
         )
+        .environmentObject(UIState.shared)
     }
 }

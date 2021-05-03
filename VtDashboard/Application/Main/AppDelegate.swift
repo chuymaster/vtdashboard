@@ -1,14 +1,11 @@
 import Firebase
-import Foundation
-import SwiftUI
+import GoogleSignIn
 
+@main
 class AppDelegate: NSObject, UIApplicationDelegate {
-    
     private let userDefaults = UserDefaults.standard
-
-    override init() {
-        super.init()
-        
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         let serverEnvironmentValue: ServerEnvironmentValue
         if let serverEnvironment = userDefaults.value(forKey: UserDefaultsKey.serverEnvironment.rawValue) as? String {
             serverEnvironmentValue = ServerEnvironmentValue(rawValue: serverEnvironment) ?? .development
@@ -17,12 +14,19 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
         
         let filePath = Bundle.main.path(forResource: serverEnvironmentValue.googleServiceInfoFileName, ofType: "plist")!
-        print(filePath)
         let options = FirebaseOptions(contentsOfFile: filePath)!
         FirebaseApp.configure(options: options)
-    }
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = AuthenticationClient.shared
         return true
+    }
+    
+    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any])
+    -> Bool {
+        return GIDSignIn.sharedInstance().handle(url)
+    }
+    
+    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 }
