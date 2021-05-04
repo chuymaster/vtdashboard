@@ -33,6 +33,7 @@ enum GetEndpoint {
 
 enum PostEndpoint {
     case postChannelRequest
+    case deleteChannelRequest
     case postChannel
     case deleteChannel
 
@@ -40,6 +41,8 @@ enum PostEndpoint {
         switch self {
         case .postChannelRequest:
             return Endpoint.baseURL.appendingPathComponent("postChannelRequest")
+        case .deleteChannelRequest:
+            return Endpoint.baseURL.appendingPathComponent("deleteChannelRequest")
         case .postChannel:
             return Endpoint.baseURL.appendingPathComponent("postChannel")
         case .deleteChannel:

@@ -3,7 +3,11 @@ import SwiftUI
 import OSLog
 
 final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
-
+    private enum Operation {
+        case updateChannelRequest(request: ChannelRequest)
+        case deleteChannelRequest(channelId: String)
+    }
+    
     @Published var viewStatus: ViewStatus = .loading
     @Published var channelRequests: [ChannelRequest] = []
 
@@ -15,8 +19,8 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
 
     private let networkClient: NetworkClientProtocol
     private var postCompletedSubject = PassthroughSubject<Void, Never>()
-    private var lastUpdateChannelRequest: ChannelRequest?
     private var cancellables = Set<AnyCancellable>()
+    private var lastOperation: Operation?
 
     init(networkClient: NetworkClientProtocol = NetworkClient()) {
         self.networkClient = networkClient
@@ -70,7 +74,7 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
 
     func updateChannelRequest(request: ChannelRequest) {
         isPosting = true
-        lastUpdateChannelRequest = request
+        lastOperation = .updateChannelRequest(request: request)
 
         let postChannelRequest: Future<ChannelRequest, Error> =
             networkClient.post(endpoint: .postChannelRequest, parameters: [
@@ -116,12 +120,36 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
                 .store(in: &cancellables)
         }
     }
-
-    func retryUpdateChannelRequest() {
-        guard let request = lastUpdateChannelRequest else {
-            Logger().error("No request to retry")
+    
+    func deleteChannelRequest(channelId: String) {
+        isPosting = true
+        lastOperation = .deleteChannelRequest(channelId: channelId)
+        
+        let deleteChannelRequest: Future<String?, Error> = networkClient.post(endpoint: .deleteChannelRequest, parameters: [
+            "channel_id": channelId
+        ])
+        
+        deleteChannelRequest
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                switch completion {
+                case .finished:
+                    self?.postCompletedSubject.send()
+                case .failure(let error):
+                    self?.postErrorSubject.send(error)
+                }
+            } receiveValue: { _ in }
+            .store(in: &cancellables)
+    }
+    
+    func retryLastOperation() {
+        switch lastOperation {
+        case .updateChannelRequest(let request):
+            updateChannelRequest(request: request)
+        case .deleteChannelRequest(let channelId):
+            deleteChannelRequest(channelId: channelId)
+        case .none:
             return
         }
-        updateChannelRequest(request: request)
     }
 }
