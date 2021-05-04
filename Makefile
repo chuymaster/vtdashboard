@@ -7,6 +7,7 @@ WORKSPACE_NAME := ${PRODUCT_NAME}.xcworkspace
 
 .PHONY: setup
 setup: # Install dependencies and prepared development configuration
+	$(MAKE) bundle-install
 	$(MAKE) install-mint
 	$(MAKE) install-cocoapods
 	$(MAKE) update-cocoapods
@@ -53,3 +54,6 @@ help:
 .PHONY: generate-licenses
 generate-licenses: # Generate licenses with LicensePlist
 	mint run LicensePlist license-plist --output-path ${PRODUCT_NAME}/Settings.bundle --add-version-numbers
+
+.PHONY: bundle-install
+	bundle install
