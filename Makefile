@@ -23,6 +23,10 @@ install-mint: # Install Mint dependencies
 xcodegen: # # Generate project with XcodeGen
 	mint run xcodegen --use-cache
 
+.PHONY: bundle-install
+bundle-install: # Install Bundler dependencies
+	bundle install
+
 .PHONY: install-cocoapods
 install-cocoapods: # Install CocoaPods dependencies and generate workspace
 	bundle exec pod install
@@ -54,6 +58,3 @@ help:
 .PHONY: generate-licenses
 generate-licenses: # Generate licenses with LicensePlist
 	mint run LicensePlist license-plist --output-path ${PRODUCT_NAME}/Settings.bundle --add-version-numbers
-
-.PHONY: bundle-install
-	bundle install
