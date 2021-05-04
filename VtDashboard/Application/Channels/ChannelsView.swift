@@ -38,15 +38,6 @@ struct ChannelsView: View {
 
     private var channelListView: some View {
         VStack(alignment: .leading) {
-            HStack {
-                SearchBar(text: $viewModel.filterText)
-                Spacer()
-                Text("Total channels: \(viewModel.filteredChannels.count)")
-                    .font(.callout)
-                    .padding()
-            }
-            Divider()
-
             if viewModel.filteredChannels.isEmpty {
                 VStack {
                     Spacer()
@@ -56,6 +47,9 @@ struct ChannelsView: View {
                         Spacer()
                     }
                     Spacer()
+                }
+                .onTapGesture {
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 }
             } else {
                 List(viewModel.filteredChannels) { channel in
@@ -67,7 +61,18 @@ struct ChannelsView: View {
                     })
                 }
                 .listStyle(PlainListStyle())
+                .simultaneousGesture(DragGesture().onChanged({ _ in
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }))
             }
+            HStack {
+                SearchBar(text: $viewModel.filterText)
+                Spacer()
+                Text("Total channels: \(viewModel.filteredChannels.count)")
+                    .font(.callout)
+                    .padding()
+            }
+            Divider()
         }
         .toolbar {
             Button(action: {
