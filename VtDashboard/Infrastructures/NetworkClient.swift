@@ -28,6 +28,10 @@ struct NetworkClient: NetworkClientProtocol {
                         guard let data = data else {
                             fatalError("data must not be nil in success case.")
                         }
+                        if response.response?.statusCode == 401 {
+                            promise(.failure(makeAuthError(data: data)))
+                            return
+                        }
                         do {
                             let object = try self.jsonDecoder.decode(T.self, from: data)
                             promise(.success(object))
@@ -64,6 +68,10 @@ struct NetworkClient: NetworkClientProtocol {
                     guard let data = data else {
                         fatalError("data must not be nil in success case.")
                     }
+                    if response.response?.statusCode == 401 {
+                        promise(.failure(makeAuthError(data: data)))
+                        return
+                    }
                     do {
                         let object = try self.jsonDecoder.decode(T.self, from: data)
                         promise(.success(object))
@@ -75,6 +83,15 @@ struct NetworkClient: NetworkClientProtocol {
                 }
             }
             request.resume()
+        }
+    }
+    
+    private func makeAuthError(data: Data) -> APIError {
+        do {
+            let errorObject = try self.jsonDecoder.decode(APIErrorResponse.self, from: data)
+            return APIError.authError(message: errorObject.error)
+        } catch {
+            return APIError.authError(message: "Unknown Error")
         }
     }
 }

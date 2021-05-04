@@ -26,7 +26,7 @@ struct ChannelRequestsView: View {
                 message: Text(error.localizedDescription),
                 primaryButton: .default(
                     Text("Retry"),
-                    action: viewModel.retryUpdateChannelRequest
+                    action: viewModel.retryLastOperation
                 ), secondaryButton: .cancel(Text("Cancel")))
         })
         .onReceive(viewModel.$isBusy, perform: { isBusy in
@@ -63,6 +63,18 @@ struct ChannelRequestsView: View {
         let openLinkButton = ActionSheet.Button.default(Text("Open YouTube")) {
             UIApplication.shared.open(channelRequest.url, options: [:], completionHandler: nil)
         }
+        let deleteButton = ActionSheet.Button
+            .destructive(Text("Delete"), action: {
+                uiState.currentAlert = Alert(
+                    title: Text("WARNING!"),
+                    message: Text("Are you sure to delete \(channelRequest.title)?"),
+                    primaryButton: .destructive(
+                        Text("Delete"),
+                        action: {
+                            viewModel.deleteChannelRequest(channelId: channelRequest.id)
+                        }),
+                    secondaryButton: .cancel())
+            })
         let buttons: [ActionSheet.Button]
         switch channelRequest.status {
         case .unconfirmed:
@@ -80,11 +92,13 @@ struct ChannelRequestsView: View {
                     channelRequest.status = .rejected
                     viewModel.updateChannelRequest(request: channelRequest)
                 }),
+                deleteButton,
                 .cancel()
             ]
         case .accepted:
             buttons = [
                 openLinkButton,
+                deleteButton,
                 .cancel()
             ]
         case .pending:
@@ -98,6 +112,7 @@ struct ChannelRequestsView: View {
                     channelRequest.status = .rejected
                     viewModel.updateChannelRequest(request: channelRequest)
                 }),
+                deleteButton,
                 .cancel()
             ]
         case .rejected:
@@ -107,6 +122,7 @@ struct ChannelRequestsView: View {
                     channelRequest.status = .unconfirmed
                     viewModel.updateChannelRequest(request: channelRequest)
                 }),
+                deleteButton,
                 .cancel()
             ]
         }
