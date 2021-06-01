@@ -10,7 +10,6 @@ setup: # Install dependencies and prepared development configuration
 	$(MAKE) bundle-install
 	$(MAKE) install-mint
 	$(MAKE) install-cocoapods
-	$(MAKE) update-cocoapods
 	$(MAKE) generate-licenses
 	$(MAKE) xcodegen
 	$(MAKE) open
