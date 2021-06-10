@@ -3,7 +3,7 @@ import SwiftUI
 struct MainView: View {
     @EnvironmentObject var uiState: UIState
     @EnvironmentObject private var authenticationClient: AuthenticationClient
-    @State private var currentViewType: ViewType?
+    @State private var currentViewType: ViewType? = .channelRequests
     private let viewModel = MainViewModel()
 
     var body: some View {
@@ -22,12 +22,8 @@ struct MainView: View {
             }
             .navigationTitle("Menu")
             .listStyle(GroupedListStyle())
-
-            Text("Select a menu!")
-                .font(.title)
-                .bold()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .navigationViewStyle(.stack)
         .alert(item: $uiState.currentAlert) { $0 }
         .actionSheet(item: $uiState.currentActionSheet) { $0 }
         .sheet(item: $uiState.currentSheet) { $0.view }
