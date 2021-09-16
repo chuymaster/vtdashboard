@@ -11,15 +11,15 @@ settings:
 packages:
   Kingfisher:
     url: https://github.com/onevcat/Kingfisher
-    exactVersion: 6.1.1
+    exactVersion: 6.3.1
   Alamofire:
     url: https://github.com/Alamofire/Alamofire
-    exactVersion: 5.4.1
+    exactVersion: 5.4.3
 targets:
   VtDashboard:
     type: application
     platform: iOS
-    sources: 
+    sources:
       - path: VtDashboard
         excludes: &testTarget
           - "**/*Tests.swift"
