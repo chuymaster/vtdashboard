@@ -52,7 +52,7 @@ struct ChannelsFilterView: View {
                     }
                 }
             }
-            .listStyle(GroupedListStyle())
+            .listStyle(.grouped)
         }
     }
 }

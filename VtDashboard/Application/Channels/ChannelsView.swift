@@ -60,7 +60,7 @@ struct ChannelsView: View {
                         ChannelRow(channel: $viewModel.channels[index])
                     })
                 }
-                .listStyle(PlainListStyle())
+                .listStyle(.plain)
                 .simultaneousGesture(DragGesture().onChanged({ _ in
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 }))

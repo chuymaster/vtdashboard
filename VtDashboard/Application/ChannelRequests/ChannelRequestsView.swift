@@ -54,10 +54,11 @@ struct ChannelRequestsView: View {
                     ChannelRequestRow(channelRequest: $viewModel.channelRequests[index])
                 })
             }
-            .listStyle(PlainListStyle())
+            .listStyle(.plain)
         }
     }
 
+    // swiftlint:disable function_body_length
     private func makeActionSheet(channelRequest: ChannelRequest) -> ActionSheet {
         var channelRequest = channelRequest
         let openLinkButton = ActionSheet.Button.default(Text("Open YouTube")) {

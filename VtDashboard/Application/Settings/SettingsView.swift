@@ -9,17 +9,18 @@ struct SettingsView: View {
         VStack(alignment: .leading) {
             Text("Server Environment")
             
-            Picker("Server Environment",
-                   selection: $serverEnvironment) {
-                ForEach(ServerEnvironmentValue.allCases) { environment in
-                    Text(environment.rawValue)
-                        .tag(environment)
+            Picker(
+                "Server Environment",
+                selection: $serverEnvironment) {
+                    ForEach(ServerEnvironmentValue.allCases) { environment in
+                        Text(environment.rawValue)
+                            .tag(environment)
+                    }
                 }
-            }
-            .pickerStyle(SegmentedPickerStyle())
-            .onChange(of: serverEnvironment, perform: { _ in
-                viewModel.showApplicationWillTerminateAlert()
-            })
+                .pickerStyle(.segmented)
+                .onChange(of: serverEnvironment, perform: { _ in
+                    viewModel.showApplicationWillTerminateAlert()
+                })
             
             Divider()
             authorizationView
