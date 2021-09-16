@@ -16,6 +16,7 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
     @Published private var isReloading = false
 
     let postErrorSubject = PassthroughSubject<Error, Never>()
+    let acceptAllChannelRequestsErrorSubject = PassthroughSubject<Error, Never>()
 
     private let networkClient: NetworkClientProtocol
     private var postCompletedSubject = PassthroughSubject<Void, Never>()
@@ -33,6 +34,12 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
             .store(in: &cancellables)
 
         postErrorSubject
+            .sink(receiveValue: { [weak self] _ in
+                self?.isPosting = false
+            })
+            .store(in: &cancellables)
+        
+        acceptAllChannelRequestsErrorSubject
             .sink(receiveValue: { [weak self] _ in
                 self?.isPosting = false
             })
@@ -119,6 +126,45 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
                 }, receiveValue: { _ in })
                 .store(in: &cancellables)
         }
+    }
+    
+    func acceptChannelRequests(requests: [ChannelRequest]) {
+        isPosting = true
+        lastOperation = nil // Should not retry all requests
+        
+        let postRequests: [(Future<ChannelRequest, Error>, Future<Channel, Error>)] =
+        requests.map { request in
+            let postChannelRequest: Future<ChannelRequest, Error> =
+            networkClient.post(endpoint: .postChannelRequest, parameters: [
+                "channel_id": request.channelId,
+                "type": "\(request.type.rawValue)",
+                "status": "\(ChannelRequestStatus.accepted.rawValue)"
+            ])
+            
+            let postChannel: Future<Channel, Error> =
+            networkClient.post(endpoint: .postChannel, parameters: [
+                "channel_id": request.channelId,
+                "title": request.title,
+                "thumbnail_image_url": request.thumbnailImageUrl,
+                "type": "\(request.type.rawValue)"
+            ])
+            
+            return (postChannelRequest, postChannel)
+        }
+        
+        Publishers.Sequence(sequence: postRequests.map { $0.0.zip($0.1) })
+        // TODO:- request one by one serially
+            .flatMap(maxPublishers: .max(1)) { $0 }
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                switch completion {
+                case .finished:
+                    self?.postCompletedSubject.send()
+                case .failure(let error):
+                    self?.acceptAllChannelRequestsErrorSubject.send(error)
+                }
+            }, receiveValue: { _ in })
+            .store(in: &cancellables)
     }
     
     func deleteChannelRequest(channelId: String) {

@@ -3,6 +3,7 @@ import SwiftUI
 struct ChannelRequestsView: View {
     @EnvironmentObject private var uiState: UIState
     @ObservedObject var viewModel: ChannelRequestsViewModel
+    @State private var isMultipleSelectionOn = false
 
     var body: some View {
         VStack {
@@ -29,6 +30,12 @@ struct ChannelRequestsView: View {
                     action: viewModel.retryLastOperation
                 ), secondaryButton: .cancel(Text("Cancel")))
         })
+        .onReceive(viewModel.acceptAllChannelRequestsErrorSubject, perform: { error in
+            uiState.currentAlert = Alert(
+                title: Text("Failure").bold(),
+                message: Text(error.localizedDescription),
+                dismissButton: .default(Text("Close")))
+        })
         .onReceive(viewModel.$isBusy, perform: { isBusy in
             uiState.isLoadingBlockingUserInteraction = isBusy
         })
@@ -45,16 +52,33 @@ struct ChannelRequestsView: View {
                 }
             }
         } else {
-            List(viewModel.channelRequests) { channelRequest in
-                let index = viewModel.channelRequests
-                    .firstIndex { $0.id == channelRequest.id }!
-                Button(action: {
-                    uiState.currentActionSheet = makeActionSheet(channelRequest: viewModel.channelRequests[index])
-                }, label: {
-                    ChannelRequestRow(channelRequest: $viewModel.channelRequests[index])
-                })
+            VStack {
+                Toggle("Multiple Selection", isOn: $isMultipleSelectionOn)
+                    .padding(.horizontal)
+                List(viewModel.channelRequests) { channelRequest in
+                    let index = viewModel.channelRequests
+                        .firstIndex { $0.id == channelRequest.id }!
+                    Button(action: {
+                        uiState.currentActionSheet = makeActionSheet(channelRequest: viewModel.channelRequests[index])
+                    }, label: {
+                        ChannelRequestRow(channelRequest: $viewModel.channelRequests[index])
+                    })
+                }
+                .listStyle(.plain)
+                if isMultipleSelectionOn {
+                    Button("Accept All Selected") {
+                        // TODO
+                        viewModel.acceptChannelRequests(
+                            requests: [
+                                .init(channelId: "1", title: "1", thumbnailImageUrl: "1", type: .original, status: .accepted, updatedAt: 0),
+                                .init(channelId: "2", title: "2", thumbnailImageUrl: "1", type: .original, status: .accepted, updatedAt: 0),
+                                .init(channelId: "3", title: "3", thumbnailImageUrl: "1", type: .original, status: .accepted, updatedAt: 0),
+                                .init(channelId: "4", title: "4", thumbnailImageUrl: "1", type: .original, status: .accepted, updatedAt: 0)
+                            ]
+                        )
+                    }
+                }
             }
-            .listStyle(.plain)
         }
     }
 
