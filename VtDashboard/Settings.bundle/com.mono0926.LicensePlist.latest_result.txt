@@ -69,11 +69,11 @@ body:
                    …
 version: 1.2.12
 
-name: LicensePlist, nameSpecified: , owner: mono0926, version: 3.13.0
+name: LicensePlist, nameSpecified: , owner: mono0926, version: 3.14.4
 
-name: SwiftLint, nameSpecified: , owner: realm, version: 0.44.0
+name: SwiftLint, nameSpecified: , owner: realm, version: 0.45.0
 
-name: xcodegen, nameSpecified: , owner: yonaskolb, version: 2.24.0
+name: xcodegen, nameSpecified: , owner: yonaskolb, version: 2.25.0
 
 name: Alamofire, nameSpecified: Alamofire, owner: Alamofire, version: 5.4.3
 
@@ -81,4 +81,4 @@ name: Kingfisher, nameSpecified: Kingfisher, owner: onevcat, version: 6.3.1
 
 add-version-numbers: true
 
-LicensePlist Version: 3.13.0
+LicensePlist Version: 3.14.4
