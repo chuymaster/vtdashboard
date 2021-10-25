@@ -18,6 +18,9 @@ packages:
   GoogleSignIn:
     url: https://github.com/google/GoogleSignIn-iOS
     exactVersion: 6.0.2
+  Firebase:
+    url: https://github.com/firebase/firebase-ios-sdk
+    exactVersion: 8.8.0
 targets:
   VtDashboard:
     type: application
@@ -30,6 +33,7 @@ targets:
       - package: Kingfisher
       - package: Alamofire
       - package: GoogleSignIn
+      - package: Firebase
     postBuildScripts:
       - name: Run SwiftLint
         path: "scripts/swiftlint.sh"

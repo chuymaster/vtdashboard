@@ -25,6 +25,8 @@ final class AuthenticationClient: NSObject, AuthenticationClientProtocol, Observ
     override init() {
         super.init()
         
+        
+        
         auth.addStateDidChangeListener { [weak self] (_, user) in
             self?.currentUser = user
         }
