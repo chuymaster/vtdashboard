@@ -69,7 +69,7 @@ struct SettingsView: View {
             if viewModel.accessToken == nil {
                 VStack(alignment: .leading) {
                     CaptionText(text: "Sign in with Google")
-                    GoogleSignInButton()
+                    GoogleSignInButton(action: AuthenticationClient.shared.signInWithGoogle)
                 }
                 
                 VStack(alignment: .leading) {

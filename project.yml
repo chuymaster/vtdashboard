@@ -8,6 +8,7 @@ settings:
     MARKETING_VERSION: 1.0.0
     CURRENT_PROJECT_VERSION: 1
     DEVELOPMENT_TEAM: 9WMV2V9J5Z
+    OTHER_LDFLAGS: $(inherited) $(OTHER_LDFLAGS) -ObjC
 packages:
   Kingfisher:
     url: https://github.com/onevcat/Kingfisher
@@ -15,6 +16,12 @@ packages:
   Alamofire:
     url: https://github.com/Alamofire/Alamofire
     exactVersion: 5.4.3
+  GoogleSignIn:
+    url: https://github.com/google/GoogleSignIn-iOS
+    exactVersion: 6.0.2
+  Firebase:
+    url: https://github.com/firebase/firebase-ios-sdk
+    exactVersion: 8.8.0
 targets:
   VtDashboard:
     type: application
@@ -26,6 +33,11 @@ targets:
     dependencies:
       - package: Kingfisher
       - package: Alamofire
+      - package: GoogleSignIn
+      - package: Firebase
+        product: FirebaseAnalytics
+      - package: Firebase
+        product: FirebaseAuth
     postBuildScripts:
       - name: Run SwiftLint
         path: "scripts/swiftlint.sh"

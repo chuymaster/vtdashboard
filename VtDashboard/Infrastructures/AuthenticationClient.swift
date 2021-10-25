@@ -1,5 +1,6 @@
 import Combine
 import Firebase
+import FirebaseAuth
 import Foundation
 import GoogleSignIn
 import OSLog
@@ -20,6 +21,7 @@ final class AuthenticationClient: NSObject, AuthenticationClientProtocol, Observ
     static let shared = AuthenticationClient()
     
     private var cancellables = Set<AnyCancellable>()
+    private lazy var signInConfig = GIDConfiguration(clientID: FirebaseApp.app()?.options.clientID ?? "")
     private let auth = Auth.auth()
     
     override init() {
@@ -67,13 +69,13 @@ final class AuthenticationClient: NSObject, AuthenticationClientProtocol, Observ
             .store(in: &cancellables)
         
         $accessToken
-            .sink(receiveValue: { [weak self]_ in
+            .sink(receiveValue: { [weak self] _ in
                 self?.objectWillChange.send()
             })
             .store(in: &cancellables)
     }
     
-    func signup(email: String, password: String) {
+    func signUp(email: String, password: String) {
         isLoading = true
         auth.createUser(withEmail: email, password: password) { [weak self] _, error in
             self?.error = error
@@ -81,7 +83,7 @@ final class AuthenticationClient: NSObject, AuthenticationClientProtocol, Observ
         }
     }
     
-    func signin(email: String, password: String) {
+    func signIn(email: String, password: String) {
         isLoading = true
         auth.signIn(withEmail: email, password: password, completion: { [weak self] _, error in
             self?.error = error
@@ -89,8 +91,39 @@ final class AuthenticationClient: NSObject, AuthenticationClientProtocol, Observ
         })
     }
     
+    func signInWithGoogle() {
+        guard let presentingViewController = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first?.rootViewController else {return}
+        
+        GIDSignIn.sharedInstance.signIn(
+            with: signInConfig,
+            presenting: presentingViewController,
+            callback: { user, error in
+                if let error = error {
+                    if (error as NSError).code == GIDSignInError.Code.hasNoAuthInKeychain.rawValue {
+                        Logger.auth.error("The user has not signed in before or they have since signed out.")
+                    } else {
+                        Logger.auth.error("\(error.localizedDescription)")
+                    }
+                    return
+                }
+
+                guard let authentication = user?.authentication else { return }
+                let credential = GoogleAuthProvider.credential(
+                    withIDToken: authentication.idToken ?? "",
+                    accessToken: authentication.accessToken)
+
+                self.isLoading = true
+                Auth.auth().signIn(with: credential) { [weak self] _, error in
+                    self?.error = error
+                    self?.isLoading = false
+                }
+            })
+    }
+    
     func signOut() {
+        GIDSignIn.sharedInstance.signOut()
         try? auth.signOut()
+        accessToken = nil
     }
     
     func refreshToken() {
@@ -98,33 +131,5 @@ final class AuthenticationClient: NSObject, AuthenticationClientProtocol, Observ
             self?.accessToken = accessToken
             self?.error = error
         })
-    }
-}
-
-extension AuthenticationClient: GIDSignInDelegate {
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        
-        if let error = error {
-            if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
-                Logger.auth.error("The user has not signed in before or they have since signed out.")
-            } else {
-                Logger.auth.error("\(error.localizedDescription)")
-            }
-            return
-        }
-        
-        guard let authentication = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                       accessToken: authentication.accessToken)
-        
-        isLoading = true
-        Auth.auth().signIn(with: credential) { [weak self] _, error in
-            self?.error = error
-            self?.isLoading = false
-        }
-    }
-    
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        signOut()
     }
 }
