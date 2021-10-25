@@ -16,14 +16,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         let filePath = Bundle.main.path(forResource: serverEnvironmentValue.googleServiceInfoFileName, ofType: "plist")!
         let options = FirebaseOptions(contentsOfFile: filePath)!
         FirebaseApp.configure(options: options)
-        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = AuthenticationClient.shared
         return true
     }
     
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any])
     -> Bool {
-        return GIDSignIn.sharedInstance().handle(url)
+        return GIDSignIn.sharedInstance.handle(url)
     }
     
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

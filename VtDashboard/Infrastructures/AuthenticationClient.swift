@@ -1,5 +1,5 @@
 import Combine
-import Firebase
+import FirebaseAuth
 import Foundation
 import GoogleSignIn
 import OSLog
@@ -20,12 +20,22 @@ final class AuthenticationClient: NSObject, AuthenticationClientProtocol, Observ
     static let shared = AuthenticationClient()
     
     private var cancellables = Set<AnyCancellable>()
+    // FirebaseApp.app()?.options.clientID
+    private let signInConfig = GIDConfiguration.init(clientID: "492764029487-673tef0f054315k7117jk3gif823s6in.apps.googleusercontent.com")
     private let auth = Auth.auth()
     
     override init() {
         super.init()
         
-        
+//        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+//            print(user)
+//            print("restorePreviousSignIn")
+//            if error != nil || user == nil {
+//                // Show the app's signed-out state.
+//            } else {
+//                // Show the app's signed-in state.
+//            }
+//        }
         
         auth.addStateDidChangeListener { [weak self] (_, user) in
             self?.currentUser = user
@@ -91,8 +101,37 @@ final class AuthenticationClient: NSObject, AuthenticationClientProtocol, Observ
         })
     }
     
+    func signInWithGoogle() {
+        guard let presentingViewController = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first?.rootViewController else {return}
+        
+        GIDSignIn.sharedInstance.signIn(
+            with: signInConfig,
+            presenting: presentingViewController,
+            callback: { user, error in
+                if let error = error {
+                    if (error as NSError).code == GIDSignInError.Code.hasNoAuthInKeychain.rawValue {
+                        Logger.auth.error("The user has not signed in before or they have since signed out.")
+                    } else {
+                        Logger.auth.error("\(error.localizedDescription)")
+                    }
+                    return
+                }
+
+                guard let authentication = user?.authentication else { return }
+                let credential = GoogleAuthProvider.credential(
+                    withIDToken: authentication.idToken ?? "",
+                    accessToken: authentication.accessToken)
+
+                self.isLoading = true
+                Auth.auth().signIn(with: credential) { [weak self] _, error in
+                    self?.error = error
+                    self?.isLoading = false
+                }
+            })
+    }
+    
     func signOut() {
-        try? auth.signOut()
+        GIDSignIn.sharedInstance.signOut()
     }
     
     func refreshToken() {
@@ -100,33 +139,5 @@ final class AuthenticationClient: NSObject, AuthenticationClientProtocol, Observ
             self?.accessToken = accessToken
             self?.error = error
         })
-    }
-}
-
-extension AuthenticationClient: GIDSignInDelegate {
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        
-        if let error = error {
-            if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
-                Logger.auth.error("The user has not signed in before or they have since signed out.")
-            } else {
-                Logger.auth.error("\(error.localizedDescription)")
-            }
-            return
-        }
-        
-        guard let authentication = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                       accessToken: authentication.accessToken)
-        
-        isLoading = true
-        Auth.auth().signIn(with: credential) { [weak self] _, error in
-            self?.error = error
-            self?.isLoading = false
-        }
-    }
-    
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        signOut()
     }
 }
