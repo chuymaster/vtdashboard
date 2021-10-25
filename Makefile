@@ -3,13 +3,12 @@
 # Variables
 
 PRODUCT_NAME := VtDashboard
-WORKSPACE_NAME := ${PRODUCT_NAME}.xcworkspace
+PROJECT_NAME := ${PRODUCT_NAME}.xcodeproj
 
 .PHONY: setup
 setup: # Install dependencies and prepared development configuration
 	$(MAKE) bundle-install
 	$(MAKE) install-mint
-	$(MAKE) install-cocoapods
 	$(MAKE) generate-licenses
 	$(MAKE) xcodegen
 	$(MAKE) open
@@ -26,21 +25,13 @@ xcodegen: # # Generate project with XcodeGen
 bundle-install: # Install Bundler dependencies
 	bundle install
 
-.PHONY: install-cocoapods
-install-cocoapods: # Install CocoaPods dependencies and generate workspace
-	bundle exec pod install
-
-.PHONY: update-cocoapods
-update-cocoapods: # Update CocoaPods dependencies and generate workspace
-	bundle exec pod update
-
 .PHONY: generate-licenses
 generate-licenses: # Generate licenses with LicensePlist
 	mint run LicensePlist license-plist --output-path ${PRODUCT_NAME}/Settings.bundle --add-version-numbers
 
 .PHONY: open
-open: # Open workspace in Xcode
-	open ./${WORKSPACE_NAME}
+open: # Open project in Xcode
+	open ./${PROJECT_NAME}
 
 .PHONY: clean
 clean: # Delete cache
