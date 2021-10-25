@@ -15,6 +15,9 @@ packages:
   Alamofire:
     url: https://github.com/Alamofire/Alamofire
     exactVersion: 5.4.3
+  GoogleSignIn:
+    url: https://github.com/google/GoogleSignIn-iOS
+    exactVersion: 6.0.2
 targets:
   VtDashboard:
     type: application
@@ -26,6 +29,7 @@ targets:
     dependencies:
       - package: Kingfisher
       - package: Alamofire
+      - package: GoogleSignIn
     postBuildScripts:
       - name: Run SwiftLint
         path: "scripts/swiftlint.sh"
