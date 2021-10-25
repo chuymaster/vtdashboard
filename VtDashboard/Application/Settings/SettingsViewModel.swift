@@ -42,11 +42,11 @@ final class SettingsViewModel: ObservableObject {
     }
     
     func signup() {
-        authenticationClient.signup(email: email, password: password)
+        authenticationClient.signUp(email: email, password: password)
     }
 
     func signin() {
-        authenticationClient.signin(email: email, password: password)
+        authenticationClient.signIn(email: email, password: password)
     }
 
     func signOut() {

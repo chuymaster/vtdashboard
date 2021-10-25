@@ -1,4 +1,5 @@
 import Combine
+import Firebase
 import FirebaseAuth
 import Foundation
 import GoogleSignIn
@@ -20,22 +21,11 @@ final class AuthenticationClient: NSObject, AuthenticationClientProtocol, Observ
     static let shared = AuthenticationClient()
     
     private var cancellables = Set<AnyCancellable>()
-    // FirebaseApp.app()?.options.clientID
-    private let signInConfig = GIDConfiguration.init(clientID: "492764029487-673tef0f054315k7117jk3gif823s6in.apps.googleusercontent.com")
+    private lazy var signInConfig = GIDConfiguration(clientID: FirebaseApp.app()?.options.clientID ?? "")
     private let auth = Auth.auth()
     
     override init() {
         super.init()
-        
-//        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
-//            print(user)
-//            print("restorePreviousSignIn")
-//            if error != nil || user == nil {
-//                // Show the app's signed-out state.
-//            } else {
-//                // Show the app's signed-in state.
-//            }
-//        }
         
         auth.addStateDidChangeListener { [weak self] (_, user) in
             self?.currentUser = user
@@ -79,13 +69,13 @@ final class AuthenticationClient: NSObject, AuthenticationClientProtocol, Observ
             .store(in: &cancellables)
         
         $accessToken
-            .sink(receiveValue: { [weak self]_ in
+            .sink(receiveValue: { [weak self] _ in
                 self?.objectWillChange.send()
             })
             .store(in: &cancellables)
     }
     
-    func signup(email: String, password: String) {
+    func signUp(email: String, password: String) {
         isLoading = true
         auth.createUser(withEmail: email, password: password) { [weak self] _, error in
             self?.error = error
@@ -93,7 +83,7 @@ final class AuthenticationClient: NSObject, AuthenticationClientProtocol, Observ
         }
     }
     
-    func signin(email: String, password: String) {
+    func signIn(email: String, password: String) {
         isLoading = true
         auth.signIn(withEmail: email, password: password, completion: { [weak self] _, error in
             self?.error = error
@@ -132,6 +122,8 @@ final class AuthenticationClient: NSObject, AuthenticationClientProtocol, Observ
     
     func signOut() {
         GIDSignIn.sharedInstance.signOut()
+        try? auth.signOut()
+        accessToken = nil
     }
     
     func refreshToken() {
