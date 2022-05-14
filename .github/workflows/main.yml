@@ -20,8 +20,6 @@ jobs:
         run: xcodebuild -version
       - name: Install Mint
         run: brew install mint
-      - name: Install Bundler
-        run: gem install bundler
       - name: make setup
         run: make setup
       - name: Test
