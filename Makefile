@@ -7,7 +7,6 @@ PROJECT_NAME := ${PRODUCT_NAME}.xcodeproj
 
 .PHONY: setup
 setup: # Install dependencies and prepared development configuration
-	$(MAKE) bundle-install
 	$(MAKE) install-mint
 	$(MAKE) generate-licenses
 	$(MAKE) xcodegen
@@ -20,10 +19,6 @@ install-mint: # Install Mint dependencies
 .PHONY: xcodegen
 xcodegen: # # Generate project with XcodeGen
 	mint run xcodegen --use-cache
-
-.PHONY: bundle-install
-bundle-install: # Install Bundler dependencies
-	bundle install
 
 .PHONY: generate-licenses
 generate-licenses: # Generate licenses with LicensePlist
