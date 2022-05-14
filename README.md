@@ -1,5 +1,7 @@
 # vtdashboard
 
+A back-office application for channel registration of https://vtuber.chuysan.com/#/
+
 ## Setup
 
 This project uses [XcodeGen](https://github.com/yonaskolb/XcodeGen) to generate the project file. The generation command is run via `Mint`
@@ -17,7 +19,7 @@ gem install bundler
 ```
 
 - Run `make setup` to setup the project
-- Open `VtDashboard.xcworkspace` and happy coding!
+- Open `VtDashboard.xcodeproj` and happy coding!
 
 # Development
 
