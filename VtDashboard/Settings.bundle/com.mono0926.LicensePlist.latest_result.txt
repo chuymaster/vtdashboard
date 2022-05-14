@@ -4,40 +4,6 @@ name: SwiftLint, nameSpecified: , owner: realm, version: 0.45.0
 
 name: xcodegen, nameSpecified: , owner: yonaskolb, version: 2.25.0
 
-name: abseil-cpp-SwiftPM, nameSpecified: abseil, owner: firebase, version: 0.20200225.4
-
-name: Alamofire, nameSpecified: Alamofire, owner: Alamofire, version: 5.4.3
-
-name: AppAuth-iOS, nameSpecified: AppAuth, owner: openid, version: 1.4.0
-
-name: boringssl-SwiftPM, nameSpecified: BoringSSL-GRPC, owner: firebase, version: 0.7.2
-
-name: firebase-ios-sdk, nameSpecified: Firebase, owner: firebase, version: 8.8.0
-
-name: GoogleAppMeasurement, nameSpecified: GoogleAppMeasurement, owner: google, version: 8.8.0
-
-name: GoogleDataTransport, nameSpecified: GoogleDataTransport, owner: google, version: 9.1.2
-
-name: GoogleSignIn-iOS, nameSpecified: GoogleSignIn, owner: google, version: 6.0.2
-
-name: GoogleUtilities, nameSpecified: GoogleUtilities, owner: google, version: 7.6.0
-
-name: grpc-SwiftPM, nameSpecified: gRPC, owner: firebase, version: 1.28.4
-
-name: gtm-session-fetcher, nameSpecified: GTMSessionFetcher, owner: google, version: 1.7.0
-
-name: GTMAppAuth, nameSpecified: GTMAppAuth, owner: google, version: 1.2.2
-
-name: Kingfisher, nameSpecified: Kingfisher, owner: onevcat, version: 6.3.1
-
-name: leveldb, nameSpecified: leveldb, owner: firebase, version: 1.22.2
-
-name: nanopb, nameSpecified: nanopb, owner: firebase, version: 2.30908.0
-
-name: promises, nameSpecified: Promises, owner: google, version: 2.0.0
-
-name: swift-protobuf, nameSpecified: SwiftProtobuf, owner: apple, version: 1.18.0
-
 add-version-numbers: true
 
 LicensePlist Version: 3.14.4
