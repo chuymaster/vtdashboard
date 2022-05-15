@@ -22,6 +22,9 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
     private var postCompletedSubject = PassthroughSubject<Void, Never>()
     private var cancellables = Set<AnyCancellable>()
     private var lastOperation: Operation?
+    private var getChannelRequestListCancellable: AnyCancellable?
+    private var postChannelRequestCancellable: AnyCancellable?
+    private var deleteChannelRequestCancellable: AnyCancellable?
 
     init(networkClient: NetworkClientProtocol = NetworkClient()) {
         self.networkClient = networkClient
@@ -55,28 +58,35 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
         if viewStatus != .loading {
             isReloading = true
         }
-        let getChannelRequestList: Future<[ChannelRequest], Error> =
-            networkClient.get(endpoint: .getChannelRequestList)
-
-        getChannelRequestList
+        
+        getChannelRequestListCancellable?.cancel()
+        getChannelRequestListCancellable = AuthenticationClient.shared.$accessToken
+            .filter { $0 != nil } // Only request when accessToken is available
             .receive(on: DispatchQueue.main)
+            .flatMap({ [weak self] _ -> Future<[ChannelRequest], Error> in
+                guard let self = self else {
+                    fatalError()
+                }
+                return self.networkClient.get(endpoint: .getChannelRequestList)
+            })
             .sink { [weak self] completion in
-                self?.isReloading = false
                 switch completion {
                 case .finished:
-                    withAnimation(.easeInOut(duration: 1.5)) {
-                        self?.viewStatus = .loaded
-                    }
+                    break
                 case .failure(let error):
+                    self?.isReloading = false
                     self?.viewStatus = .error(error: error)
                 }
             } receiveValue: { [weak self] channelRequests in
+                self?.isReloading = false
                 self?.channelRequests = channelRequests
                     .sorted(by: { ch1, ch2 -> Bool in
                         ch1.updatedAt > ch2.updatedAt
                     })
+                withAnimation(.easeInOut(duration: 1.5)) {
+                    self?.viewStatus = .loaded
+                }
             }
-            .store(in: &cancellables)
     }
 
     func updateChannelRequest(request: ChannelRequest) {
@@ -100,7 +110,8 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
                     "type": "\(request.type.rawValue)"
                 ])
 
-            postChannelRequest
+            postChannelRequestCancellable?.cancel()
+            postChannelRequestCancellable = postChannelRequest
                 .combineLatest(postChannel)
                 .receive(on: DispatchQueue.main)
                 .sink(receiveCompletion: { [weak self] completion in
@@ -111,10 +122,10 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
                         self?.postErrorSubject.send(error)
                     }
                 }, receiveValue: { _ in })
-                .store(in: &cancellables)
         } else {
             // Update ChannelRequest only
-            postChannelRequest
+            postChannelRequestCancellable?.cancel()
+            postChannelRequestCancellable = postChannelRequest
                 .receive(on: DispatchQueue.main)
                 .sink(receiveCompletion: { [weak self] completion in
                     switch completion {
@@ -124,7 +135,6 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
                         self?.postErrorSubject.send(error)
                     }
                 }, receiveValue: { _ in })
-                .store(in: &cancellables)
         }
     }
 
@@ -136,7 +146,8 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
             "channel_id": channelId
         ])
         
-        deleteChannelRequest
+        deleteChannelRequestCancellable?.cancel()
+        deleteChannelRequestCancellable = deleteChannelRequest
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 switch completion {
@@ -146,7 +157,6 @@ final class ChannelRequestsViewModel: ViewStatusManageable, ObservableObject {
                     self?.postErrorSubject.send(error)
                 }
             } receiveValue: { _ in }
-            .store(in: &cancellables)
     }
     
     func retryLastOperation() {
