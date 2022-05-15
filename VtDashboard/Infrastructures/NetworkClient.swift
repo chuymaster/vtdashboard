@@ -21,7 +21,15 @@ struct NetworkClient: NetworkClientProtocol {
     /// The object type must conform to Codable protocol
     func get<T: Codable>(endpoint: GetEndpoint) -> Future<T, Error> {
         return Future { promise in
-            let request = AF.request(endpoint.url)
+            guard let accessToken = AuthenticationClient.shared.accessToken else {
+                promise(.failure(NetworkClientError.unauthenticated))
+                return
+            }
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": "Bearer \(accessToken)"
+            ]
+            let request = AF.request(endpoint.url, headers: headers)
                 .response { response in
                     switch response.result {
                     case .success(let data):

@@ -11,10 +11,8 @@ struct ChannelRequestsView: View {
                 LoadingView()
             case .loaded:
                 channelRequestListView
-            case .error:
-                ZStack {
-                    Text("Error")
-                }
+            case .error(let error):
+                Text(error.localizedDescription)
             }
         }
         .onAppear {
