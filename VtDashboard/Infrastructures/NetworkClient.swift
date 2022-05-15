@@ -10,10 +10,12 @@ protocol NetworkClientProtocol {
 struct NetworkClient: NetworkClientProtocol {
 
     private let jsonDecoder: JSONDecoder
+    private let authenticationClient: AuthenticationClientProtocol
 
-    init() {
+    init(authenticationClient: AuthenticationClientProtocol = AuthenticationClient.shared) {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+        self.authenticationClient = authenticationClient
         self.jsonDecoder = jsonDecoder
     }
 
@@ -21,7 +23,7 @@ struct NetworkClient: NetworkClientProtocol {
     /// The object type must conform to Codable protocol
     func get<T: Codable>(endpoint: GetEndpoint) -> Future<T, Error> {
         return Future { promise in
-            guard let accessToken = AuthenticationClient.shared.accessToken else {
+            guard let accessToken = authenticationClient.accessToken else {
                 promise(.failure(NetworkClientError.unauthenticated))
                 return
             }
@@ -56,7 +58,7 @@ struct NetworkClient: NetworkClientProtocol {
 
     func post<T: Codable>(endpoint: PostEndpoint, parameters: [String: String]) -> Future<T, Error> {
         return Future { promise in
-            guard let accessToken = AuthenticationClient.shared.accessToken else {
+            guard let accessToken = authenticationClient.accessToken else {
                 promise(.failure(NetworkClientError.unauthenticated))
                 return
             }

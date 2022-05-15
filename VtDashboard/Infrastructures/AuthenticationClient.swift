@@ -6,6 +6,7 @@ import GoogleSignIn
 import OSLog
 
 protocol AuthenticationClientProtocol {
+    var accessToken: String? { get set }
 }
 
 final class AuthenticationClient: NSObject, AuthenticationClientProtocol, ObservableObject {
